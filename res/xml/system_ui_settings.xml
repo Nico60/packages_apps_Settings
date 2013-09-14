@@ -20,6 +20,13 @@
     xmlns:settings="http://schemas.android.com/apk/res/com.android.settings">
 
     <PreferenceScreen
+        android:key="active_display"
+        android:fragment="com.android.settings.chameleonos.ActiveDisplaySettings"
+        android:title="@string/ad_settings_title"
+        android:summary="@string/ad_settings_summary">
+    </PreferenceScreen>
+
+    <PreferenceScreen
         android:key="status_bar"
         android:fragment="com.android.settings.cyanogenmod.StatusBar"
         android:title="@string/status_bar_title" />
