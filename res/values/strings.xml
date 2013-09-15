@@ -6064,5 +6064,8 @@
     <string name="navigation_bar_height_24">24dp</string>
     <string name="navigation_bar_height_20">20dp</string>
     <string name="navigation_bar_height_0">0dp (hide)</string>
+  
+    <!-- Restart SystemUI -->
+    <string name="restart_systemui">Restart SystemUI</string>
 
 </resources>
