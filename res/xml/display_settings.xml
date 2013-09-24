@@ -95,6 +95,12 @@
             android:entryValues="@array/screen_animation_style_values"
             android:dependency="screen_off_animation" />
 
+        <PreferenceScreen
+            android:id="@+id/animations"
+            android:title="@string/title_animation_controls"
+            android:summary="@string/header_summary_animation"
+            android:fragment="com.android.settings.cyanogenmod.fragments.AnimationControls" />
+
         <PreferenceCategory
             android:key="lights_prefs"
             android:title="@string/lights_category_title">
