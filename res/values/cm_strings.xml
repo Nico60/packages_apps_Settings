@@ -1127,4 +1127,7 @@ two in order to insert additional control points. \'Remove\' deletes the selecte
     <!-- Content description of the sync in progress icon for accessibility. [CHAR LIMIT=NONE] -->
     <string name="accessibility_sync_in_progress">Sync in progress.</string>
 
+    <!-- Lockscreen battery ring -->
+    <string name="battery_around_lockscreen_ring">Battery around unlock ring</string>    
+    
 </resources>
