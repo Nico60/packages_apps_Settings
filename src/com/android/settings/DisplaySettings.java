@@ -42,6 +42,7 @@ import android.preference.Preference.OnPreferenceClickListener;
 import android.preference.PreferenceCategory;
 import android.preference.PreferenceScreen;
 import android.provider.Settings;
+import android.util.DisplayMetrics;
 import android.util.Log;
 
 import com.android.internal.view.RotationPolicy;
@@ -51,6 +52,8 @@ import com.android.settings.cyanogenmod.DisplayRotation;
 
 import org.cyanogenmod.hardware.AdaptiveBacklight;
 import org.cyanogenmod.hardware.TapToWake;
+
+import com.android.settings.util.Helpers;
 
 import java.util.ArrayList;
 
@@ -63,6 +66,7 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
 
     private static final String KEY_SCREEN_TIMEOUT = "screen_timeout";
     private static final String KEY_ACCELEROMETER = "accelerometer";
+    private static final String KEY_LCD_DENSITY = "lcd_density";
     private static final String KEY_FONT_SIZE = "font_size";
     private static final String KEY_SCREEN_SAVER = "screensaver";
     private static final String KEY_DISPLAY_ROTATION = "display_rotation";
@@ -87,6 +91,7 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
     private CheckBoxPreference mScreenOffAnimation;
     private ListPreference mScreenAnimationStylePreference;
 
+    private ListPreference mLcdDensityPreference;
     private PreferenceScreen mNotificationPulse;
     private PreferenceScreen mBatteryPulse;
     private PreferenceScreen mDisplayRotationPreference;
@@ -127,6 +132,12 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
         addPreferencesFromResource(R.xml.display_settings);
 
         mDisplayRotationPreference = (PreferenceScreen) findPreference(KEY_DISPLAY_ROTATION);
+
+        mLcdDensityPreference = (ListPreference) findPreference(KEY_LCD_DENSITY);
+        int currentDensity = DisplayMetrics.DENSITY_CURRENT;
+        mLcdDensityPreference.setValue(String.valueOf(currentDensity));
+        mLcdDensityPreference.setOnPreferenceChangeListener(this);
+        updateLcdDensityPreferenceDescription(currentDensity);
 
         mScreenSaverPreference = findPreference(KEY_SCREEN_SAVER);
         if (mScreenSaverPreference != null
@@ -305,6 +316,19 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
                 summary = preference.getContext().getString(R.string.screen_timeout_summary,
                         entries[best]);
             }
+        }
+        preference.setSummary(summary);
+    }
+
+    private void updateLcdDensityPreferenceDescription(int currentDensity) {
+        ListPreference preference = mLcdDensityPreference;
+        String summary;
+        if (currentDensity < 10 || currentDensity >= 1000) {
+            // Unsupported value
+            summary = "";
+        }
+        else {
+            summary = Integer.toString(currentDensity) + " DPI";
         }
         preference.setSummary(summary);
     }
@@ -488,6 +512,16 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
         }
     }
 
+    public void writeLcdDensityPreference(int value) {
+        try {
+            Helpers.setSystemProp("persist.lcd_density", Integer.toString(value));
+            Helpers.restartJava();
+        }
+        catch (Exception e) {
+            Log.w(TAG, "Unable to save LCD density");
+        }
+    }
+
     @Override
     public boolean onPreferenceTreeClick(PreferenceScreen preferenceScreen, Preference preference) {
         if (preference == mAdaptiveBacklight) {
@@ -514,6 +548,11 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
             } catch (NumberFormatException e) {
                 Log.e(TAG, "could not persist screen timeout setting", e);
             }
+        }
+        if (KEY_LCD_DENSITY.equals(key)) {
+            int value = Integer.parseInt((String) objValue);
+            writeLcdDensityPreference(value);
+            updateLcdDensityPreferenceDescription(value);
         }
         if (KEY_FONT_SIZE.equals(key)) {
             writeFontSizePreference(objValue);
