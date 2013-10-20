@@ -58,6 +58,12 @@
         android:title="@string/recent_apps_panel_title" />
 
     <PreferenceScreen
+        android:key="identicons"
+        android:fragment="com.android.settings.chameleonos.labs.identicons.IdenticonsSettings"
+        android:icon="@drawable/ic_settings_identicons"
+        android:title="@string/identicons_title" />
+
+    <PreferenceScreen
         android:key="screen_state_service"
         android:fragment="com.android.settings.cyanogenmod.fragments.ScreenStateToggles"
         android:title="@string/screen_state_toggles_title"

@@ -2084,5 +2084,11 @@
             android:name=".cyanogenmod.LtoService">
         </service>
 
+        <service android:name=".chameleonos.labs.identicons.IdenticonCreationService"
+                 android:exported="false" />
+
+        <service android:name=".chameleonos.labs.identicons.IdenticonRemovalService"
+                 android:exported="false" />
+
     </application>
 </manifest>
