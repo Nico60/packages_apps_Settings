@@ -459,6 +459,7 @@ two in order to insert additional control points. \'Remove\' deletes the selecte
     <string name="root_access_all">Apps and ADB</string>
 
     <string name="ok">OK</string>
+    <string name="reset">Reset</string>
 
     <!-- Quiet hours -->
     <string name="quiet_hours_title">Quiet hours</string>
@@ -915,7 +916,6 @@ two in order to insert additional control points. \'Remove\' deletes the selecte
 
     <!-- Status bar -->
     <string name="status_bar_title">Status bar</string>
-    <string name="status_bar_show_clock_title">Show clock</string>
     <string name="status_bar_battery_title">Battery status style</string>
     <string name="status_bar_style_icon_portrait">Icon portrait</string>
     <string name="status_bar_style_icon_landscape">Icon landscape</string>
