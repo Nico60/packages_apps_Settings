@@ -1870,6 +1870,8 @@
 
         <activity android:name=".slim.themes.ThemeSettings" />
 
+        <activity android:name=".spirit.AppSidebar" />
+
    	<!-- Pseudo-activity used to provide an intent-filter entry point to ass display rotation config -->
         <activity android:name="Settings$ASSRamBarActivity"
                 android:label="@string/ram_bar">
