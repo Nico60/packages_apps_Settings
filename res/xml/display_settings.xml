@@ -91,6 +91,17 @@
             android:title="@string/double_tap_to_wake_title"
             android:defaultValue="false" />
 
+    <PreferenceCategory
+        android:key="category_animation_options"
+        android:title="@string/display_category_animation_options_title" >
+
+        <ListPreference
+            android:key="system_power_crt_mode"
+            android:dialogTitle="@string/system_power_crt_mode_dialog_title"
+            android:title="@string/system_power_crt_mode_title"
+            android:entries="@array/entries_system_power_crt_mode"
+            android:entryValues="@array/values_system_power_crt_mode" />
+
         <PreferenceScreen
             android:id="@+id/animations"
             android:title="@string/title_animation_controls"
@@ -112,6 +123,8 @@
             android:entries="@array/listview_interpolator_entries"
             android:entryValues="@array/listview_interpolator_values"
             android:defaultValue="0" />
+
+    </PreferenceCategory>
 
         <PreferenceCategory
             android:key="lights_prefs"
