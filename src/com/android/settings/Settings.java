@@ -102,6 +102,7 @@ import com.android.settings.profiles.ProfileConfig;
 import com.android.settings.profiles.ProfileEnabler;
 import com.android.settings.profiles.ProfilesSettings;
 import com.android.settings.slim.themes.ThemeEnabler;
+import com.android.settings.spirit.BatteryIconStyle;
 import com.android.settings.tts.TextToSpeechSettings;
 import com.android.settings.users.UserSettings;
 import com.android.settings.vpn2.VpnSettings;
@@ -382,7 +383,8 @@ public class Settings extends PreferenceActivity
         PerformanceSettings.class.getName(),
         PolicyNativeFragment.class.getName(),
         com.android.settings.cyanogenmod.PrivacySettings.class.getName(),
-        com.android.settings.quicksettings.QuickSettingsTiles.class.getName()
+        com.android.settings.quicksettings.QuickSettingsTiles.class.getName(),
+	BatteryIconStyle.class.getName()
     };
 
     @Override
@@ -1230,4 +1232,5 @@ public class Settings extends PreferenceActivity
     public static class SystemSettingsActivity extends Settings { /* empty */ }
     public static class QuickSettingsConfigActivity extends Settings { /* empty */ }
     public static class ASSRamBarActivity extends Settings { /* empty */ }
+    public static class BatteryIconStyleSettingsActivity extends Settings { /* empty */ }
 }
