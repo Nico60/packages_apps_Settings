@@ -25,6 +25,8 @@ import android.content.Intent;
 import android.content.pm.IPackageDataObserver;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Handler;
 import android.os.PowerManager;
 import android.os.SystemProperties;
@@ -85,6 +87,16 @@ public class DensityChanger extends SettingsPreferenceFragment implements
 
         String currentDensity = SystemProperties.get("ro.sf.lcd_density");
         PreferenceScreen prefs = getPreferenceScreen();
+        new AlertDialog.Builder(getActivity())
+        .setTitle(R.string.lcd_warning_title)
+        .setMessage(R.string.lcd_warning)
+        .setNegativeButton(R.string.lcd_warning_no,new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog,int id) {
+                finish();
+            }
+        })
+        .setPositiveButton(R.string.lcd_warning_yes, null)
+        .show();
 
         mStockDensity = (ListPreference) findPreference("stock_density");
         mStockDensity.setOnPreferenceChangeListener(this);
