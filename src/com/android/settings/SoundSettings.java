@@ -103,6 +103,7 @@ public class SoundSettings extends SettingsPreferenceFragment implements
     private static final String KEY_CAMERA_SOUNDS = "camera_sounds";
     private static final String PROP_CAMERA_SOUND = "persist.sys.camera-sound";
     private static final String VOLUME_PANEL_BG_COLOR = "volume_panel_bg_color";
+    private static final String PREF_LESS_NOTIFICATION_SOUNDS = "less_notification_sounds";
 
     private static final String KEY_POWER_NOTIFICATIONS = "power_notifications";
     private static final String KEY_POWER_NOTIFICATIONS_VIBRATE = "power_notifications_vibrate";
@@ -129,6 +130,7 @@ public class SoundSettings extends SettingsPreferenceFragment implements
 
     private ListPreference mVolumeOverlay;
     private ListPreference mRingMode;
+    private ListPreference mAnnoyingNotifications;
     private CheckBoxPreference mSoundEffects;
     private CheckBoxPreference mCameraSounds;
     private Preference mMusicFx;
@@ -334,6 +336,13 @@ public class SoundSettings extends SettingsPreferenceFragment implements
         }
         mVolumePanelBgColor.setNewPreviewColor(intColor);
         setHasOptionsMenu(true);
+
+        mAnnoyingNotifications = (ListPreference) findPreference(PREF_LESS_NOTIFICATION_SOUNDS);
+        int notificationThreshold = Settings.System.getInt(getContentResolver(),
+                Settings.System.MUTE_ANNOYING_NOTIFICATIONS_THRESHOLD,
+                0);
+        mAnnoyingNotifications.setValue(Integer.toString(notificationThreshold));
+        mAnnoyingNotifications.setOnPreferenceChangeListener(this);
 
         initDockSettings();
     }
@@ -559,6 +568,10 @@ public class SoundSettings extends SettingsPreferenceFragment implements
                     Settings.System.VOLUME_PANEL_BG_COLOR,
                     intHex);
             return true;
+        } else if (PREF_LESS_NOTIFICATION_SOUNDS.equals(key)) {
+            final int val = Integer.valueOf((String) objValue);
+            Settings.System.putInt(getContentResolver(),
+                    Settings.System.MUTE_ANNOYING_NOTIFICATIONS_THRESHOLD, val);
         }
 
         return true;
