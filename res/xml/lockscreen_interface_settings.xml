@@ -65,6 +65,11 @@
             android:title="@string/see_through_title"
             android:summary="@string/see_through_summary" />
 
+    <CheckBoxPreference
+        android:key="lockscreen_torch"
+        android:title="@string/lockscreen_glowpad_torch_title"
+        android:summary="@string/lockscreen_glowpad_torch_summary" />
+
     </PreferenceCategory>
 
     <PreferenceCategory
@@ -101,9 +106,19 @@
 
     </PreferenceCategory>
 
-    <CheckBoxPreference
-        android:key="lockscreen_torch"
-        android:title="@string/lockscreen_glowpad_torch_title"
-        android:summary="@string/lockscreen_glowpad_torch_summary" />
+    <PreferenceCategory
+        android:key="lockscreen_background_category"
+        android:title="@string/lockscreen_background">
+
+        <ListPreference
+            android:key="lockscreen_background_style"
+            android:persistent="false"
+            android:dialogTitle="@string/lockscreen_background_style_title"
+            android:summary="%s"
+            android:title="@string/lockscreen_background_style_title"
+            android:entries="@array/lockscreen_background_entries"
+            android:entryValues="@array/lockscreen_background_values" />
+
+    </PreferenceCategory>
 
 </PreferenceScreen>
