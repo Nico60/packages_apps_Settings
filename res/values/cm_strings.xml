@@ -438,9 +438,6 @@
     <string name="root_access_adb">ADB only</string>
     <string name="root_access_all">Apps and ADB</string>
 
-    <string name="ok">OK</string>
-    <string name="reset">Reset</string>
-
     <!-- Quiet hours -->
     <string name="quiet_hours_title">Quiet hours</string>
     <string name="quiet_hours_summary">Configure the hours the device should be quiet</string>
