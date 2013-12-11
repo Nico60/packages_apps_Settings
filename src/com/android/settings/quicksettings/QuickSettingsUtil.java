@@ -51,6 +51,7 @@ import static com.android.internal.util.cm.QSConstants.TILE_USER;
 import static com.android.internal.util.cm.QSConstants.TILE_VOLUME;
 import static com.android.internal.util.cm.QSConstants.TILE_WIFI;
 import static com.android.internal.util.cm.QSConstants.TILE_WIFIAP;
+import static com.android.internal.util.cm.QSConstants.TILE_POWER;
 import static com.android.internal.util.cm.QSConstants.TILE_ONTHEGO;
 
 import android.content.ContentResolver;
@@ -182,6 +183,9 @@ public class QuickSettingsUtil {
         registerTile(new QuickSettingsUtil.TileInfo(
                 TILE_NAVBAR, R.string.title_navbar_tile,
                 "com.android.systemui:drawable/ic_qs_navbar_on"));
+	registerTile(new QuickSettingsUtil.TileInfo(
+                TILE_POWER, R.string.title_tile_power,
+                "com.android.systemui:drawable/ic_qs_powermenu"));
     }
 
     private static void registerTile(QuickSettingsUtil.TileInfo info) {

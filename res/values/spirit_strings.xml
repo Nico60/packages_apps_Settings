@@ -1213,4 +1213,7 @@
     <string name="hover_blacklist_label">Blacklist from Hover</string>
     <string name="floating_blacklist_label">Blacklist from Floating Mode</string>
 
+    <!-- QS Power menu -->
+    <string name="title_tile_power">Power Menu</string>
+
 </resources>
