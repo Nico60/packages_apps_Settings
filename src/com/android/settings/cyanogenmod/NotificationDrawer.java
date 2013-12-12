@@ -56,8 +56,10 @@ public class NotificationDrawer extends SettingsPreferenceFragment implements
     private static final String PREF_NOTI_REMINDER_INTERVAL = "noti_reminder_interval";
     private static final String PREF_NOTI_REMINDER_RINGTONE = "noti_reminder_ringtone";
     private static final String PREF_NOTIFICATION_SHOW_WIFI_SSID = "notification_show_wifi_ssid";
+    private static final String SWIPE_TO_SWITCH_SCREEN_DETECTION = "full_swipe_to_switch_detection";
 
     private CheckBoxPreference mShowWifiName;
+    private CheckBoxPreference mFullScreenDetection;
     private ListPreference mCollapseOnDismiss;
     private ListPreference mSmartPulldown;
     private Preference mCustomLabel;
@@ -107,6 +109,11 @@ public class NotificationDrawer extends SettingsPreferenceFragment implements
         mShowWifiName.setChecked(Settings.System.getInt(getContentResolver(),
                 Settings.System.NOTIFICATION_SHOW_WIFI_SSID, 0) == 1);
         mShowWifiName.setOnPreferenceChangeListener(this);
+
+        mFullScreenDetection = (CheckBoxPreference) findPreference(SWIPE_TO_SWITCH_SCREEN_DETECTION);
+        mFullScreenDetection.setChecked(Settings.System.getInt(getContentResolver(),
+                Settings.System.SWIPE_TO_SWITCH_SCREEN_DETECTION, 0) == 1);
+        mFullScreenDetection.setOnPreferenceChangeListener(this);
 
         // Custom Carrier Label Text
         mCustomLabel = findPreference(PREF_CUSTOM_CARRIER_LABEL);
@@ -244,6 +251,11 @@ public class NotificationDrawer extends SettingsPreferenceFragment implements
             Settings.System.putInt(getContentResolver(), Settings.System.QS_SMART_PULLDOWN,
                     smartPulldown);
             updateSmartPulldownSummary(smartPulldown);
+            return true;
+        } else if (preference == mFullScreenDetection) {
+            boolean value = (Boolean) objValue;
+            Settings.System.putInt(getContentResolver(),
+                Settings.System.SWIPE_TO_SWITCH_SCREEN_DETECTION, value ? 1 : 0);
             return true;
         }
 
