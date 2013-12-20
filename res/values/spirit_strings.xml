@@ -1614,4 +1614,14 @@
     <string name="gestures_rename_label">Gesture name</string>
     <string name="gestures_error_loading">Could not load %s. Make sure you have storage available.</string>
 
+    <!-- Custom tile -->
+    <string name="title_tile_custom">Custom</string>
+    <string name="custom_tile_dialog_text">Each action will add a new state to the tile. Each click changes to the next state. Long-press to add long-press actions. If no click action exists the long-action icon will be used for the tile. This allows you to change states by clicking and launch actions by long-pressing.</string>
+    <string name="custom_tile_dialog_title">Custom tile actions</string>
+    <string name="custom_toggle_extras">Custom tile extras</string>
+    <string name="custom_toggle_collapse_check">Collapse notification shade</string>
+    <string name="custom_toggle_match_state_check">Click action matches icon</string>
+    <string name="custom_tile_long_press">Longpress:</string>
+    <string name="custom_tile_null_warning">An action must be set first</string>
+
 </resources>
