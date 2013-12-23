@@ -163,6 +163,8 @@ public class DevelopmentSettings extends RestrictedSettingsFragment
 
     private static final String DEVELOPMENT_TOOLS = "development_tools";
 
+    private static final String MEDIA_SCANNER_ON_BOOT = "media_scanner_on_boot";
+
     private static final String ADVANCED_REBOOT_KEY = "advanced_reboot";
 
     private static final String DEVELOPMENT_SHORTCUT_KEY = "development_shortcut";
@@ -232,6 +234,8 @@ public class DevelopmentSettings extends RestrictedSettingsFragment
 
     private CheckBoxPreference mDevelopmentShortcut;
 
+    private ListPreference mMSOB;
+
     private final ArrayList<Preference> mAllPrefs = new ArrayList<Preference>();
     private final ArrayList<CheckBoxPreference> mResetCbPrefs
             = new ArrayList<CheckBoxPreference>();
@@ -297,6 +301,10 @@ public class DevelopmentSettings extends RestrictedSettingsFragment
         mAllPrefs.add(mPassword);
         mAdvancedReboot = findAndInitCheckboxPref(ADVANCED_REBOOT_KEY);
         mDevelopmentShortcut = findAndInitCheckboxPref(DEVELOPMENT_SHORTCUT_KEY);
+
+        mMSOB = (ListPreference) findPreference(MEDIA_SCANNER_ON_BOOT);
+        mAllPrefs.add(mMSOB);
+        mMSOB.setOnPreferenceChangeListener(this);
 
         if (!android.os.Process.myUserHandle().equals(UserHandle.OWNER)) {
             disableForUser(mEnableAdb);
@@ -580,6 +588,26 @@ public class DevelopmentSettings extends RestrictedSettingsFragment
         updateRootAccessOptions();
         updateAdvancedRebootOptions();
         updateDevelopmentShortcutOptions();
+        updateMSOBOptions();
+    }
+
+    private void resetMSOBOptions() {
+        Settings.System.putInt(getActivity().getContentResolver(),
+                Settings.System.MEDIA_SCANNER_ON_BOOT, 0);
+    }
+
+    private void writeMSOBOptions(Object newValue) {
+        Settings.System.putInt(getActivity().getContentResolver(),
+                Settings.System.MEDIA_SCANNER_ON_BOOT,
+                Integer.valueOf((String) newValue));
+        updateMSOBOptions();
+    }
+
+    private void updateMSOBOptions() {
+        int value = Settings.System.getInt(getActivity().getContentResolver(),
+                Settings.System.MEDIA_SCANNER_ON_BOOT, 0);
+        mMSOB.setValue(String.valueOf(value));
+        mMSOB.setSummary(mMSOB.getEntry());
     }
 
     private void writeAdvancedRebootOptions() {
@@ -647,6 +675,7 @@ public class DevelopmentSettings extends RestrictedSettingsFragment
             }
         }
         resetDebuggerOptions();
+        resetMSOBOptions();
         resetRootAccessOptions();
         resetAdbNotifyOptions();
         resetVerifyAppsOverUsbOptions();
@@ -1590,6 +1619,9 @@ public class DevelopmentSettings extends RestrictedSettingsFragment
             } else {
                 writeRootAccessOptions(newValue);
             }
+            return true;
+        } else if (preference == mMSOB) {
+            writeMSOBOptions(newValue);
             return true;
         }
         return false;
