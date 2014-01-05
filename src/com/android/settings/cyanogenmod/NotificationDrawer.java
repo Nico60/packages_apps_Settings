@@ -44,6 +44,9 @@ public class NotificationDrawer extends SettingsPreferenceFragment implements
 
     private static final String PREF_CUSTOM_CARRIER_LABEL = "custom_carrier_label";
 
+    private static final String PREF_NOTIFICATION_SHOW_WIFI_SSID = "notification_show_wifi_ssid";
+
+    private CheckBoxPreference mShowWifiName;
     private ListPreference mCollapseOnDismiss;
     private Preference mCustomLabel;
     CheckBoxPreference mHideCarrier;
@@ -71,6 +74,11 @@ public class NotificationDrawer extends SettingsPreferenceFragment implements
                 Settings.System.NOTIFICATION_HIDE_CARRIER, 0) == 1;
         mHideCarrier.setChecked(hideCarrier);
         mHideCarrier.setOnPreferenceChangeListener(this);
+
+        mShowWifiName = (CheckBoxPreference) findPreference(PREF_NOTIFICATION_SHOW_WIFI_SSID);
+        mShowWifiName.setChecked(Settings.System.getInt(getContentResolver(),
+                Settings.System.NOTIFICATION_SHOW_WIFI_SSID, 0) == 1);
+        mShowWifiName.setOnPreferenceChangeListener(this);
 
         // Custom Carrier Label Text
         mCustomLabel = findPreference(PREF_CUSTOM_CARRIER_LABEL);
@@ -133,6 +141,11 @@ public class NotificationDrawer extends SettingsPreferenceFragment implements
             Settings.System.putInt(getActivity().getContentResolver(),
                     Settings.System.NOTIFICATION_HIDE_CARRIER,
                     (Boolean) objValue ? 1 : 0);
+            return true;
+        } else if (preference == mShowWifiName) {
+            boolean value = (Boolean) objValue;
+            Settings.System.putInt(getContentResolver(),
+                Settings.System.NOTIFICATION_SHOW_WIFI_SSID, value ? 1 : 0);
             return true;
         }
 
