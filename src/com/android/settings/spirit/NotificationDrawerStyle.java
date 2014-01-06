@@ -54,6 +54,8 @@ public class NotificationDrawerStyle extends SettingsPreferenceFragment implemen
 
     private static final String TAG = "NotificationDrawerStyle";
 
+    private static final String FORCE_EXPANDED_NOTIFICATIONS = "force_expanded_notifications";
+
     private static final String PREF_NOTIFICATION_WALLPAPER =
             "notification_wallpaper";
     private static final String PREF_NOTIFICATION_WALLPAPER_LANDSCAPE =
@@ -79,6 +81,7 @@ public class NotificationDrawerStyle extends SettingsPreferenceFragment implemen
     private static final int REQUEST_PICK_WALLPAPER_LANDSCAPE = 202;
 
     private Activity mActivity;
+    private CheckBoxPreference mForceExpanded;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -105,6 +108,10 @@ public class NotificationDrawerStyle extends SettingsPreferenceFragment implemen
         mNotificationWallpaperLandscape =
                 (ListPreference) findPreference(PREF_NOTIFICATION_WALLPAPER_LANDSCAPE);
         mNotificationWallpaperLandscape.setOnPreferenceChangeListener(this);
+
+        mForceExpanded = (CheckBoxPreference) prefSet.findPreference(FORCE_EXPANDED_NOTIFICATIONS);
+        mForceExpanded.setChecked((Settings.System.getInt(resolver,
+                Settings.System.FORCE_EXPANDED_NOTIFICATIONS, 0) == 1));
 
         if (!DeviceUtils.isPhone(mActivity)) {
             prefSet.removePreference(mNotificationWallpaperLandscape);
@@ -323,6 +330,18 @@ public class NotificationDrawerStyle extends SettingsPreferenceFragment implemen
             return true;
         }
         return false;
+    }
+
+    public boolean onPreferenceTreeClick(PreferenceScreen preferenceScreen, Preference preference) {
+        ContentResolver resolver = getActivity().getContentResolver();
+        if  (preference == mForceExpanded) {
+            boolean checked = ((CheckBoxPreference)preference).isChecked();
+            Settings.System.putInt(getActivity().getContentResolver(),
+                    Settings.System.FORCE_EXPANDED_NOTIFICATIONS, checked ? 1:0);
+            return true;
+        }
+
+        return super.onPreferenceTreeClick(preferenceScreen, preference);
     }
 
     private void showDialogInner(int id) {

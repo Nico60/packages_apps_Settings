@@ -1659,4 +1659,8 @@
     <string name="tinted_statusbar_transparent_title">Status bar opacity</string>
     <string name="tinted_navbar_transparent_title">Navigation bar opacity</string>
 
+    <!-- Text for forcing expanded notifications -->
+    <string name="force_expanded_notifications_title">Force Expanded Notifications</string>
+    <string name="force_expanded_notifications_summary">Available only for apps that support expanded notifications</string>
+
 </resources>
