@@ -57,6 +57,7 @@ import static com.android.internal.util.cm.QSConstants.TILE_ONTHEGO;
 import static com.android.internal.util.cm.QSConstants.TILE_HOVER;
 import static com.android.internal.util.cm.QSConstants.TILE_PIE;
 import static com.android.internal.util.cm.QSConstants.TILE_GESTUREPANEL;
+import static com.android.internal.util.cm.QSConstants.TILE_FCHARGE;
 
 import android.content.ContentResolver;
 import android.content.Context;
@@ -66,6 +67,7 @@ import android.util.Log;
 
 import com.android.internal.telephony.Phone;
 import com.android.internal.util.cm.QSUtils;
+import com.android.internal.util.slim.DeviceUtils;
 import com.android.settings.util.HardwareKeyNavbarHelper;
 import com.android.settings.R;
 
@@ -202,6 +204,9 @@ public class QuickSettingsUtil {
         registerTile(new QuickSettingsUtil.TileInfo(
                 TILE_GESTUREPANEL, R.string.title_gesturepanel_tile,
                 "com.android.systemui:drawable/ic_qs_gesture"));
+        registerTile(new QuickSettingsUtil.TileInfo(
+                TILE_FCHARGE, R.string.title_tile_fcharge,
+                "com.android.systemui:drawable/ic_qs_fcharge_off"));
     }
 
     private static void registerTile(QuickSettingsUtil.TileInfo info) {
@@ -263,6 +268,11 @@ public class QuickSettingsUtil {
         // Don't show the performance profiles tile if is not available for the device
         if (!QSUtils.deviceSupportsPerformanceProfiles(context)) {
             removeTile(TILE_PERFORMANCE_PROFILE);
+        }
+
+        // Don't show the Fast charge tile if not supported by kernel
+        if (!DeviceUtils.fchargeEnabled(context)) {
+            removeTile(TILE_FCHARGE);
         }
 
         // Don't show the Compass tile if the device has no orientation sensor

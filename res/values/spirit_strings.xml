@@ -1624,4 +1624,7 @@
     <string name="less_notification_sounds_15m">15 minutes</string>
     <string name="less_notification_sounds_30m">30 minutes</string>
 
+    <!-- Fast charge QS tile -->
+    <string name="title_tile_fcharge">Fast charge</string>
+
 </resources>
