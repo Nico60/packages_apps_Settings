@@ -2054,6 +2054,7 @@
         <activity android:name=".quicksettings.QuickSettingsTilesStyle" />
         <activity android:name=".slim.themes.ThemeSettings" />
         <activity android:name=".spirit.AppSidebar" />
+        <activity android:name=".spirit.StatusBarColor" />
         <activity android:name=".spirit.NavRingTargets" />
         <activity android:name=".spirit.navbar.NavbarTabHostFragment" />
         <activity android:name=".spirit.NotificationDrawerStyle" />
