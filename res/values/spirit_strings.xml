@@ -739,4 +739,8 @@
     <string name="ime_interpolator_title">Interpolator</string>
     <string name="ime_duration_title">IME Duration</string>
 
+    <!-- Lockscreen Torch settings -->
+    <string name="lockscreen_glowpad_torch_title">Slider torch</string>
+    <string name="lockscreen_glowpad_torch_summary">Double-tap and hold the slider to start torch</string>
+
 </resources>
