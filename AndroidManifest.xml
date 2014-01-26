@@ -1881,6 +1881,8 @@
 
         <!-- CyanogenMod activities End -->
 
+        <activity android:name=".paranoid.Halo" />
+
         <activity android:name=".spirit.NotificationDrawerStyle" />
 
 	<activity android:name=".spirit.RamBar" />
