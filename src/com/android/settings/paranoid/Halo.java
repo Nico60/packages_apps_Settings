@@ -41,6 +41,7 @@ public class Halo extends SettingsPreferenceFragment
     private static final String KEY_HALO_MSGBOX = "halo_msgbox";
     private static final String KEY_HALO_NOTIFY_COUNT = "halo_notify_count";
     private static final String KEY_HALO_UNLOCK_PING = "halo_unlock_ping";
+    private static final String KEY_HALO_ENABLED = "halo_enabled";
 
     private ListPreference mHaloState;
     private ListPreference mHaloSize;
@@ -49,6 +50,7 @@ public class Halo extends SettingsPreferenceFragment
     private ListPreference mHaloNotifyCount;
     private CheckBoxPreference mHaloMsgBox;
     private CheckBoxPreference mHaloUnlockPing;
+    private CheckBoxPreference mHaloEnabled;
 
     private Context mContext;
     private INotificationManager mNotificationManager;
@@ -63,6 +65,10 @@ public class Halo extends SettingsPreferenceFragment
 
         mNotificationManager = INotificationManager.Stub.asInterface(
                 ServiceManager.getService(Context.NOTIFICATION_SERVICE));
+
+        mHaloEnabled = (CheckBoxPreference) findPreference(KEY_HALO_ENABLED);
+        mHaloEnabled.setChecked(Settings.System.getInt(mContext.getContentResolver(),
+                Settings.System.HALO_ENABLED, 0) == 1);
 
         mHaloState = (ListPreference) prefSet.findPreference(KEY_HALO_STATE);
         mHaloState.setValue(String.valueOf((isHaloPolicyBlack() ? "1" : "0")));
@@ -117,7 +123,11 @@ public class Halo extends SettingsPreferenceFragment
 
     @Override
     public boolean onPreferenceTreeClick(PreferenceScreen preferenceScreen, Preference preference) {
-        if (preference == mHaloHide) {
+        if  (preference == mHaloEnabled) {
+            Settings.System.putInt(mContext.getContentResolver(),
+                    Settings.System.HALO_ENABLED, mHaloEnabled.isChecked()
+                    ? 1 : 0);
+        } else if  (preference == mHaloHide) {
             Settings.System.putInt(mContext.getContentResolver(),
                     Settings.System.HALO_HIDE, mHaloHide.isChecked()
                     ? 1 : 0);
