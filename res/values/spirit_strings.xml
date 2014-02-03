@@ -785,4 +785,8 @@
     <string name="blur_radius_title">Blur Intensity</string>
     <string name="blur_radius_summary">Intensity for the blur effect</string>
 
+    <!-- Lock before unlock -->
+    <string name="lock_before_unlock_title">Show slider before secure unlock</string>
+    <string name="lock_before_unlock_summary">Show slider lockscreen before secure unlock mechanism</string>
+
 </resources>
