@@ -363,4 +363,8 @@
     <string name="size_40_dp">40 dp</string>
     <string name="size_42_dp">42 dp</string>
 
+    <!-- Volume steps -->
+    <string name="volume_steps_title">Volume steps</string>
+    <string name="volume_steps_summary">Fine grained control of volume for specified sound streams</string>
+
 </resources>
