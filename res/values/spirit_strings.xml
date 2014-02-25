@@ -779,4 +779,10 @@
     <!-- Slims Strings (Temporary) -->
     <string name="shortcut_image_not_valid">The chosen app did not return a valid icon or does not support image cropping. Use another app.</string>
 
+    <!--Lockscreen See Through-->
+    <string name="see_through_title">Lockscreen Blur</string>
+    <string name="see_through_summary">Blurs and display the content behind your lockscreen, your data may be visible to those around you</string>
+    <string name="blur_radius_title">Blur Intensity</string>
+    <string name="blur_radius_summary">Intensity for the blur effect</string>
+
 </resources>

@@ -51,6 +51,22 @@
             android:title="@string/lockscreen_buttons_title"
             android:summary="@string/lockscreen_buttons_summary" />
 
+        <CheckBoxPreference
+            android:key="see_through"
+            android:title="@string/see_through_title"
+            android:summary="@string/see_through_summary" />
+
+        <com.android.settings.chameleonos.SeekBarPreferenceChOS
+            android:key="lockscreen_blur_radius"
+            android:title="@string/blur_radius_title"
+            android:summary="@string/blur_radius_summary"
+            android:max="25"
+            settings:minAD="0"
+            settings:unitsLeft=""
+            settings:unitsRight=""
+            android:persistent="false"
+            android:dependency="see_through" />
+
     </PreferenceCategory>
 
     <PreferenceCategory
