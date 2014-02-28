@@ -216,6 +216,12 @@
             android:entryValues="@array/listview_interpolator_values"
             android:defaultValue="0" />
 
+        <PreferenceScreen
+            android:key="interface_animation_scroll"
+            android:fragment="com.android.settings.spirit.ScrollAnimationInterfaceSettings"
+            android:title="@string/scrolling_title"
+            android:summary="@string/scrolling_summary" />
+
     </PreferenceCategory>
 
 </PreferenceScreen>
