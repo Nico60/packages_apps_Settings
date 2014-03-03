@@ -74,7 +74,7 @@
     <string name="status_bar_network_stats_color_summary">Network speeds text color in statusbar</string>
 
     <!-- Navigation bar -->
-    <string name="reset">Reset</string>
+    <string name="navigation_bar">Navigation bar</string>
     <string name="navbar_enable_bar">Enable navigation bar</string>
     <string name="navbar_enable_bar_summary">Enable the navigation bar</string>
     <string name="navbar_style_dimen_title">Dimensions</string>
