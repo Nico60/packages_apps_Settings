@@ -46,22 +46,24 @@ public class LockscreenInterface extends SettingsPreferenceFragment implements
     private static final String KEY_ENABLE_WIDGETS = "keyguard_enable_widgets";
     private static final String KEY_LOCK_CLOCK = "lock_clock";
     private static final String KEY_ENABLE_CAMERA = "keyguard_enable_camera";
-    private static final String PREF_LOCKSCREEN_TORCH = "lockscreen_torch";
     private static final String KEY_DISABLE_FRAME = "lockscreen_disable_frame";
     private static final String KEY_ENABLE_MAXIMIZE_WIGETS = "lockscreen_maximize_widgets";
     private static final String KEY_LOCKSCREEN_MODLOCK_ENABLED = "lockscreen_modlock_enabled";
     private static final String KEY_LOCKSCREEN_TARGETS = "lockscreen_targets";
     private static final String KEY_SEE_THROUGH = "see_through";
+    private static final String KEY_LOCKSCREEN_GLOWPAD_DOUBLETAP = "glowpad_doubletap_option";
+    private static final String KEY_LOCKSCREEN_GLOWPAD = "glowpad_doubletap";
 
     private CheckBoxPreference mEnableKeyguardWidgets;
     private CheckBoxPreference mEnableCameraWidget;
-    private CheckBoxPreference mGlowpadTorch;
     private CheckBoxPreference mDisableFrame;
     private CheckBoxPreference mEnableModLock;
     private CheckBoxPreference mEnableMaximizeWidgets;
     private CheckBoxPreference mSeeThrough;
     private ListPreference mBatteryStatus;
     private Preference mLockscreenTargets;
+    private ListPreference mGlowpadOption;
+    private CheckBoxPreference mGlowpadDoubletap;
 
     private ChooseLockSettingsHelper mChooseLockSettingsHelper;
     private LockPatternUtils mLockUtils;
@@ -104,16 +106,13 @@ public class LockscreenInterface extends SettingsPreferenceFragment implements
             mBatteryStatus.setOnPreferenceChangeListener(this);
         }
 
-        mGlowpadTorch = (CheckBoxPreference) findPreference(
-                PREF_LOCKSCREEN_TORCH);
-        mGlowpadTorch.setChecked(Settings.System.getInt(
-                getActivity().getApplicationContext().getContentResolver(),
-                Settings.System.LOCKSCREEN_GLOWPAD_TORCH, 0) == 1);
-        mGlowpadTorch.setOnPreferenceChangeListener(this);
-
-        if (!DeviceUtils.deviceSupportsTorch(getActivity())) {
-            generalCategory.removePreference(mGlowpadTorch);
-        }
+         mGlowpadDoubletap = (CheckBoxPreference)findPreference(KEY_LOCKSCREEN_GLOWPAD);
+         mGlowpadDoubletap.setChecked(Settings.System.getInt(getContentResolver(), Settings.System.DOUBLE_TAP_GLOWPAD_GESTURE, 0) == 1);
+         mGlowpadOption = (ListPreference)findPreference(KEY_LOCKSCREEN_GLOWPAD_DOUBLETAP);
+         int CurrentGlowpadOption = Settings.System.getInt(getContentResolver(), Settings.System.LOCKSCREEN_GLOWPAD_DOUBLETAP_OPTION, 0);
+         mGlowpadOption.setSummary(mGlowpadOption.getEntries()[CurrentGlowpadOption]);
+         mGlowpadOption.setValueIndex(CurrentGlowpadOption);
+         mGlowpadOption.setOnPreferenceChangeListener(this);
 
         // Remove lockscreen button actions if device doesn't have hardware keys
         if (!hasButtons()) {
@@ -233,6 +232,12 @@ public class LockscreenInterface extends SettingsPreferenceFragment implements
 	} else if (preference == mSeeThrough) {
             Settings.System.putInt(getContentResolver(), Settings.System.LOCKSCREEN_SEE_THROUGH,
                     mSeeThrough.isChecked() ? 1 : 0);
+            return true;
+        } else if (KEY_LOCKSCREEN_GLOWPAD.equals(key)) {
+            boolean value = mGlowpadDoubletap.isChecked();
+            Settings.System.putInt(getContentResolver(),
+                    Settings.System.DOUBLE_TAP_GLOWPAD_GESTURE, value ? 1 : 0);
+            return true;
         }
 
         return super.onPreferenceTreeClick(preferenceScreen, preference);
@@ -247,10 +252,10 @@ public class LockscreenInterface extends SettingsPreferenceFragment implements
             Settings.System.putInt(cr, Settings.System.LOCKSCREEN_BATTERY_VISIBILITY, value);
             mBatteryStatus.setSummary(mBatteryStatus.getEntries()[index]);
             return true;
-        } else if (preference == mGlowpadTorch) {
-            Settings.System.putInt(getContentResolver(),
-                    Settings.System.LOCKSCREEN_GLOWPAD_TORCH,
-                    (Boolean) objValue ? 1 : 0);
+        } else if (preference == mGlowpadOption) {
+            int index = mGlowpadOption.findIndexOfValue((String) objValue);
+            Settings.System.putString(cr, Settings.System.LOCKSCREEN_GLOWPAD_DOUBLETAP_OPTION, (String) objValue);
+            mGlowpadOption.setSummary(mGlowpadOption.getEntries()[index]);
             return true;
         } else if (preference == mDisableFrame) {
             Settings.System.putInt(getContentResolver(),

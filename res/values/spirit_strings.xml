@@ -841,9 +841,12 @@
     <string name="ime_interpolator_title">Interpolator</string>
     <string name="ime_duration_title">IME Duration</string>
 
-    <!-- Lockscreen Torch settings -->
-    <string name="lockscreen_glowpad_torch_title">Slider torch</string>
-    <string name="lockscreen_glowpad_torch_summary">Double-tap and hold the slider to start torch</string>
+    <!-- LockScreen GlowPad DoubleTap Option -->
+    <string name="lockscreen_glowpad_doubletap_gesture">DoubleTap Gesture</string>
+    <string name="lockscreen_glowpad_doubletap_checkbox_title">Glowpad Doubletap Gesture</string>
+    <string name="lockscreen_glowpad_doubletap_title">Glowpad Doubletap Option</string>
+    <string name="lockscreen_glowpad_doubletap_sleep">Sleep</string>
+    <string name="lockscreen_glowpad_doubletap_torch">Torch</string>
 
     <!-- Notification Reminders -->
     <string name="noti_reminder_category">Notification reminder</string>

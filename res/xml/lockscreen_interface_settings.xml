@@ -65,11 +65,22 @@
             android:title="@string/see_through_title"
             android:summary="@string/see_through_summary" />
 
-    <CheckBoxPreference
-        android:key="lockscreen_torch"
-        android:title="@string/lockscreen_glowpad_torch_title"
-        android:summary="@string/lockscreen_glowpad_torch_summary" />
+    </PreferenceCategory>
 
+    <PreferenceCategory
+        android:title="@string/lockscreen_glowpad_doubletap_gesture" >
+
+    <CheckBoxPreference
+        android:key="glowpad_doubletap"
+        android:title="@string/lockscreen_glowpad_doubletap_checkbox_title" />
+
+    <ListPreference
+        android:key="glowpad_doubletap_option"
+        android:title="@string/lockscreen_glowpad_doubletap_title"
+        android:entries="@array/glowpad_doubletap_option_entries"
+        android:entryValues="@array/glowpad_doubletap_option_values"
+        android:dependency="glowpad_doubletap"
+        android:persistent="false" />
     </PreferenceCategory>
 
     <PreferenceCategory

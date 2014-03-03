@@ -1133,4 +1133,15 @@
         <item>480</item>
     </string-array>
 
+    <!-- Glowpad DoubleTap Option -->
+    <string-array name="glowpad_doubletap_option_entries">
+        <item>@string/lockscreen_glowpad_doubletap_sleep</item>
+        <item>@string/lockscreen_glowpad_doubletap_torch</item>
+    </string-array>
+
+    <string-array name="glowpad_doubletap_option_values">
+        <item>0</item>
+        <item>1</item>
+    </string-array>
+
 </resources>
