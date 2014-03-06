@@ -24,6 +24,9 @@ import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.preference.CheckBoxPreference;
+import android.content.res.Resources;
+import android.os.Bundle;
+import android.os.UserHandle;
 import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.Preference.OnPreferenceChangeListener;
@@ -45,19 +48,18 @@ public class NotificationDrawer extends SettingsPreferenceFragment implements
     private static final String TAG = "NotificationDrawer";
 
     private static final String UI_COLLAPSE_BEHAVIOUR = "notification_drawer_collapse_on_dismiss";
-
+    private static final String PRE_SMART_PULLDOWN = "smart_pulldown";
     private static final String PREF_NOTIFICATION_HIDE_CARRIER = "notification_hide_carrier";
-
     private static final String PREF_CUSTOM_CARRIER_LABEL = "custom_carrier_label";
     private static final String PREF_NOTI_REMINDER_SOUND =  "noti_reminder_sound";
     private static final String PREF_NOTI_REMINDER_ENABLED = "noti_reminder_enabled";
     private static final String PREF_NOTI_REMINDER_INTERVAL = "noti_reminder_interval";
     private static final String PREF_NOTI_REMINDER_RINGTONE = "noti_reminder_ringtone";
-
     private static final String PREF_NOTIFICATION_SHOW_WIFI_SSID = "notification_show_wifi_ssid";
 
     private CheckBoxPreference mShowWifiName;
     private ListPreference mCollapseOnDismiss;
+    private ListPreference mSmartPulldown;
     private Preference mCustomLabel;
     CheckBoxPreference mHideCarrier;
     CheckBoxPreference mReminder;
@@ -82,6 +84,18 @@ public class NotificationDrawer extends SettingsPreferenceFragment implements
         mCollapseOnDismiss.setValue(String.valueOf(collapseBehaviour));
         mCollapseOnDismiss.setOnPreferenceChangeListener(this);
         updateCollapseBehaviourSummary(collapseBehaviour);
+
+        // Smart Pulldown
+        mSmartPulldown = (ListPreference) findPreference(PRE_SMART_PULLDOWN);
+        if (!DeviceUtils.isPhone(getActivity())) {
+            prefScreen.removePreference(mSmartPulldown);
+        } else {
+            mSmartPulldown.setOnPreferenceChangeListener(this);
+            int smartPulldown = Settings.System.getIntForUser(getContentResolver(),
+                    Settings.System.QS_SMART_PULLDOWN, 0, UserHandle.USER_CURRENT);
+            mSmartPulldown.setValue(String.valueOf(smartPulldown));
+            updateSmartPulldownSummary(smartPulldown);
+        }
 
         mHideCarrier = (CheckBoxPreference) findPreference(PREF_NOTIFICATION_HIDE_CARRIER);
         boolean hideCarrier = Settings.System.getInt(getActivity().getContentResolver(),
@@ -225,6 +239,12 @@ public class NotificationDrawer extends SettingsPreferenceFragment implements
                     Settings.System.REMINDER_ALERT_RINGER,
                     val.toString(), UserHandle.USER_CURRENT);
             return true;
+        } else if (preference == mSmartPulldown) {
+            int smartPulldown = Integer.valueOf((String) objValue);
+            Settings.System.putInt(getContentResolver(), Settings.System.QS_SMART_PULLDOWN,
+                    smartPulldown);
+            updateSmartPulldownSummary(smartPulldown);
+            return true;
         }
 
         return false;
@@ -234,6 +254,20 @@ public class NotificationDrawer extends SettingsPreferenceFragment implements
         String[] summaries = getResources().getStringArray(
                 R.array.notification_drawer_collapse_on_dismiss_summaries);
         mCollapseOnDismiss.setSummary(summaries[setting]);
+    }
+
+    private void updateSmartPulldownSummary(int value) {
+        Resources res = getResources();
+
+        if (value == 0) {
+            // Smart pulldown deactivated
+            mSmartPulldown.setSummary(res.getString(R.string.smart_pulldown_off));
+        } else {
+            String type = res.getString(value == 2
+                    ? R.string.smart_pulldown_persistent
+                    : R.string.smart_pulldown_dismissable);
+            mSmartPulldown.setSummary(res.getString(R.string.smart_pulldown_summary, type));
+        }
     }
 
     private void updateReminderIntervalSummary(int value) {
@@ -280,4 +314,5 @@ public class NotificationDrawer extends SettingsPreferenceFragment implements
         }
         mReminderMode.setSummary(getResources().getString(resId));
     }
+
 }
