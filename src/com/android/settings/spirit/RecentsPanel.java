@@ -16,7 +16,9 @@
 
 package com.android.settings.spirit;
 
+import android.app.AlertDialog;
 import android.content.ContentResolver;
+import android.content.DialogInterface;
 import android.database.ContentObserver;
 import android.os.Bundle;
 import android.os.Handler;
@@ -32,7 +34,7 @@ import android.util.Log;
 
 import com.android.settings.R;
 import com.android.settings.SettingsPreferenceFragment;
-
+import com.android.settings.util.Helpers;
 import com.android.internal.util.slim.DeviceUtils;
 
 public class RecentsPanel extends SettingsPreferenceFragment implements OnPreferenceChangeListener {
@@ -42,8 +44,11 @@ public class RecentsPanel extends SettingsPreferenceFragment implements OnPrefer
     private static final String RECENT_MENU_CLEAR_ALL = "recent_menu_clear_all";
     private static final String RECENT_MENU_CLEAR_ALL_LOCATION = "recent_menu_clear_all_location";
 
+    private static final String RECENTS_USE_SLIM = "recents_use_slim";
+
     private CheckBoxPreference mRecentClearAll;
     private ListPreference mRecentClearAllPosition;
+    private CheckBoxPreference mRecentsUseSlim;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -53,16 +58,33 @@ public class RecentsPanel extends SettingsPreferenceFragment implements OnPrefer
 
         PreferenceScreen prefSet = getPreferenceScreen();
 
+        boolean useSlimRecents = false;
+
+        try {
+            useSlimRecents = Settings.System.getInt(getContentResolver(), Settings.System.RECENTS_USE_SLIM) == 1;
+        } catch(SettingNotFoundException e) {
+               e.printStackTrace();
+        }
+
         mRecentClearAll = (CheckBoxPreference) prefSet.findPreference(RECENT_MENU_CLEAR_ALL);
         mRecentClearAll.setChecked(Settings.System.getInt(getContentResolver(),
             Settings.System.SHOW_CLEAR_RECENTS_BUTTON, 1) == 1);
         mRecentClearAll.setOnPreferenceChangeListener(this);
+        mRecentClearAll.setEnabled(!useSlimRecents);
+
         mRecentClearAllPosition = (ListPreference) prefSet.findPreference(RECENT_MENU_CLEAR_ALL_LOCATION);
         String recentClearAllPosition = Settings.System.getString(getContentResolver(), Settings.System.CLEAR_RECENTS_BUTTON_LOCATION);
         if (recentClearAllPosition != null) {
              mRecentClearAllPosition.setValue(recentClearAllPosition);
         }
         mRecentClearAllPosition.setOnPreferenceChangeListener(this);
+        mRecentClearAllPosition.setEnabled(!useSlimRecents);
+
+        // Slim recents
+        mRecentsUseSlim = (CheckBoxPreference) prefSet.findPreference(RECENTS_USE_SLIM);
+        mRecentsUseSlim.setChecked(useSlimRecents);
+        mRecentsUseSlim.setOnPreferenceChangeListener(this);
+
     }
 
     public boolean onPreferenceChange(Preference preference, Object newValue) {
@@ -73,8 +95,34 @@ public class RecentsPanel extends SettingsPreferenceFragment implements OnPrefer
         } else if (preference == mRecentClearAllPosition) {
             Settings.System.putString(getContentResolver(), Settings.System.CLEAR_RECENTS_BUTTON_LOCATION, (String) newValue);
             return true;
-        } else {
-        return false;
+        } else if (preference == mRecentsUseSlim) {
+            boolean useSlimRecents = (Boolean) newValue;
+
+            Settings.System.putInt(getContentResolver(), Settings.System.RECENTS_USE_SLIM,
+                    useSlimRecents ? 1 : 0);
+
+            // Give user information that Slim Recents needs restart SystemUI
+            openSlimRecentsWarning();
+
+            mRecentsUseSlim.setChecked(useSlimRecents);
+
+            // Update default recents UI components
+            mRecentClearAll.setEnabled(!useSlimRecents);
+            mRecentClearAllPosition.setEnabled(!useSlimRecents);
+            return true;
         }
+        return false;
     }
+
+    private void openSlimRecentsWarning() {
+        new AlertDialog.Builder(getActivity())
+            .setTitle(getResources().getString(R.string.slim_recents_warning_title))
+            .setMessage(getResources().getString(R.string.slim_recents_warning_message))
+            .setNegativeButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int whichButton) {
+                    Helpers.restartSystemUI();
+                }
+            }).show();
+    }
+
 }
