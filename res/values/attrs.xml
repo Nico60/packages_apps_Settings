@@ -131,4 +131,10 @@
         <attr name="click_remove_id" format="integer" />
         <attr name="use_default_controller" format="boolean" />
     </declare-styleable>
+
+    <declare-styleable name="CheckboxSetting">
+        <attr name="descriptionOn" format="string"/>
+        <attr name="descriptionOff" format="string"/>
+    </declare-styleable>
+
 </resources>

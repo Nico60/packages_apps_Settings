@@ -303,6 +303,8 @@
 
     <!-- Nav Ring Targets -->
     <!-- Navbar targets -->
+    <string name="enable_navigation_bar_title">Enable navigation bar</string>
+    <string name="enable_navigation_bar_summary">Enable the on-screen navigation bar</string>
     <string name="category_navring">Navigation ring</string>
     <string name="navbar_ring_cat">Navigation ring Targets</string>
     <string name="navbar_ring">Custom Ring targets</string>
