@@ -22,4 +22,9 @@
         <attr name="unitsRight" format="string" />
     </declare-styleable>
 
+    <declare-styleable name="CheckboxSetting">
+        <attr name="descriptionOn" format="string"/>
+        <attr name="descriptionOff" format="string"/>
+    </declare-styleable>
+
 </resources>
