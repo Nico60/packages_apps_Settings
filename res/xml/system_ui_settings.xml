@@ -43,6 +43,11 @@
         android:title="@string/quick_settings_panel_title" />
 
     <PreferenceScreen
+        android:key="ribbons"
+        android:fragment="com.android.settings.aokp.ribbons.RibbonsFragment"
+        android:title="@string/category_ribbons" />
+
+    <PreferenceScreen
         android:key="notification_drawer"
         android:fragment="com.android.settings.cyanogenmod.NotificationDrawer"
         android:title="@string/notification_drawer_title" />

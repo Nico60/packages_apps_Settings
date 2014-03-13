@@ -71,6 +71,7 @@
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <uses-permission android:name="android.permission.CHANGE_PRIVACY_GUARD_STATE" />
     <uses-permission android:name="android.permission.GET_TOP_ACTIVITY_INFO"/>
+    <uses-permission android:name="com.google.android.gallery3d.permission.GALLERY_PROVIDER"/>
 
     <permission
         android:name="android.permission.REQUEST_SUPERUSER"
@@ -1827,6 +1828,8 @@
         <activity android:name=".QuickSettings" />
 
         <activity android:name=".quicksettings.QuickSettingsTilesStyle" />
+
+        <activity android:name=".aokp.ribbons.RibbonsFragment" />
 
         <activity android:name=".spirit.NavRingTargets" />
 
