@@ -1156,6 +1156,14 @@ two in order to insert additional control points. \'Remove\' deletes the selecte
     <!-- Performance menu, graphics options category -->
     <string name="graphics_title">Graphics and rendering</string>
 
+    <!-- Ad-hoc (IBSS) networks -->
+    <string name="wifi_mode">Mode</string>
+    <string name="wifi_mode_ibss">Ad-Hoc (IBSS) Network</string>
+    <string name="wifi_mode_ibss_short">Ad-Hoc</string>
+    <string name="wifi_ibss_freq_title">Channel / Frequency</string>
+    <string name="wifi_channel">Channel</string>
+    <string name="wifi_mhz">MHz</string>
+
     <!-- Voice Wakeup -->
     <string name="voice_wakeup_settings_title">Voice wakeup</string>
     <string name="voice_wakeup_retrain_title">Retrain your voice</string>
