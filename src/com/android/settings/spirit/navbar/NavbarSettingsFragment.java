@@ -24,7 +24,7 @@ public class NavbarSettingsFragment extends Fragment implements OnSettingChanged
 
     }
 
-    CheckboxSetting mToggleNavbar;
+    CheckboxSetting mToggleNavbar, mToggleLeftyNavbar;
 
     boolean hasNavbar;
 
@@ -46,12 +46,17 @@ public class NavbarSettingsFragment extends Fragment implements OnSettingChanged
         mToggleNavbar.setChecked(Settings.System.getBoolean(mContext.getContentResolver(),
                 Settings.System.ENABLE_NAVIGATION_BAR, hasNavbar));
 
+        mToggleLeftyNavbar = (CheckboxSetting) v.findViewById(R.id.setting_navigation_bar_left);
+        mToggleLeftyNavbar.setChecked(Settings.System.getBoolean(mContext.getContentResolver(),
+                Settings.System.NAVBAR_LEFT_IN_LANDSCAPE, false));
+
         navbar_width = (SingleChoiceSetting) v.findViewById(R.id.navigation_bar_width);
         navbar_height = (SingleChoiceSetting) v.findViewById(R.id.navigation_bar_height);
         navbar_height_landscape = (SingleChoiceSetting) v.findViewById(R.id.navigation_bar_height_landscape);
 
         if (isTablet()) {
             navbar_width.setVisibility(View.GONE);
+            mToggleLeftyNavbar.setVisibility(View.GONE);
         } else {
             navbar_height_landscape.setVisibility(View.GONE);
         }
