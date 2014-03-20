@@ -32,6 +32,11 @@
         android:entries="@array/notification_drawer_collapse_on_dismiss_entries"
         android:entryValues="@array/notification_drawer_collapse_on_dismiss_values" />
 
+    <com.android.settings.cyanogenmod.SystemSettingCheckBoxPreference
+         android:key="notification_brightness_slider"
+         android:title="@string/notification_drawer_brightness_slider_title"
+         android:defaultValue="false" />
+
     <PreferenceCategory
         android:title="@string/category_quick_access" >
 
