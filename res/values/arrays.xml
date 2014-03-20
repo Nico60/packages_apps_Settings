@@ -1182,8 +1182,6 @@
         <item> Subscription 3 </item>
     </string-array>
 
-    <string name="category_navbar">Navigation bar</string>
-
     <!-- Screen recorder video sizes -->
     <string-array name="screen_recorder_video_sizes">
         <item>@string/screen_recorder_size_240x400</item>

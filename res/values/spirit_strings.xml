@@ -343,7 +343,7 @@
     <string name="category_navbar">Navigation bar</string>
     <string name="navbar_tab_arrange">Rearrange</string>
     <string name="navbar_tab_settings">Settings</string>
-
+    <string name="category_navbar">Navigation bar</string>
     <string name="toggles_arrange_instructions">Rearrange by dragging by the handle on the right. Remove by swiping.</string>
     <string name="save">Save</string>
     <string name="navigation_bar_height_title">Navigation Bar height</string>
