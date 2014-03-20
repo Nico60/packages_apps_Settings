@@ -434,4 +434,8 @@
     <!-- Brightness Slider -->
     <string name="notification_drawer_brightness_slider_title">Brightness Slider</string>
 
+    <!-- On-The-Go -->
+    <string name="power_menu_onthego_title">On-The-Go Mode</string>
+    <string name="title_tile_onthego">On-The-Go</string>
+
 </resources>

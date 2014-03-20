@@ -25,6 +25,8 @@ import android.provider.Settings;
 import com.android.settings.R;
 import com.android.settings.SettingsPreferenceFragment;
 
+import com.android.internal.util.nameless.NamelessUtils;
+
 public class PowerMenu extends SettingsPreferenceFragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -46,5 +48,8 @@ public class PowerMenu extends SettingsPreferenceFragment {
             getPreferenceScreen().removePreference(
                     findPreference(Settings.System.POWER_MENU_USER_ENABLED));
         }
+
+        findPreference(Settings.System.POWER_MENU_ONTHEGO_ENABLED).setEnabled(
+                NamelessUtils.hasCamera(getActivity()));
     }
 }
