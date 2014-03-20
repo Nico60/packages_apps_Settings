@@ -317,7 +317,7 @@
         <item>0</item>
         <item>1</item>
         <item>2</item>
-    </string-array>     
+    </string-array>
 
     <!-- Navigation Bar Dimensions -->
     <string-array name="navigation_bar_width_entries" translatable="false">
