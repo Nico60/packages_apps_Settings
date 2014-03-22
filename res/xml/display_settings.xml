@@ -120,6 +120,12 @@
             android:summary="@string/header_summary_animation"
             android:fragment="com.android.settings.cyanogenmod.fragments.AnimationControls" />
 
+        <PreferenceScreen
+            android:key="interface_animation_scroll"
+            android:fragment="com.android.settings.spirit.KeyboardAnimationInterfaceSettings"
+            android:title="@string/ime_animation_title"
+            android:summary="@string/ime_animation_summary" />
+
         <ListPreference
             android:key="listview_animation"
             android:dialogTitle="@string/listview_animation_title"
