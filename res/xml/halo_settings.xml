@@ -39,6 +39,12 @@ limitations under the License.
         android:defaultValue="false"
         android:dependency="halo_enabled" />
 
+    <CheckBoxPreference
+        android:key="halo_ninja"
+        android:title="@string/halo_ninja_title"
+        android:summary="@string/halo_ninja_summary"
+        android:defaultValue="false" />
+
 
     <ListPreference
         android:key="halo_notify_count"
