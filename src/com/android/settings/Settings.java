@@ -394,7 +394,8 @@ public class Settings extends PreferenceActivity
         PolicyNativeFragment.class.getName(),
         com.android.settings.cyanogenmod.PrivacySettings.class.getName(),
         com.android.settings.quicksettings.QuickSettingsTiles.class.getName(),
-	BatteryIconStyle.class.getName()
+	BatteryIconStyle.class.getName(),
+        com.android.settings.cyanogenmod.QuietHours.class.getName()
     };
 
     @Override
@@ -1243,4 +1244,5 @@ public class Settings extends PreferenceActivity
     public static class QuickSettingsConfigActivity extends Settings { /* empty */ }
     public static class ASSRamBarActivity extends Settings { /* empty */ }
     public static class BatteryIconStyleSettingsActivity extends Settings { /* empty */ }
+    public static class QuietHoursSettingsActivity extends Settings { /* empty */ }
 }
