@@ -18,7 +18,6 @@ package com.android.settings.util;
 
 import android.os.RemoteException;
 import android.provider.Settings;
-
 import android.view.IWindowManager;
 import android.view.WindowManagerGlobal;
 

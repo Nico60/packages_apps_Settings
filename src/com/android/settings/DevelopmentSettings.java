@@ -1,6 +1,5 @@
 /*
  * Copyright (C) 2008 The Android Open Source Project
- * Portions Copyright (C) 2013 The CyanogenMod Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -70,6 +69,9 @@ import android.view.View;
 import android.widget.CompoundButton;
 import android.widget.Switch;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.android.settings.util.HardwareKeyNavbarHelper;
 
 import dalvik.system.VMRuntime;
 
@@ -185,6 +187,7 @@ public class DevelopmentSettings extends RestrictedSettingsFragment
     private boolean mLastEnabledState;
     private boolean mHaveDebugSettings;
     private boolean mDontPokeProperties;
+    private boolean navbar;
 
     private CheckBoxPreference mEnableAdb;
     private CheckBoxPreference mAdbNotify;
@@ -285,6 +288,8 @@ public class DevelopmentSettings extends RestrictedSettingsFragment
         final PreferenceGroup debugDebuggingCategory = (PreferenceGroup)
                 findPreference(DEBUG_DEBUGGING_CATEGORY_KEY);
 
+        navbar = HardwareKeyNavbarHelper.hasNavbar();
+
         mEnableAdb = findAndInitCheckboxPref(ENABLE_ADB);
         mAdbNotify = (CheckBoxPreference) findPreference(ADB_NOTIFY);
         mAllPrefs.add(mAdbNotify);
@@ -380,6 +385,9 @@ public class DevelopmentSettings extends RestrictedSettingsFragment
         mResetCbPrefs.add(mShowAllANRs);
 
         mKillAppLongpressBack = findAndInitCheckboxPref(KILL_APP_LONGPRESS_BACK);
+        if (navbar) {
+            mKillAppLongpressBack.setSummary(R.string.kill_app_navbar_summary);
+        }
 
         Preference selectRuntime = findPreference(SELECT_RUNTIME_KEY);
         if (selectRuntime != null) {
@@ -826,14 +834,22 @@ public class DevelopmentSettings extends RestrictedSettingsFragment
     }
 
     private void writeKillAppLongpressBackOptions() {
-        Settings.Secure.putInt(getActivity().getContentResolver(),
-                Settings.Secure.KILL_APP_LONGPRESS_BACK,
-                mKillAppLongpressBack.isChecked() ? 1 : 0);
+        Settings.System.putInt(getActivity().getContentResolver(),
+                Settings.System.KEY_BACK_LONG_PRESS_ACTION,
+                mKillAppLongpressBack.isChecked() ? 7 : 0);
+        Intent u = new Intent();
+        u.setAction(Intent.ACTION_UPDATE_KEYS);
+        mContext.sendBroadcastAsUser(u, UserHandle.ALL);
     }
 
     private void updateKillAppLongpressBackOptions() {
-        mKillAppLongpressBack.setChecked(Settings.Secure.getInt(
-            getActivity().getContentResolver(), Settings.Secure.KILL_APP_LONGPRESS_BACK, 0) != 0);
+        mKillAppLongpressBack.setChecked(Settings.System.getInt(
+            getActivity().getContentResolver(), Settings.System.KEY_BACK_LONG_PRESS_ACTION, 0) == 7);
+        if (!navbar) {
+            mKillAppLongpressBack.setEnabled(true);
+        } else {
+            mKillAppLongpressBack.setEnabled(false);
+        }
     }
 
     private void updatePasswordSummary() {
