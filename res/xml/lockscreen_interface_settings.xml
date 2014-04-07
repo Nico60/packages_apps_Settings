@@ -57,6 +57,10 @@
             android:summary="@string/lockscreen_buttons_summary" />
 
         <CheckBoxPreference
+            android:key="lockscreen_modlock_enabled"
+            android:title="@string/lockscreen_enable_modlock_title" />
+
+        <CheckBoxPreference
             android:key="see_through"
             android:title="@string/see_through_title"
             android:summary="@string/see_through_summary" />
