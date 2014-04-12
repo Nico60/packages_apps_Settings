@@ -63,7 +63,6 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
 
     /** If there is no setting in the provider, use this. */
     private static final int FALLBACK_SCREEN_TIMEOUT_VALUE = 30000;
-    private static final int SCREEN_TIMEOUT_NEVER  = Integer.MAX_VALUE;
 
     private static final String KEY_SCREEN_TIMEOUT = "screen_timeout";
     private static final String KEY_ACCELEROMETER = "accelerometer";
@@ -349,7 +348,7 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
         ArrayList<CharSequence> revisedValues = new ArrayList<CharSequence>();
         for (int i = 0; i < values.length; i++) {
             long timeout = Long.parseLong(values[i].toString());
-            if (timeout <= maxTimeout || timeout == SCREEN_TIMEOUT_NEVER) {
+            if (timeout <= maxTimeout) {
                 revisedEntries.add(entries[i]);
                 revisedValues.add(values[i]);
             }
