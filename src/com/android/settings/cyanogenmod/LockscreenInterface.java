@@ -54,6 +54,7 @@ public class LockscreenInterface extends SettingsPreferenceFragment implements
     private static final String KEY_BLUR_RADIUS = "lockscreen_blur_radius";
     private static final String LOCK_BEFORE_UNLOCK = "lock_before_unlock";
     private static final String KEY_DISABLE_FRAME = "lockscreen_disable_frame";
+    private static final String KEY_ENABLE_MAXIMIZE_WIGETS = "lockscreen_maximize_widgets";
     private static final String KEY_LOCKSCREEN_MODLOCK_ENABLED = "lockscreen_modlock_enabled";
 
     private CheckBoxPreference mEnableKeyguardWidgets;
@@ -64,6 +65,7 @@ public class LockscreenInterface extends SettingsPreferenceFragment implements
     private CheckBoxPreference mLockBeforeUnlock;
     private CheckBoxPreference mDisableFrame;
     private CheckBoxPreference mEnableModLock;
+    private CheckBoxPreference mEnableMaximizeWidgets;
     private ListPreference mBatteryStatus;
 
     private ChooseLockSettingsHelper mChooseLockSettingsHelper;
@@ -88,6 +90,7 @@ public class LockscreenInterface extends SettingsPreferenceFragment implements
         // Find preferences
         mEnableKeyguardWidgets = (CheckBoxPreference) findPreference(KEY_ENABLE_WIDGETS);
         mEnableCameraWidget = (CheckBoxPreference) findPreference(KEY_ENABLE_CAMERA);
+        mEnableMaximizeWidgets = (CheckBoxPreference) findPreference(KEY_ENABLE_MAXIMIZE_WIGETS);
 
         // Keyguard widget frame
         mDisableFrame = (CheckBoxPreference) findPreference(KEY_DISABLE_FRAME);
@@ -117,10 +120,6 @@ public class LockscreenInterface extends SettingsPreferenceFragment implements
         if (!hasButtons()) {
             generalCategory.removePreference(findPreference(KEY_LOCKSCREEN_BUTTONS));
         }
-
-        // Enable or disable lockscreen widgets based on policy
-        checkDisabledByPolicy(mEnableKeyguardWidgets,
-                DevicePolicyManager.KEYGUARD_DISABLE_WIDGETS_ALL);
 
 	// Lock before Unlock
         mLockBeforeUnlock = (CheckBoxPreference) findPreference(LOCK_BEFORE_UNLOCK);
@@ -166,7 +165,7 @@ public class LockscreenInterface extends SettingsPreferenceFragment implements
         // Remove maximize widgets on tablets
         if (!Utils.isPhone(getActivity())) {
             widgetsCategory.removePreference(
-                    findPreference(Settings.System.LOCKSCREEN_MAXIMIZE_WIDGETS));
+                    mEnableMaximizeWidgets);
         }
     }
 
@@ -204,6 +203,26 @@ public class LockscreenInterface extends SettingsPreferenceFragment implements
             boolean checked = Settings.System.getInt(
                     cr, Settings.System.LOCKSCREEN_MODLOCK_ENABLED, 1) == 1;
             mEnableModLock.setChecked(checked);
+        }
+
+        updateAvailableModLockPreferences();
+    }
+
+    private void updateAvailableModLockPreferences() {
+        if (mEnableModLock == null) {
+            return;
+        }
+
+        boolean enabled = !mEnableModLock.isChecked();
+        if (mEnableKeyguardWidgets != null) {
+            // Enable or disable lockscreen widgets based on policy
+            if(!checkDisabledByPolicy(mEnableKeyguardWidgets,
+                    DevicePolicyManager.KEYGUARD_DISABLE_WIDGETS_ALL)) {
+                mEnableKeyguardWidgets.setEnabled(enabled);
+            }
+        }
+        if (mEnableMaximizeWidgets != null) {
+            mEnableMaximizeWidgets.setEnabled(enabled);
         }
     }
 
@@ -255,6 +274,9 @@ public class LockscreenInterface extends SettingsPreferenceFragment implements
             boolean value = (Boolean) objValue;
             Settings.System.putInt(cr, Settings.System.LOCKSCREEN_MODLOCK_ENABLED,
                     value ? 1 : 0);
+            // force it so update picks up correct values
+            ((CheckBoxPreference) preference).setChecked(value);
+            updateAvailableModLockPreferences();
             return true;
         }
 
@@ -275,8 +297,9 @@ public class LockscreenInterface extends SettingsPreferenceFragment implements
      * provided preference if so.
      * @param preference Preference
      * @param feature Feature
+     * @return True if disabled.
      */
-    private void checkDisabledByPolicy(Preference preference, int feature) {
+    private boolean checkDisabledByPolicy(Preference preference, int feature) {
         boolean disabled = featureIsDisabled(feature);
 
         if (disabled) {
@@ -284,6 +307,7 @@ public class LockscreenInterface extends SettingsPreferenceFragment implements
         }
 
         preference.setEnabled(!disabled);
+        return disabled;
     }
 
     /**
