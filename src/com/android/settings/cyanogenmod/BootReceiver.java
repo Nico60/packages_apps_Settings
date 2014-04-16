@@ -39,6 +39,7 @@ public class BootReceiver extends BroadcastReceiver {
 
     private static final String TAG = "BootReceiver";
     private static final String KSM_SETTINGS_PROP = "sys.ksm.restored";
+    private static final String CHARGE_SETTINGS_PROP = "sys.charge.restored";
 
     @Override
     public void onReceive(Context ctx, Intent intent) {
@@ -50,6 +51,16 @@ public class BootReceiver extends BroadcastReceiver {
                 configureKSM(ctx);
             } else {
                 SystemProperties.set(KSM_SETTINGS_PROP, "false");
+            }
+        }
+
+        if (PerformanceSettings.FAST_CHARGE_PATH != null) {
+            if (SystemProperties.getBoolean(CHARGE_SETTINGS_PROP, false) == false
+                    && intent.getAction().equals(Intent.ACTION_BOOT_COMPLETED)) {
+                SystemProperties.set(CHARGE_SETTINGS_PROP, "true");
+                configureCharge(ctx);
+            } else {
+                SystemProperties.set(CHARGE_SETTINGS_PROP, "false");
             }
         }
 
@@ -69,5 +80,14 @@ public class BootReceiver extends BroadcastReceiver {
 
         Utils.fileWriteOneLine(MemoryManagement.KSM_RUN_FILE, ksm ? "1" : "0");
         Log.d(TAG, "KSM settings restored.");
+    }
+
+    private void configureCharge(Context ctx) {
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(ctx);
+
+        boolean charge = prefs.getBoolean(PerformanceSettings.KEY_FORCE_FAST_CHARGE, false);
+
+        Utils.fileWriteOneLine(PerformanceSettings.FAST_CHARGE_PATH, charge ? "1" : "0");
+        Log.d(TAG, "Fast Charge settings restored.");
     }
 }

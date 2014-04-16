@@ -1135,4 +1135,10 @@
     <string name="default_sound_pack">Default (System)</string>
     <string name="error_pack_install">Error while installing the sound pack</string>
 
+    <!-- Performance menu, misc options category -->
+    <string name="misc_title">Misc</string>
+
+    <!-- Force fast charge -->
+    <string name="pref_force_fast_charge_title">Force fast charge</string>
+
 </resources>
