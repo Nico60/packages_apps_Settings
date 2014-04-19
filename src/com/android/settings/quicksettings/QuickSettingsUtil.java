@@ -30,6 +30,7 @@ import static com.android.internal.util.cm.QSConstants.TILE_LOCKSCREEN;
 import static com.android.internal.util.cm.QSConstants.TILE_LTE;
 import static com.android.internal.util.cm.QSConstants.TILE_MOBILEDATA;
 import static com.android.internal.util.cm.QSConstants.TILE_MUSIC;
+import static com.android.internal.util.cm.QSConstants.TILE_NAVBAR;
 import static com.android.internal.util.cm.QSConstants.TILE_NETWORKADB;
 import static com.android.internal.util.cm.QSConstants.TILE_NETWORKMODE;
 import static com.android.internal.util.cm.QSConstants.TILE_NFC;
@@ -59,6 +60,7 @@ import android.util.Log;
 
 import com.android.internal.telephony.Phone;
 import com.android.internal.util.cm.QSUtils;
+import com.android.settings.util.HardwareKeyNavbarHelper;
 import com.android.settings.R;
 
 import java.util.ArrayList;
@@ -173,6 +175,9 @@ public class QuickSettingsUtil {
         registerTile(new QuickSettingsUtil.TileInfo(
                 TILE_QUICKRECORD, R.string.title_tile_quick_record,
                 "com.android.systemui:drawable/ic_qs_quickrecord"));
+        registerTile(new QuickSettingsUtil.TileInfo(
+                TILE_NAVBAR, R.string.title_navbar_tile,
+                "com.android.systemui:drawable/ic_qs_navbar_on"));
     }
 
     private static void registerTile(QuickSettingsUtil.TileInfo info) {
@@ -234,6 +239,11 @@ public class QuickSettingsUtil {
         // Don't show the performance profiles tile if is not available for the device
         if (!QSUtils.deviceSupportsPerformanceProfiles(context)) {
             removeTile(TILE_PERFORMANCE_PROFILE);
+        }
+
+        // Don't show the navbar tile on devices that really have a navbar
+        if (HardwareKeyNavbarHelper.hasNavbar()) {
+            removeTile(TILE_NAVBAR);
         }
     }
 

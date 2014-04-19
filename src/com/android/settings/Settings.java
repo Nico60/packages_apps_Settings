@@ -106,6 +106,7 @@ import com.android.settings.profiles.ProfileEnabler;
 import com.android.settings.profiles.ProfilesSettings;
 import com.android.settings.slim.themes.ThemeEnabler;
 import com.android.settings.spirit.BatteryIconStyle;
+import com.android.settings.spirit.navbar.NavbarTabHostFragment;
 import com.android.settings.tts.TextToSpeechSettings;
 import com.android.settings.users.UserSettings;
 import com.android.settings.vpn2.VpnSettings;
@@ -399,6 +400,7 @@ public class Settings extends PreferenceActivity
         com.android.settings.quicksettings.QuickSettingsTiles.class.getName(),
 	BatteryIconStyle.class.getName(),
         com.android.settings.cyanogenmod.QuietHours.class.getName(),
+        com.android.settings.spirit.navbar.NavbarTabHostFragment.class.getName(),
         ThemeSettings.class.getName()
     };
 
@@ -1273,4 +1275,5 @@ public class Settings extends PreferenceActivity
     public static class BatteryIconStyleSettingsActivity extends Settings { /* empty */ }
     public static class QuietHoursSettingsActivity extends Settings { /* empty */ }
     public static class PerformanceSettingsActivity extends Settings { /* empty */ }
+    public static class NavbarSettingsActivity extends Settings { /* empty */ }
 }
