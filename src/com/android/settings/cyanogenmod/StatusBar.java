@@ -29,6 +29,7 @@ import android.preference.PreferenceCategory;
 import android.preference.PreferenceScreen;
 import android.provider.Settings;
 import android.provider.Settings.SettingNotFoundException;
+import android.telephony.MSimTelephonyManager;
 
 import com.android.settings.R;
 import com.android.settings.SettingsPreferenceFragment;
@@ -96,7 +97,8 @@ public class StatusBar extends SettingsPreferenceFragment implements OnPreferenc
         PreferenceCategory generalCategory =
                 (PreferenceCategory) findPreference(BREATHING_NOTIFICATIONS);
 
-        if (Utils.isWifiOnly(getActivity())) {
+        if (Utils.isWifiOnly(getActivity())
+                || (MSimTelephonyManager.getDefault().isMultiSimEnabled())) {
             Category.removePreference(mStatusBarCmSignal);
             generalCategory.removePreference(mSMSBreath);
             generalCategory.removePreference(mMissedCallBreath);
