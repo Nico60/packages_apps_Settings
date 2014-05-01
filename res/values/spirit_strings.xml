@@ -841,7 +841,7 @@
     <string name="app_halo_label_white">Whitelist from HALO</string>
 
     <!-- Circle App Launcher -->
-    <string name="category_app_circle_bar_title">Circle App launcher</string>
+    <string name="category_app_circle_bar_title">App launcher</string>
     <string name="app_circle_bar_title">App circle bar</string>
     <string name="app_circle_bar_summary">Show circle app launcher after touching right side of screen</string>
     <string name="app_circle_bar_included_apps_title">Included apps</string>
@@ -909,5 +909,8 @@
     <string name="missed_call_breath_summary">Will give your missed call notifications a breathing effect in the statusbar</string>
     <string name="title_voicemail_breath">Breathing Voicemail</string>
     <string name="voicemail_breath_summary">Will give your voicemail notifications a breathing effect in the statusbar</string>
+
+    <string name="system_ui_cat_general">General</string>
+    <string name="system_ui_cat_notififications">Notification</string>
 
 </resources>
