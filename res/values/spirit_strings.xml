@@ -982,4 +982,8 @@
     <string name="system_ui_cat_general">General</string>
     <string name="system_ui_cat_notififications">Notification</string>
 
+    <!-- QuickSettings haptic feedback -->
+    <string name="haptic_qs_tiles_title">Vibrate on touch</string>
+    <string name="haptic_qs_tiles_summary">Vibrate when touching tiles</string>
+
 </resources>
