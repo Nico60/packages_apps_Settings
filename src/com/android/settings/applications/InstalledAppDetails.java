@@ -128,7 +128,7 @@ public class InstalledAppDetails extends Fragment
     private View mScreenCompatSection;
     private CheckBox mAskCompatibilityCB;
     private CheckBox mEnableCompatibilityCB;
-    private CheckBox mHaloBlacklist, mFloatingBlacklist;
+    private CheckBox mHaloBlacklist, mHoverBlacklist, mFloatingBlacklist;
     private boolean mCanClearData = true;
     private TextView mAppVersion;
     private TextView mTotalSize;
@@ -414,10 +414,12 @@ public class InstalledAppDetails extends Fragment
         }
         mHaloBlacklist.setText((mHaloPolicyIsBlack ? R.string.app_halo_label_black : R.string.app_halo_label_white));
 
-        boolean allowedForHalo = true, allowedForFloating = true;
+        boolean allowedForHalo = true, allowedForHover = true, allowedForFloating = true;
         try {
             allowedForHalo = mNotificationManager
                     .isPackageAllowedForHalo(mAppEntry.info.packageName);
+            allowedForHover = mNotificationManager
+                    .isPackageAllowedForHover(mAppEntry.info.packageName);
             allowedForFloating = mNotificationManager
                     .isPackageAllowedForFloatingMode(mAppEntry.info.packageName);
         } catch (android.os.RemoteException ex) {
@@ -425,6 +427,8 @@ public class InstalledAppDetails extends Fragment
         }
         mHaloBlacklist.setChecked(!allowedForHalo);
         mHaloBlacklist.setOnCheckedChangeListener(this);
+        mHoverBlacklist.setChecked(!allowedForHover);
+        mHoverBlacklist.setOnCheckedChangeListener(this);
         mFloatingBlacklist.setChecked(!allowedForFloating);
         mFloatingBlacklist.setOnCheckedChangeListener(this);
 
@@ -539,6 +543,7 @@ public class InstalledAppDetails extends Fragment
         mNotificationSwitch = (CompoundButton) view.findViewById(R.id.notification_switch);
         mBlacklistDialogView = inflater.inflate(R.layout.blacklist_dialog, null);
         mHaloBlacklist = (CheckBox) mBlacklistDialogView.findViewById(R.id.halo_blacklist);
+        mHoverBlacklist = (CheckBox) mBlacklistDialogView.findViewById(R.id.hover_blacklist);
         mFloatingBlacklist = (CheckBox) mBlacklistDialogView.findViewById(R.id.floating_blacklist);
         mPrivacyGuardSwitch = (CompoundButton) view.findViewById(R.id.privacy_guard_switch);
 
@@ -1460,6 +1465,14 @@ public class InstalledAppDetails extends Fragment
             mAppEntry.info.uid, mAppEntry.info.packageName, enabled);
     }
 
+    private void setHoverState(boolean state) {
+        try {
+            mNotificationManager.setHoverBlacklistStatus(mAppEntry.info.packageName, state);
+        } catch (android.os.RemoteException ex) {
+            mHoverBlacklist.setChecked(!state); // revert
+        }
+    }
+
     private int getPremiumSmsPermission(String packageName) {
         try {
             if (mSmsManager != null) {
@@ -1561,6 +1574,8 @@ public class InstalledAppDetails extends Fragment
             }
         } else if (buttonView == mHaloBlacklist) {
             setHaloState(isChecked);
+        } else if (buttonView == mHoverBlacklist) {
+            setHoverState(isChecked);
         } else if (buttonView == mPrivacyGuardSwitch) {
             if (isChecked) {
                 showDialogInner(DLG_PRIVACY_GUARD, 0);

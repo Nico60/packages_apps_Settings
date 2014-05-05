@@ -1210,6 +1210,7 @@
 
     <!--Blacklist-->
     <string name="blacklist_button_title">Blacklist</string>
+    <string name="hover_blacklist_label">Blacklist from Hover</string>
     <string name="floating_blacklist_label">Blacklist from Floating Mode</string>
 
 </resources>
