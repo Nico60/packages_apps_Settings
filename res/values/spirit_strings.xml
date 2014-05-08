@@ -979,17 +979,6 @@
     <string name="haptic_qs_tiles_title">Vibrate on touch</string>
     <string name="haptic_qs_tiles_summary">Vibrate when touching tiles</string>
 
-    <!-- Lockscreen background -->
-    <string name="lockscreen_background">Background</string>
-    <string name="lockscreen_background_style_title">Lockscreen background style</string>
-    <string name="background_color_fill_title">Background color</string>
-    <string name="background_default">Default style background</string>
-    <string name="background_color_fill">Color fill</string>
-    <string name="background_wallpaper">Custom wallpaper</string>
-    <string name="transparency">Background transparency</string>
-    <string name="background_result_successful">Background changed</string>
-    <string name="background_result_not_successful">Background not changed</string>
-
     <!-- QuickSettings: Smart Pulldown -->
     <string name="smart_pulldown_title">Smart pulldown</string>
     <string name="smart_pulldown_summary">Open Quick Settings when there are no %1$s notifications present</string>
