@@ -1253,4 +1253,6 @@
     <string name="clock_use_second">Enable Seconds</string>
     <string name="clock_use_second_summary">Shows the seconds next to the statusbar clock</string>
 
+    <!-- CPUFreq Tile -->
+    <string name="title_tile_cpufreq">CPUFreq</string>
 </resources>
