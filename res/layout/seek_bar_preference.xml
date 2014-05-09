@@ -9,14 +9,14 @@
     android:paddingRight="10dp"
     android:paddingBottom="5dp"
     >
-
+    
     <TextView android:id="@android:id/title"
             android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium" />
-
+    
     <TextView android:id="@android:id/summary"
             android:layout_alignParentLeft="true"
             android:layout_width="fill_parent"
@@ -24,11 +24,6 @@
             android:layout_below="@android:id/title"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:textColor="?android:attr/textColorSecondary" />
-
-    <RelativeLayout
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@android:id/summary" >
 
     <TextView android:id="@+id/seekBarPrefUnitsRight"
             android:layout_alignParentRight="true"
@@ -57,6 +52,7 @@
             android:layout_alignParentBottom="true"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@android:id/summary" />
-    </RelativeLayout>
+            android:layout_below="@android:id/summary">
+    </LinearLayout>
+    
 </RelativeLayout>

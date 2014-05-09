@@ -37,8 +37,6 @@ import com.android.settings.R;
 import com.android.settings.SettingsPreferenceFragment;
 import com.android.settings.Utils;
 
-import com.android.settings.chameleonos.SeekBarPreferenceChOS;
-
 public class LockscreenInterface extends SettingsPreferenceFragment implements
         Preference.OnPreferenceChangeListener {
 
@@ -50,8 +48,6 @@ public class LockscreenInterface extends SettingsPreferenceFragment implements
     private static final String KEY_LOCK_CLOCK = "lock_clock";
     private static final String KEY_ENABLE_CAMERA = "keyguard_enable_camera";
     private static final String PREF_LOCKSCREEN_TORCH = "lockscreen_torch";
-    private static final String KEY_SEE_THROUGH = "see_through";
-    private static final String KEY_BLUR_RADIUS = "lockscreen_blur_radius";
     private static final String KEY_DISABLE_FRAME = "lockscreen_disable_frame";
     private static final String KEY_ENABLE_MAXIMIZE_WIGETS = "lockscreen_maximize_widgets";
     private static final String KEY_LOCKSCREEN_MODLOCK_ENABLED = "lockscreen_modlock_enabled";
@@ -59,8 +55,6 @@ public class LockscreenInterface extends SettingsPreferenceFragment implements
     private CheckBoxPreference mEnableKeyguardWidgets;
     private CheckBoxPreference mEnableCameraWidget;
     private CheckBoxPreference mGlowpadTorch;
-    private CheckBoxPreference mSeeThrough;
-    private SeekBarPreferenceChOS mBlurRadius;
     private CheckBoxPreference mDisableFrame;
     private CheckBoxPreference mEnableModLock;
     private CheckBoxPreference mEnableMaximizeWidgets;
@@ -117,17 +111,6 @@ public class LockscreenInterface extends SettingsPreferenceFragment implements
         // Remove lockscreen button actions if device doesn't have hardware keys
         if (!hasButtons()) {
             generalCategory.removePreference(findPreference(KEY_LOCKSCREEN_BUTTONS));
-        }
-
-        // Lockscreen Blur
-        mSeeThrough = (CheckBoxPreference) findPreference(KEY_SEE_THROUGH);
-
-        // Blur radius
-        mBlurRadius = (SeekBarPreferenceChOS) findPreference(KEY_BLUR_RADIUS);
-        if (mBlurRadius != null) {
-            mBlurRadius.setValue(Settings.System.getInt(getContentResolver(),
-                    Settings.System.LOCKSCREEN_BLUR_RADIUS, 12));
-            mBlurRadius.setOnPreferenceChangeListener(this);
         }
 
         // Enable or disable camera widget based on device and policy
@@ -232,9 +215,6 @@ public class LockscreenInterface extends SettingsPreferenceFragment implements
         } else if (KEY_ENABLE_CAMERA.equals(key)) {
             mLockUtils.setCameraEnabled(mEnableCameraWidget.isChecked());
             return true;
-	} else if (preference == mSeeThrough) {
-            Settings.System.putInt(getContentResolver(), Settings.System.LOCKSCREEN_SEE_THROUGH,
-                    mSeeThrough.isChecked() ? 1 : 0);
         }
 
         return super.onPreferenceTreeClick(preferenceScreen, preference);
@@ -254,10 +234,6 @@ public class LockscreenInterface extends SettingsPreferenceFragment implements
             Settings.System.putInt(getContentResolver(),
                     Settings.System.LOCKSCREEN_GLOWPAD_TORCH,
                     (Boolean) objValue ? 1 : 0);
-            return true;
-        } else if (preference == mBlurRadius) {
-                    Settings.System.putInt(getContentResolver(),
-            Settings.System.LOCKSCREEN_BLUR_RADIUS, (Integer) objValue);
             return true;
         } else if (preference == mDisableFrame) {
             Settings.System.putInt(getContentResolver(),

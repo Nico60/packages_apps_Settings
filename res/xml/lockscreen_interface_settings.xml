@@ -55,22 +55,6 @@
             android:key="lockscreen_modlock_enabled"
             android:title="@string/lockscreen_enable_modlock_title" />
 
-        <CheckBoxPreference
-            android:key="see_through"
-            android:title="@string/see_through_title"
-            android:summary="@string/see_through_summary" />
-
-        <com.android.settings.chameleonos.SeekBarPreferenceChOS
-            android:key="lockscreen_blur_radius"
-            android:title="@string/blur_radius_title"
-            android:summary="@string/blur_radius_summary"
-            android:max="25"
-            settings:minAD="0"
-            settings:unitsLeft=""
-            settings:unitsRight=""
-            android:persistent="false"
-            android:dependency="see_through" />
-
         <PreferenceScreen
             android:title="@string/lockscreen_notifications"
             android:fragment="com.android.settings.crdroid.LockscreenNotifications"
