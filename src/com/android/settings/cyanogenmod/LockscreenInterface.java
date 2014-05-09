@@ -51,6 +51,7 @@ public class LockscreenInterface extends SettingsPreferenceFragment implements
     private static final String KEY_DISABLE_FRAME = "lockscreen_disable_frame";
     private static final String KEY_ENABLE_MAXIMIZE_WIGETS = "lockscreen_maximize_widgets";
     private static final String KEY_LOCKSCREEN_MODLOCK_ENABLED = "lockscreen_modlock_enabled";
+    private static final String KEY_SEE_THROUGH = "see_through";
 
     private CheckBoxPreference mEnableKeyguardWidgets;
     private CheckBoxPreference mEnableCameraWidget;
@@ -58,6 +59,7 @@ public class LockscreenInterface extends SettingsPreferenceFragment implements
     private CheckBoxPreference mDisableFrame;
     private CheckBoxPreference mEnableModLock;
     private CheckBoxPreference mEnableMaximizeWidgets;
+    private CheckBoxPreference mSeeThrough;
     private ListPreference mBatteryStatus;
 
     private ChooseLockSettingsHelper mChooseLockSettingsHelper;
@@ -83,6 +85,9 @@ public class LockscreenInterface extends SettingsPreferenceFragment implements
         mEnableKeyguardWidgets = (CheckBoxPreference) findPreference(KEY_ENABLE_WIDGETS);
         mEnableCameraWidget = (CheckBoxPreference) findPreference(KEY_ENABLE_CAMERA);
         mEnableMaximizeWidgets = (CheckBoxPreference) findPreference(KEY_ENABLE_MAXIMIZE_WIGETS);
+
+        // lockscreen see through
+        mSeeThrough = (CheckBoxPreference) findPreference(KEY_SEE_THROUGH);
 
         // Keyguard widget frame
         mDisableFrame = (CheckBoxPreference) findPreference(KEY_DISABLE_FRAME);
@@ -215,6 +220,9 @@ public class LockscreenInterface extends SettingsPreferenceFragment implements
         } else if (KEY_ENABLE_CAMERA.equals(key)) {
             mLockUtils.setCameraEnabled(mEnableCameraWidget.isChecked());
             return true;
+	} else if (preference == mSeeThrough) {
+            Settings.System.putInt(getContentResolver(), Settings.System.LOCKSCREEN_SEE_THROUGH,
+                    mSeeThrough.isChecked() ? 1 : 0);
         }
 
         return super.onPreferenceTreeClick(preferenceScreen, preference);

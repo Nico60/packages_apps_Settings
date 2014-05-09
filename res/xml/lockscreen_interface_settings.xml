@@ -60,6 +60,11 @@
             android:fragment="com.android.settings.crdroid.LockscreenNotifications"
             android:summary="@string/lockscreen_notifications_summary" />
 
+        <CheckBoxPreference
+            android:key="see_through"
+            android:title="@string/see_through_title"
+            android:summary="@string/see_through_summary" />
+
     </PreferenceCategory>
 
     <PreferenceCategory
