@@ -1077,8 +1077,8 @@
     <string name="time_five_to">Five till</string>
 
     <!--Lockscreen See Through-->
-    <string name="see_through_title">See through</string>
-    <string name="see_through_summary">Shows the content behind your lockscreen, your data may be visible to those around you</string>
+    <string name="see_through_title">Lockscreen Blur</string>
+    <string name="see_through_summary">Blurs and displays the content behind your lockscreen. Your data may be visible to those around you</string>
 
     <!-- Notification Drawer - Swipe to Switch full screen detection-->
     <string name="title_full_screen_swipe">Swipe-to-Switch detection</string>
