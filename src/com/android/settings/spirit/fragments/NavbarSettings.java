@@ -35,6 +35,7 @@ import com.android.settings.R;
 import com.android.settings.SettingsPreferenceFragment;
 import com.android.settings.Utils;
 
+import com.android.settings.slim.PieControl;
 import com.android.settings.spirit.navbar.NavbarTabHostFragment;
 import com.android.settings.spirit.NavRingTargets;
 
@@ -91,8 +92,9 @@ public class NavbarSettings extends SettingsPreferenceFragment {
 
         public StatusBarAdapter(FragmentManager fm) {
             super(fm);
-            frags[0] = new NavRingTargets();
-            frags[1] = new NavbarTabHostFragment();
+            frags[0] = new PieControl();
+            frags[1] = new NavRingTargets();
+            frags[2] = new NavbarTabHostFragment();
         }
 
         @Override
@@ -114,6 +116,7 @@ public class NavbarSettings extends SettingsPreferenceFragment {
     private String[] getTitles() {
         String titleString[];
         titleString = new String[] {
+                    getString(R.string.pie_control_title),
                     getString(R.string.category_navring),
                     getString(R.string.category_navbar)};
         return titleString;
