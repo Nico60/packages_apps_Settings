@@ -1125,17 +1125,6 @@
     <!-- Navbar Toggle QS -->
     <string name="title_navbar_tile">Navbar toggle</string>
 
-    <!-- Ad blocker revisited -->
-    <string name="hfm_disable_ads_title">Disable Ads</string>
-    <string name="hfm_disable_ads_summary">Change hosts file to disable ads</string>
-    <string name="hfm_pref_screen_title">Ad blocker</string>
-    <string name="hfm_update_hosts">Update hosts file</string>
-    <string name="hfm_update_hosts_summary">Download and apply fresh hosts</string>
-    <string name="hfm_dialog_wait">Working, please wait...</string>
-    <string name="hfm_dialog_failed">Updating hosts file failed. Please try again.</string>
-    <string name="hfm_dialog_success">/4 hosts sources successfully applied!</string>
-    <string name="hfm_dialog_conn_error">Error: No network connectivity</string>
-
     <!-- Sound themes -->
     <string name="sound_packages_title">Sound packs</string>
     <string name="install_sound_pack_title">Install sound pack</string>
