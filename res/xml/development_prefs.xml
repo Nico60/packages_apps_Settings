@@ -39,6 +39,11 @@
         android:entries="@array/media_scanner_on_boot_entries"
         android:entryValues="@array/media_scanner_on_boot_values" />
 
+    <PreferenceScreen
+        android:key="slimsizer"
+        android:fragment="com.android.settings.spirit.SlimSizer"
+        android:title="@string/sizer_title" />
+
     <CheckBoxPreference
         android:key="advanced_reboot"
         android:title="@string/advanced_reboot_title"
