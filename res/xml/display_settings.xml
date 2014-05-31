@@ -23,14 +23,6 @@
                 android:title="@string/screen_recorder_title"
                 android:fragment="com.android.settings.chameleonos.ScreenRecorderSettings" />
 
-        <ListPreference
-                android:key="lcd_density"
-                android:title="@string/lcd_density"
-                android:summary="@string/lcd_density_summary"
-                android:persistent="false"
-                android:entries="@array/lcd_density_entries"
-                android:entryValues="@array/lcd_density_values" />
-
         <com.android.settings.BrightnessPreference
                 android:title="@string/brightness"
                 android:persistent="false"/>
