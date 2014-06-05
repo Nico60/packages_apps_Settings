@@ -34,7 +34,7 @@
             android:fragment="com.android.settings.spirit.TtsNotification" />
 
         <PreferenceScreen
-            android:fragment="com.android.settings.accessibility.ToggleCaptioningPreferenceFragment"
+            android:fragment="com.android.settings.accessibility.CaptionPropertiesFragment"
             android:key="captioning_preference_screen"
             android:title="@string/accessibility_captioning_title" />
 
