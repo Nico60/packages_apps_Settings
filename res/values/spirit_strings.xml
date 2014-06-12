@@ -891,8 +891,8 @@
     <string name="lockscreen_widget_frame_summary">Disable widget background frames</string>
 
     <!-- Halo -->
-    <string name="halo_enabled_title">Enable HALO</string>
-    <string name="halo_enabled_summary">Completely enable or disable HALO</string>
+    <string name="halo_enabled_title">Enable Halo</string>
+    <string name="halo_enabled_summary">Completely enable or disable Halo</string>
     <string name="halo_settings_title">Halo</string>
     <string name="halo_style_title">Halo style</string>
     <string name="halo_behavior_title">Halo Behavior</string>
@@ -934,8 +934,8 @@
     <string name="halo_number_container_color_title">Notificaton number bubble color</string>
 
     <!-- Label for are-halo-notifications-allowed checkbox in app details [CHAR LIMIT=20] -->
-    <string name="app_halo_label_black">Blacklist from HALO</string>
-    <string name="app_halo_label_white">Whitelist from HALO</string>
+    <string name="app_halo_label_black">Blacklist from Halo</string>
+    <string name="app_halo_label_white">Whitelist from Halo</string>
 
     <!-- Circle App Launcher -->
     <string name="category_app_circle_bar_title">App launcher</string>
@@ -1207,5 +1207,9 @@
     <string name="lcd_warning">Be Advised that it is recommended to use a Multi-DPI Play Store to avoid any issues with apps after changing your system density. Do you understand?</string>
     <string name="lcd_warning_yes">YES</string>
     <string name="lcd_warning_no">NO</string>
+
+    <!--Blacklist-->
+    <string name="blacklist_button_title">Blacklist</string>
+    <string name="floating_blacklist_label">Blacklist from Floating Mode</string>
 
 </resources>

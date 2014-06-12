@@ -108,8 +108,8 @@ public class InstalledAppDetails extends Fragment
     private IUsbManager mUsbManager;
     private AppWidgetManager mAppWidgetManager;
     private DevicePolicyManager mDpm;
-    private ISms mSmsManager;
     private INotificationManager mNotificationManager;
+    private ISms mSmsManager;
     private ApplicationsState mState;
     private ApplicationsState.Session mSession;
     private ApplicationsState.AppEntry mAppEntry;
@@ -119,8 +119,8 @@ public class InstalledAppDetails extends Fragment
     private PackageInfo mPackageInfo;
     private CanBeOnSdCardChecker mCanBeOnSdCardChecker;
     private View mRootView;
+    private static View mBlacklistDialogView;
     private Button mUninstallButton;
-    private View mMoreControlButtons;
     private Button mSpecialDisableButton;
     private boolean mMoveInProgress = false;
     private boolean mUpdatedSysApp = false;
@@ -128,6 +128,7 @@ public class InstalledAppDetails extends Fragment
     private View mScreenCompatSection;
     private CheckBox mAskCompatibilityCB;
     private CheckBox mEnableCompatibilityCB;
+    private CheckBox mHaloBlacklist, mFloatingBlacklist;
     private boolean mCanClearData = true;
     private TextView mAppVersion;
     private TextView mTotalSize;
@@ -143,7 +144,8 @@ public class InstalledAppDetails extends Fragment
     private Button mForceStopButton;
     private Button mClearDataButton;
     private Button mMoveAppButton;
-    private CompoundButton mNotificationSwitch, mHaloState;
+    private Button mBlacklistButton;
+    private CompoundButton mNotificationSwitch;
     private CompoundButton mPrivacyGuardSwitch;
 
     private PackageMoveObserver mPackageMoveObserver;
@@ -188,6 +190,7 @@ public class InstalledAppDetails extends Fragment
     private static final int DLG_DISABLE_NOTIFICATIONS = DLG_BASE + 8;
     private static final int DLG_SPECIAL_DISABLE = DLG_BASE + 9;
     private static final int DLG_PRIVACY_GUARD = DLG_BASE + 10;
+    private static final int DLG_BLACKLIST = DLG_BASE + 11;
 
     // Menu identifiers
     public static final int UNINSTALL_ALL_USERS_MENU = 1;
@@ -356,9 +359,9 @@ public class InstalledAppDetails extends Fragment
                 specialDisable = handleDisableable(mSpecialDisableButton);
                 mSpecialDisableButton.setOnClickListener(this);
             }
-            mMoreControlButtons.setVisibility(specialDisable ? View.VISIBLE : View.GONE);
+            mSpecialDisableButton.setVisibility(specialDisable ? View.VISIBLE : View.INVISIBLE);
         } else {
-            mMoreControlButtons.setVisibility(View.GONE);
+            mSpecialDisableButton.setVisibility(View.INVISIBLE);
             if ((mAppEntry.info.flags & ApplicationInfo.FLAG_SYSTEM) != 0) {
                 enabled = handleDisableable(mUninstallButton);
             } else if ((mPackageInfo.applicationInfo.flags
@@ -401,19 +404,42 @@ public class InstalledAppDetails extends Fragment
         }
     }
 
+    private void initBlacklistButton() {
+        mBlacklistButton.setText(R.string.blacklist_button_title);
+
+        try {
+            mHaloPolicyIsBlack = mNotificationManager.isHaloPolicyBlack();
+        } catch (android.os.RemoteException ex) {
+            // System dead
+        }
+        mHaloBlacklist.setText((mHaloPolicyIsBlack ? R.string.app_halo_label_black : R.string.app_halo_label_white));
+
+        boolean allowedForHalo = true, allowedForFloating = true;
+        try {
+            allowedForHalo = mNotificationManager
+                    .isPackageAllowedForHalo(mAppEntry.info.packageName);
+            allowedForFloating = mNotificationManager
+                    .isPackageAllowedForFloatingMode(mAppEntry.info.packageName);
+        } catch (android.os.RemoteException ex) {
+            // uh oh
+        }
+        mHaloBlacklist.setChecked(!allowedForHalo);
+        mHaloBlacklist.setOnCheckedChangeListener(this);
+        mFloatingBlacklist.setChecked(!allowedForFloating);
+        mFloatingBlacklist.setOnCheckedChangeListener(this);
+
+        mBlacklistButton.setOnClickListener(this);
+    }
+
     private void initNotificationButton() {
         boolean enabled = true; // default on
-        boolean allowedForHalo = true; // default on
         try {
             enabled = mNotificationManager.areNotificationsEnabledForPackage(mAppEntry.info.packageName,
                     mAppEntry.info.uid);
-            allowedForHalo = mNotificationManager.isPackageAllowedForHalo(mAppEntry.info.packageName);
         } catch (android.os.RemoteException ex) {
             // this does not bode well
         }
         mNotificationSwitch.setChecked(enabled);
-        mHaloState.setChecked((mHaloPolicyIsBlack ? !allowedForHalo : allowedForHalo));
-        mHaloState.setOnCheckedChangeListener(this);
         if (isThisASystemPackage()) {
             mNotificationSwitch.setEnabled(false);
         } else {
@@ -452,12 +478,6 @@ public class InstalledAppDetails extends Fragment
 
         mCanBeOnSdCardChecker = new CanBeOnSdCardChecker();
 
-        try {
-            mHaloPolicyIsBlack = mNotificationManager.isHaloPolicyBlack();
-        } catch (android.os.RemoteException ex) {
-            // System dead
-        }
-
         // Need to make sure we have loaded applications at this point.
         mSession.resume();
 
@@ -495,11 +515,11 @@ public class InstalledAppDetails extends Fragment
         mForceStopButton.setEnabled(false);
         
         // Get More Control button panel
-        mMoreControlButtons = view.findViewById(R.id.more_control_buttons_panel);
-        mMoreControlButtons.findViewById(R.id.left_button).setVisibility(View.INVISIBLE);
-        mSpecialDisableButton = (Button)mMoreControlButtons.findViewById(R.id.right_button);
-        mMoreControlButtons.setVisibility(View.GONE);
-        
+        View moreCtrlBtns = view.findViewById(R.id.more_control_buttons_panel);
+        mBlacklistButton = (Button)moreCtrlBtns.findViewById(R.id.left_button);
+        mSpecialDisableButton = (Button)moreCtrlBtns.findViewById(R.id.right_button);
+        mSpecialDisableButton.setVisibility(View.INVISIBLE);
+
         // Initialize clear data and move install location buttons
         View data_buttons_panel = view.findViewById(R.id.data_buttons_panel);
         mClearDataButton = (Button) data_buttons_panel.findViewById(R.id.right_button);
@@ -517,8 +537,9 @@ public class InstalledAppDetails extends Fragment
         mEnableCompatibilityCB = (CheckBox)view.findViewById(R.id.enable_compatibility_cb);
         
         mNotificationSwitch = (CompoundButton) view.findViewById(R.id.notification_switch);
-        mHaloState = (CompoundButton) view.findViewById(R.id.halo_state);
-        mHaloState.setText((mHaloPolicyIsBlack ? R.string.app_halo_label_black : R.string.app_halo_label_white));
+        mBlacklistDialogView = inflater.inflate(R.layout.blacklist_dialog, null);
+        mHaloBlacklist = (CheckBox) mBlacklistDialogView.findViewById(R.id.halo_blacklist);
+        mFloatingBlacklist = (CheckBox) mBlacklistDialogView.findViewById(R.id.floating_blacklist);
         mPrivacyGuardSwitch = (CompoundButton) view.findViewById(R.id.privacy_guard_switch);
 
         return view;
@@ -1072,11 +1093,13 @@ public class InstalledAppDetails extends Fragment
             initDataButtons();
             initMoveButton();
             initNotificationButton();
+            initBlacklistButton();
         } else {
             mMoveAppButton.setText(R.string.moving);
             mMoveAppButton.setEnabled(false);
             mUninstallButton.setEnabled(false);
             mSpecialDisableButton.setEnabled(false);
+            mBlacklistButton.setEnabled(false);
         }
     }
 
@@ -1299,6 +1322,21 @@ public class InstalledAppDetails extends Fragment
                         }
                     })
                     .create();
+                case DLG_BLACKLIST:
+                    AlertDialog dialog = new AlertDialog.Builder(getActivity())
+                            .setTitle(getActivity().getText(R.string.blacklist_button_title))
+                            .setView(mBlacklistDialogView)
+                            .setNeutralButton(R.string.dlg_ok, new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    ((ViewGroup)mBlacklistDialogView.getParent())
+                                            .removeView(mBlacklistDialogView);
+                                }
+                            })
+                            .create();
+                    dialog.setCanceledOnTouchOutside(false);
+                    dialog.setCancelable(false);
+                    return dialog;
             }
             throw new IllegalArgumentException("unknown id " + id);
         }
@@ -1394,7 +1432,8 @@ public class InstalledAppDetails extends Fragment
     private void setNotificationsEnabled(boolean enabled) {
         try {
             final boolean enable = mNotificationSwitch.isChecked();
-            mNotificationManager.setNotificationsEnabledForPackage(mAppEntry.info.packageName, mAppEntry.info.uid, enabled);
+            mNotificationManager.setNotificationsEnabledForPackage(
+                    mAppEntry.info.packageName, mAppEntry.info.uid, enabled);
         } catch (android.os.RemoteException ex) {
             mNotificationSwitch.setChecked(!enabled); // revert
         }
@@ -1404,7 +1443,15 @@ public class InstalledAppDetails extends Fragment
         try {
             mNotificationManager.setHaloStatus(mAppEntry.info.packageName, state);
         } catch (android.os.RemoteException ex) {
-            mHaloState.setChecked(!state); // revert
+            mHaloBlacklist.setChecked(!state); // revert
+        }
+    }
+
+    private void setFloatingModeState(boolean state) {
+        try {
+            mNotificationManager.setFloatingModeBlacklistStatus(mAppEntry.info.packageName, state);
+        } catch (android.os.RemoteException ex) {
+            mFloatingBlacklist.setChecked(!state); // revert
         }
     }
 
@@ -1491,6 +1538,8 @@ public class InstalledAppDetails extends Fragment
             mMoveInProgress = true;
             refreshButtons();
             mPm.movePackage(mAppEntry.info.packageName, mPackageMoveObserver, moveFlags);
+        } else if (v == mBlacklistButton) {
+            showDialogInner(DLG_BLACKLIST, 0);
         }
     }
 
@@ -1510,7 +1559,7 @@ public class InstalledAppDetails extends Fragment
             } else {
                 setNotificationsEnabled(true);
             }
-        } else if (buttonView == mHaloState) {
+        } else if (buttonView == mHaloBlacklist) {
             setHaloState(isChecked);
         } else if (buttonView == mPrivacyGuardSwitch) {
             if (isChecked) {
@@ -1518,6 +1567,8 @@ public class InstalledAppDetails extends Fragment
             } else {
                 setPrivacyGuard(false);
             }
+        } else if (buttonView == mFloatingBlacklist) {
+            setFloatingModeState(isChecked);
         }
     }
 }
