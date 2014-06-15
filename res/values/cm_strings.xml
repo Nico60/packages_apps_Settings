@@ -359,8 +359,8 @@
     <string name="title_tile_music">Music</string>
     <string name="title_tile_network_adb">ADB over network</string>
     <string name="title_tile_theme">Theme switcher</string>
-    <string name="title_tile_reboot">Reboot</string>
     <string name="title_tile_quick_record">Quick Record</string>
+
     <string name="title_dynamic_tiles">Dynamic tiles</string>
     <string name="dynamic_tiles_note_title">Note</string>
     <string name="dynamic_tiles_note_summary">Dynamic tiles are not always visible and will only appear if triggered by a system event</string>
