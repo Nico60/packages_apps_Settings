@@ -115,6 +115,11 @@
             android:fragment="com.android.settings.paranoid.Halo"
             android:title="@string/halo_settings_title" />
 
+    <PreferenceScreen
+        android:id="@+id/hover_settings"
+        android:fragment="com.android.settings.crdroid.HoverSettings"
+        android:title="@string/hover_settings_title" />
+
     <PreferenceCategory
         android:key="navigation_bar"
         android:title="@string/navigation_bar_category" />
