@@ -1246,4 +1246,7 @@
     <string name="hover_exclude_topmost_title">Exclude topmost app</string>
     <string name="hover_exclude_topmost_summary">Exclude notifications from the app running in foreground</string>
 
+    <!-- Screenshot Tile -->
+    <string name="title_tile_screenshot">Screenshot</string>
+
 </resources>
