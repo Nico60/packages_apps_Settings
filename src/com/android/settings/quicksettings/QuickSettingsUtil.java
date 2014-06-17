@@ -55,6 +55,7 @@ import static com.android.internal.util.cm.QSConstants.TILE_WIFI;
 import static com.android.internal.util.cm.QSConstants.TILE_WIFIAP;
 import static com.android.internal.util.cm.QSConstants.TILE_POWER;
 import static com.android.internal.util.cm.QSConstants.TILE_ONTHEGO;
+import static com.android.internal.util.cm.QSConstants.TILE_HOVER;
 
 import android.content.ContentResolver;
 import android.content.Context;
@@ -194,6 +195,9 @@ public class QuickSettingsUtil {
 	registerTile(new QuickSettingsUtil.TileInfo(
                 TILE_CPUFREQ, R.string.title_tile_cpufreq,
                 "com.android.systemui:drawable/ic_qs_cpufreq"));
+        registerTile(new QuickSettingsUtil.TileInfo(
+                TILE_HOVER, R.string.title_tile_hover,
+                "com.android.systemui:drawable/ic_qs_hover_on"));
     }
 
     private static void registerTile(QuickSettingsUtil.TileInfo info) {

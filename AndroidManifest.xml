@@ -1807,6 +1807,19 @@
                 android:resource="@id/profiles_settings" />
             </activity>
 
+        <!-- Pseudo-activity used to provide an intent-filter entry point to hover settings -->
+        <activity android:name="Settings$HoverSettingsActivity"
+                android:label="@string/hover_active_title"
+                android:taskAffinity=""
+                android:excludeFromRecents="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+            <meta-data android:name="com.android.settings.FRAGMENT_CLASS"
+                android:value="com.android.settings.crdroid.HoverSettings" />
+        </activity>
+
         <!-- Keep compatibility with old shortcuts. -->
         <activity-alias android:name="ProfileSettings"
                 android:label="@string/profile_settings"

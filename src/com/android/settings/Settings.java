@@ -85,6 +85,7 @@ import com.android.settings.applications.ProcessStatsUi;
 import com.android.settings.blacklist.BlacklistSettings;
 import com.android.settings.bluetooth.BluetoothEnabler;
 import com.android.settings.bluetooth.BluetoothSettings;
+import com.android.settings.crdroid.HoverSettings;
 import com.android.settings.cyanogenmod.ButtonSettings;
 import com.android.settings.cyanogenmod.LockscreenInterface;
 import com.android.settings.cyanogenmod.PerformanceSettings;
@@ -488,7 +489,8 @@ public class Settings extends PreferenceActivity
 	BatteryIconStyle.class.getName(),
         com.android.settings.cyanogenmod.QuietHours.class.getName(),
         com.android.settings.spirit.navbar.NavbarTabHostFragment.class.getName(),
-        ThemeSettings.class.getName()
+        ThemeSettings.class.getName(),
+        com.android.settings.crdroid.HoverSettings.class.getName()
     };
 
     @Override
@@ -1424,4 +1426,5 @@ public class Settings extends PreferenceActivity
     public static class PerformanceSettingsActivity extends Settings { /* empty */ }
     public static class NavbarSettingsActivity extends Settings { /* empty */ }
     public static class ThemeSettingsActivity extends Settings { /* empty */ }
+    public static class HoverSettingsActivity extends Settings { /* empty */ }
 }
