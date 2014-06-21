@@ -74,6 +74,8 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
     private static final String KEY_ADVANCED_DISPLAY_SETTINGS = "advanced_display_settings";
     private static final String KEY_TAP_TO_WAKE = "double_tap_wake_gesture";
 
+    private static final String CATEGORY_ADVANCED = "advanced_display_prefs";
+    private static final String CATEGORY_DISPLAY = "display_prefs";
     private static final String CATEGORY_LIGHTS = "lights_prefs";
     private static final String KEY_NOTIFICATION_PULSE = "notification_pulse";
     private static final String KEY_BATTERY_LIGHT = "battery_light";
@@ -135,6 +137,8 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
 
         addPreferencesFromResource(R.xml.display_settings);
 
+        PreferenceCategory displayPrefs = (PreferenceCategory) findPreference(CATEGORY_DISPLAY);
+
         PreferenceScreen prefSet = getPreferenceScreen();
 
         mDisplayRotationPreference = (PreferenceScreen) findPreference(KEY_DISPLAY_ROTATION);
@@ -150,7 +154,7 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
         if (mScreenSaverPreference != null
                 && getResources().getBoolean(
                         com.android.internal.R.bool.config_dreamsSupported) == false) {
-            getPreferenceScreen().removePreference(mScreenSaverPreference);
+            displayPrefs.removePreference(mScreenSaverPreference);
         }
 
         mScreenTimeoutPreference = (ListPreference) findPreference(KEY_SCREEN_TIMEOUT);
@@ -166,15 +170,17 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
         mFontSizePref.setOnPreferenceChangeListener(this);
         mFontSizePref.setOnPreferenceClickListener(this);
 
+        PreferenceCategory advancedPrefs = (PreferenceCategory) findPreference(CATEGORY_ADVANCED);
+
         mAdaptiveBacklight = (CheckBoxPreference) findPreference(KEY_ADAPTIVE_BACKLIGHT);
         if (!isAdaptiveBacklightSupported()) {
-            getPreferenceScreen().removePreference(mAdaptiveBacklight);
+            advancedPrefs.removePreference(mAdaptiveBacklight);
             mAdaptiveBacklight = null;
         }
 
         mTapToWake = (CheckBoxPreference) findPreference(KEY_TAP_TO_WAKE);
         if (!isTapToWakeSupported()) {
-            getPreferenceScreen().removePreference(mTapToWake);
+            advancedPrefs.removePreference(mTapToWake);
             mTapToWake = null;
         }
 
@@ -196,10 +202,15 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
         }
 
         Utils.updatePreferenceToSpecificActivityFromMetaDataOrRemove(getActivity(),
-                getPreferenceScreen(), KEY_ADVANCED_DISPLAY_SETTINGS);
+                advancedPrefs, KEY_ADVANCED_DISPLAY_SETTINGS);
 
         mWakeWhenPluggedOrUnplugged =
                 (CheckBoxPreference) findPreference(KEY_WAKE_WHEN_PLUGGED_OR_UNPLUGGED);
+
+        mScreenColorSettings = (PreferenceScreen) findPreference(KEY_SCREEN_COLOR_SETTINGS);
+        if (!isPostProcessingSupported()) {
+            advancedPrefs.removePreference(mScreenColorSettings);
+        }
 
         boolean hasNotificationLed = res.getBoolean(
                 com.android.internal.R.bool.config_intrusiveNotificationLed);
@@ -248,11 +259,6 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
         }
         if (!DisplayGamma.isSupported()) {
             advancedPrefs.removePreference(findPreference(KEY_DISPLAY_GAMMA));
-        }
-
-        mScreenColorSettings = (PreferenceScreen) findPreference(KEY_SCREEN_COLOR_SETTINGS);
-        if (!isPostProcessingSupported()) {
-            getPreferenceScreen().removePreference(mScreenColorSettings);
         }
     }
 
