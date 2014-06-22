@@ -596,13 +596,8 @@
   <string name="expanded_desktop_disabled">無効</string>
   <string name="expanded_desktop_status_bar">ステータスバーを表示する</string>
   <string name="expanded_desktop_no_status_bar">ステータスバーを表示しない</string>
-<<<<<<< HEAD
-  <string name="expanded_desktop_system_bars_visibility">ロック画面では無効にする</string>
-  <string name="expanded_desktop_system_bars_visibility_summary">拡張デスクトップモード中でもロック画面ではステータスバーとナビゲーションバーを表示する</string>
-=======
   <string name="expanded_desktop_system_bars_visibility">ロック画面では無効</string>
   <string name="expanded_desktop_system_bars_visibility_summary">拡張デスクトップモードでもロック画面ではステータスバーとナビゲーションバーを表示する</string>
->>>>>>> 7e2e007... Automatic translation import
   <string name="power_menu_profiles_title">プロファイルの切り替え</string>
   <string name="power_menu_airplane_title">機内モード</string>
   <string name="power_menu_user_title">ユーザーの切り替え</string>
