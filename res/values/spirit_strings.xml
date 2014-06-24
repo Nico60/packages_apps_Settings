@@ -898,6 +898,10 @@
     <string name="lockscreen_widget_frame_summary">Disable widget background frames</string>
 
     <!-- Halo -->
+    <!-- Halo enable/disable -->
+    <string name="halo_active_title">Halo switch</string>
+    <string name="halo_active_summary">Check to enable or un-check to disable halo</string>
+
     <string name="halo_settings_title">Halo</string>
     <string name="halo_style_title">Halo style</string>
     <string name="halo_behavior_title">Halo Behavior</string>
