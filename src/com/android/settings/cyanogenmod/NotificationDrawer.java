@@ -41,6 +41,8 @@ import android.os.UserHandle;
 import com.android.settings.R;
 import com.android.settings.SettingsPreferenceFragment;
 
+import com.android.settings.cyanogenmod.SystemSettingSwitchPreference;
+
 import com.android.internal.util.slim.DeviceUtils;
 
 public class NotificationDrawer extends SettingsPreferenceFragment implements
@@ -61,6 +63,7 @@ public class NotificationDrawer extends SettingsPreferenceFragment implements
     private CheckBoxPreference mShowWifiName;
     private CheckBoxPreference mFullScreenDetection;
     private ListPreference mCollapseOnDismiss;
+    private SystemSettingSwitchPreference mSwitchPreference;
     private ListPreference mSmartPulldown;
     private Preference mCustomLabel;
     CheckBoxPreference mHideCarrier;
@@ -77,6 +80,9 @@ public class NotificationDrawer extends SettingsPreferenceFragment implements
 
         addPreferencesFromResource(R.xml.notification_drawer);
         PreferenceScreen prefScreen = getPreferenceScreen();
+
+        mSwitchPreference = (SystemSettingSwitchPreference)
+                findPreference(Settings.System.HEADS_UP_NOTIFICATION);
 
         // Notification drawer
         int collapseBehaviour = Settings.System.getInt(getContentResolver(),
@@ -200,6 +206,15 @@ public class NotificationDrawer extends SettingsPreferenceFragment implements
             alert.show();
         }
         return super.onPreferenceTreeClick(preferenceScreen, preference);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        boolean headsUpEnabled = Settings.System.getIntForUser(
+                getActivity().getContentResolver(),
+                Settings.System.HEADS_UP_NOTIFICATION, 0, UserHandle.USER_CURRENT) == 1;
+        mSwitchPreference.setChecked(headsUpEnabled);
     }
 
     public boolean onPreferenceChange(Preference preference, Object objValue) {
