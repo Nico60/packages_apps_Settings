@@ -20,7 +20,8 @@ limitations under the License.
     <CheckBoxPreference
         android:key="halo_enabled"
         android:title="@string/halo_enabled_title"
-        android:summary="@string/halo_enabled_summary" /> 
+        android:summary="@string/halo_enabled_summary"
+        android:defaultValue="false" /> 
 
     <ListPreference
         android:key="halo_state"
@@ -42,8 +43,7 @@ limitations under the License.
         android:key="halo_ninja"
         android:title="@string/halo_ninja_title"
         android:summary="@string/halo_ninja_summary"
-        android:defaultValue="false"
-        android:dependency="halo_enabled" />
+        android:defaultValue="false" />
 
 
     <ListPreference
@@ -52,14 +52,12 @@ limitations under the License.
         android:title="@string/halo_notification_count_title"
         android:summary="@string/halo_notification_count_summary"
         android:entries="@array/entries_halo_notification_count"
-        android:dependency="halo_enabled"
         android:entryValues="@array/values_halo_notification_count" />
 
     <CheckBoxPreference
         android:key="halo_msgbox"
         android:title="@string/halo_notification_msgbox_title"
         android:summary="@string/halo_notification_msgbox_summary"
-        android:dependency="halo_enabled"
         android:defaultValue="true" />
 
     <CheckBoxPreference
@@ -85,14 +83,12 @@ limitations under the License.
             android:title="@string/halo_size_title"
             android:summary="@string/halo_size_summary"
             android:entries="@array/entries_halo_size"
-            android:dependency="halo_enabled"
             android:entryValues="@array/values_halo_size" />
 
         <CheckBoxPreference
             android:key="halo_colors"
             android:title="@string/halo_colors_title"
             android:summary="@string/halo_colors_summary"
-            android:dependency="halo_enabled"
             android:defaultValue="false" />
 
         <net.margaritov.preference.colorpicker.ColorPickerPreference
