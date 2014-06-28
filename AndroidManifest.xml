@@ -197,6 +197,7 @@
         <activity android:name="Settings"
                 android:label="@string/settings_label_launcher"
                 android:taskAffinity="com.android.settings"
+                android:configChanges="orientation|screenSize"
                 android:launchMode="singleTask">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -1887,12 +1888,14 @@
 
         <activity android:name=".notificationlight.BatteryLightSettings" />
 
-        <activity android:name=".cyanogenmod.LockscreenInterface" />
-
         <activity
             android:name=".spirit.SlimSizer"
             android:label="@string/sizer_title" >
         </activity>
+
+        <activity android:name=".cyanogenmod.StatusBar" />
+
+        <activity android:name=".cyanogenmod.NotificationDrawer" />
 
          <!-- "Blacklist settings" UI, used only on voice-capable phone devices. -->
         <activity android:name="Settings$BlacklistSettingsActivity"
@@ -2249,6 +2252,8 @@
             android:exported="false"
             android:name=".cyanogenmod.LtoService">
         </service>
+
+        <service android:name=".search.SearchPopulator"/>
 
         <service android:name=".chameleonos.labs.identicons.IdenticonCreationService"
                  android:exported="false" />
