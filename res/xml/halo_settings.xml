@@ -17,34 +17,25 @@ limitations under the License.
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
         android:title="@string/halo_settings_title">
 
-    <CheckBoxPreference
-        android:key="halo_enabled"
-        android:title="@string/halo_enabled_title"
-        android:summary="@string/halo_enabled_summary"
-        android:defaultValue="false" /> 
-
     <ListPreference
         android:key="halo_state"
         android:dialogTitle="@string/halo_state_title"
         android:title="@string/halo_state_title"
         android:summary="@string/halo_state_summary"
         android:entries="@array/entries_halo_state"
-        android:dependency="halo_enabled"
         android:entryValues="@array/values_halo_state" />
 
     <CheckBoxPreference
         android:key="halo_hide"
         android:title="@string/halo_hide_title"
         android:summary="@string/halo_hide_summary"
-        android:defaultValue="false"
-        android:dependency="halo_enabled" />
+        android:defaultValue="false" />
 
     <CheckBoxPreference
         android:key="halo_ninja"
         android:title="@string/halo_ninja_title"
         android:summary="@string/halo_ninja_summary"
         android:defaultValue="false" />
-
 
     <ListPreference
         android:key="halo_notify_count"
@@ -63,15 +54,13 @@ limitations under the License.
     <CheckBoxPreference
         android:key="halo_pause"
         android:title="@string/halo_pause_title"
-        android:summary="@string/halo_pause_summary"
-        android:dependency="halo_enabled" />
+        android:summary="@string/halo_pause_summary" />
 
     <CheckBoxPreference
         android:key="halo_unlock_ping"
         android:title="@string/halo_unlock_ping_title"
         android:summary="@string/halo_unlock_ping_summary"
-        android:defaultValue="false"
-        android:dependency="halo_enabled" />
+        android:defaultValue="false" />
 
     <PreferenceCategory
         android:key="category_halo_style_options"
