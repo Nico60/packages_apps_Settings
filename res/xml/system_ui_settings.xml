@@ -73,6 +73,11 @@
             android:title="@string/wakelock_blocker"
             android:summary="@string/wakelock_blocker_header_summary" />
 
+        <PreferenceScreen
+            android:id="@+id/weather"
+            android:title="@string/weather_settings_title"
+            android:fragment="com.android.settings.spirit.Weather" />
+
     <!-- Device Specific Touchscreen gestures. Avoid duplicating CMHW functionality, please -->
     <Preference
         android:key="touch_screen_gesture_settings">
