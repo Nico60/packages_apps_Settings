@@ -26,6 +26,7 @@ public class HoverSettings extends SettingsPreferenceFragment implements
         Preference.OnPreferenceChangeListener {
     private static final String TAG = "HoverSettings";
 
+    private static final String KEY_HOVER_ACTIVE = "hover_active";
     private static final String PREF_HOVER_LONG_FADE_OUT_DELAY = "hover_long_fade_out_delay";
     private static final String PREF_HOVER_EXCLUDE_NON_CLEARABLE = "hover_exclude_non_clearable";
     private static final String PREF_HOVER_EXCLUDE_LOW_PRIORITY = "hover_exclude_low_priority";
@@ -33,6 +34,7 @@ public class HoverSettings extends SettingsPreferenceFragment implements
     private static final String PREF_HOVER_EXCLUDE_TOPMOST = "hover_exclude_topmost";
 
     ListPreference mHoverLongFadeOutDelay;
+    CheckBoxPreference mHoverActive;
     CheckBoxPreference mHoverExcludeNonClearable;
     CheckBoxPreference mHoverExcludeNonLowPriority;
     CheckBoxPreference mHoverRequireFullScreenMode;
@@ -44,6 +46,10 @@ public class HoverSettings extends SettingsPreferenceFragment implements
 
         addPreferencesFromResource(R.xml.hover_settings);
         PreferenceScreen prefSet = getPreferenceScreen();
+
+        mHoverActive = (CheckBoxPreference) prefSet.findPreference(KEY_HOVER_ACTIVE);
+        mHoverActive.setChecked(Settings.System.getInt(mContext.getContentResolver(),
+                Settings.System.HOVER_ACTIVE, 0) == 1);
 
         mHoverLongFadeOutDelay = (ListPreference) prefSet.findPreference(PREF_HOVER_LONG_FADE_OUT_DELAY);
         int hoverLongFadeOutDelay = Settings.System.getIntForUser(getContentResolver(),
@@ -124,6 +130,11 @@ public class HoverSettings extends SettingsPreferenceFragment implements
 
     @Override
     public boolean onPreferenceTreeClick(PreferenceScreen preferenceScreen, Preference preference) {
+        if (preference == mHoverActive) {
+            Settings.System.putInt(mContext.getContentResolver(),
+                    Settings.System.HOVER_ACTIVE, mHoverActive.isChecked()
+                    ? 1 : 0);
+        }
         return super.onPreferenceTreeClick(preferenceScreen, preference);
     }
 }

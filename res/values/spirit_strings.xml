@@ -1227,6 +1227,7 @@
 
     <!-- Hover settings -->
     <string name="hover_settings_title">Hover</string>
+    <string name="hover_active_title">Hover</string>
     <string name="hover_require_fullscreen_mode_title">Require Fullscreen-Mode</string>
     <string name="hover_require_fullscreen_mode_summary">Only show up when StatusBar is hidden</string>
     <string name="hover_exclude_low_priority_title">Exclude low priority</string>
