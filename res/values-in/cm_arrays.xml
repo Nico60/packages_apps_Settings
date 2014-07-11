@@ -17,48 +17,48 @@
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
   <string-array name="wifi_countrycode_entries">
-    <item>USA</item>
+    <item>Amerika Serikat</item>
     <item>Kanada, Taiwan</item>
-    <item>Tyskland</item>
-    <item>Europa</item>
-    <item>Japan, Ryssland</item>
-    <item>Australien</item>
-    <item>Kina</item>
+    <item>Jerman</item>
+    <item>Eropa</item>
+    <item>Jepang, Rusia</item>
+    <item>Australia</item>
+    <item>Cina</item>
     <item>Korea</item>
-    <item>Turkiet</item>
-    <item>Singapore</item>
-    <item>Brasilien</item>
+    <item>Turki</item>
+    <item>Singapura</item>
+    <item>Brasil</item>
   </string-array>
   <string-array name="profile_entries">
-    <item>På</item>
-    <item>Av</item>
-    <item>Ingen åsidosättning</item>
+    <item>Aktif</item>
+    <item>Nonaktif</item>
+    <item>Tidak menimpa</item>
   </string-array>
   <string-array name="profile_connection_entries">
-    <item>Inaktivera</item>
-    <item>Aktivera</item>
+    <item>Nonaktifkan</item>
+    <item>Aktifkan</item>
   </string-array>
   <string-array name="entries_screentimeout_widget">
-    <item>15s | 1m | 5m</item>
-    <item>30s | 2m | 5m</item>
+    <item>15d | 1m | 5m</item>
+    <item>30d | 2m | 5m</item>
   </string-array>
   <string-array name="data_usage_cycle_length">
-    <item>Daglig</item>
-    <item>Veckolig</item>
-    <item>Månatlig</item>
+    <item>Harian</item>
+    <item>Mingguan</item>
+    <item>Bulanan</item>
   </string-array>
   <string-array name="data_usage_cycle_weekdays">
-    <item>Söndag</item>
-    <item>Måndag</item>
-    <item>Tisdag</item>
-    <item>Onsdag</item>
-    <item>Torsdag</item>
-    <item>Fredag</item>
-    <item>Lördag</item>
+    <item>Minggu</item>
+    <item>Senin</item>
+    <item>Selasa</item>
+    <item>Rabu</item>
+    <item>Kamis</item>
+    <item>Jumat</item>
+    <item>Sabtu</item>
   </string-array>
   <string-array name="app_ops_permissions">
-    <item>Tillåten</item>
-    <item>Nekad</item>
-    <item>Fråga alltid</item>
+    <item>Diperbolehkan</item>
+    <item>Ditolak</item>
+    <item>Selalu tanya</item>
   </string-array>
 </resources>

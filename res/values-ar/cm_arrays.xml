@@ -17,48 +17,48 @@
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
   <string-array name="wifi_countrycode_entries">
-    <item>USA</item>
-    <item>Kanada, Taiwan</item>
-    <item>Tyskland</item>
-    <item>Europa</item>
-    <item>Japan, Ryssland</item>
-    <item>Australien</item>
-    <item>Kina</item>
-    <item>Korea</item>
-    <item>Turkiet</item>
-    <item>Singapore</item>
-    <item>Brasilien</item>
+    <item>الولايات المتحدة</item>
+    <item>كندا، تايوان</item>
+    <item>ألمانيا</item>
+    <item>أروبا</item>
+    <item>اليابان، روسيا</item>
+    <item>أستراليا</item>
+    <item>الصين</item>
+    <item>كوريا</item>
+    <item>تركيا</item>
+    <item>سنغافورة</item>
+    <item>البرازيل</item>
   </string-array>
   <string-array name="profile_entries">
-    <item>På</item>
-    <item>Av</item>
-    <item>Ingen åsidosättning</item>
+    <item>يعمل</item>
+    <item>مغلق</item>
+    <item>لا تجاوز</item>
   </string-array>
   <string-array name="profile_connection_entries">
-    <item>Inaktivera</item>
-    <item>Aktivera</item>
+    <item>تعطيل</item>
+    <item>تمكين</item>
   </string-array>
   <string-array name="entries_screentimeout_widget">
     <item>15s | 1m | 5m</item>
     <item>30s | 2m | 5m</item>
   </string-array>
   <string-array name="data_usage_cycle_length">
-    <item>Daglig</item>
-    <item>Veckolig</item>
-    <item>Månatlig</item>
+    <item>يومياً</item>
+    <item>أسبوعيّا</item>
+    <item>شهرياً</item>
   </string-array>
   <string-array name="data_usage_cycle_weekdays">
-    <item>Söndag</item>
-    <item>Måndag</item>
-    <item>Tisdag</item>
-    <item>Onsdag</item>
-    <item>Torsdag</item>
-    <item>Fredag</item>
-    <item>Lördag</item>
+    <item>الأحد</item>
+    <item>الاثنين</item>
+    <item>الثلاثاء</item>
+    <item>أربعاء</item>
+    <item>الخميس</item>
+    <item>الجمعة</item>
+    <item>السبت</item>
   </string-array>
   <string-array name="app_ops_permissions">
-    <item>Tillåten</item>
-    <item>Nekad</item>
-    <item>Fråga alltid</item>
+    <item>يسمح</item>
+    <item>مرفوض</item>
+    <item>دائماً اسأل</item>
   </string-array>
 </resources>
