@@ -20,6 +20,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
+import android.content.ContentResolver;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Configuration;
@@ -27,6 +28,7 @@ import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
+import android.preference.CheckBoxPreference;
 import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.Preference.OnPreferenceChangeListener;
@@ -60,9 +62,12 @@ public class NotificationDrawerStyle extends SettingsPreferenceFragment implemen
             "notification_wallpaper_alpha";
     private static final String PREF_NOTIFICATION_ALPHA =
             "notification_alpha";
+    private static final String STATUS_BAR_CUSTOM_HEADER =
+            "custom_status_bar_header";
 
     private static final int DLG_PICK_COLOR = 0;
 
+    private CheckBoxPreference mStatusBarCustomHeader;
     private ListPreference mNotificationWallpaper;
     private ListPreference mNotificationWallpaperLandscape;
     SeekBarPreference mWallpaperAlpha;
@@ -84,8 +89,14 @@ public class NotificationDrawerStyle extends SettingsPreferenceFragment implemen
         addPreferencesFromResource(R.xml.notification_bg_pref);
 
         PreferenceScreen prefSet = getPreferenceScreen();
+        ContentResolver resolver = getActivity().getContentResolver();
 
         mImageTmp = new File(getActivity().getFilesDir() + "/notifi_bg.tmp");
+
+        mStatusBarCustomHeader = (CheckBoxPreference) prefSet.findPreference(STATUS_BAR_CUSTOM_HEADER);
+        mStatusBarCustomHeader.setChecked(Settings.System.getInt(resolver,
+            Settings.System.STATUS_BAR_CUSTOM_HEADER, 0) == 1);
+        mStatusBarCustomHeader.setOnPreferenceChangeListener(this);
 
         mNotificationWallpaper =
                 (ListPreference) findPreference(PREF_NOTIFICATION_WALLPAPER);
@@ -259,6 +270,7 @@ public class NotificationDrawerStyle extends SettingsPreferenceFragment implemen
     }
 
     public boolean onPreferenceChange(Preference preference, Object newValue) {
+        ContentResolver resolver = getActivity().getContentResolver();
         if (preference == mWallpaperAlpha) {
             float valNav = Float.parseFloat((String) newValue);
             Settings.System.putFloat(getContentResolver(),
@@ -303,6 +315,11 @@ public class NotificationDrawerStyle extends SettingsPreferenceFragment implemen
                     updateCustomBackgroundSummary();
                     break;
             }
+            return true;
+        } else if (preference == mStatusBarCustomHeader) {
+            boolean value = (Boolean) newValue;
+            Settings.System.putInt(resolver,
+                Settings.System.STATUS_BAR_CUSTOM_HEADER, value ? 1 : 0);
             return true;
         }
         return false;
