@@ -136,7 +136,7 @@
     <string name="ram_bar_reset_message">Reset RAM bar style to default?</string>
 
     <!-- Themes -->
-    <string name="theme_settings_title">Dark UI</string>
+    <string name="theme_settings_title">Dark Spirit</string>
     <string name="theme_auto_mode_title">Switch theme</string>
     <string name="theme_auto_mode_off">Manual</string>
     <string name="theme_auto_mode_lightsensor">On light condition change</string>
@@ -1261,5 +1261,7 @@
     <string name="notification_drawer_category_title">Notification drawer</string>
     <string name="custom_statusbar_header_title">Contextual notification panel header</string>
     <string name="custom_statusbar_header_summary">Sets the background of the notification panel header to an image based on the current date and time</string>
+
+    <string name="spirit_settings_title">Spirit Extras</string>
 
 </resources>
