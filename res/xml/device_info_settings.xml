@@ -148,7 +148,7 @@
         <!-- Mod version -->
         <Preference android:key="mod_version"
                 style="?android:preferenceInformationStyle"
-                android:title="@string/mod_version"
+                android:title="@string/spirit_mod_version"
                 android:summary="@string/mod_version_default" />
 
         <!-- Mod build date -->
