@@ -17,48 +17,48 @@
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
   <string-array name="wifi_countrycode_entries">
-    <item>Amerikai Egyesült Államok</item>
-    <item>Kanada, Tajvan</item>
-    <item>Németország</item>
-    <item>Európa</item>
-    <item>Japán, Oroszország</item>
-    <item>Ausztrália</item>
-    <item>Kína</item>
-    <item>Korea</item>
-    <item>Törökország</item>
-    <item>Szingapúr</item>
-    <item>Brazília</item>
+    <item>미국</item>
+    <item>캐나다, 대만</item>
+    <item>독일</item>
+    <item>유럽</item>
+    <item>일본, 러시아</item>
+    <item>호주</item>
+    <item>중국</item>
+    <item>대한민국</item>
+    <item>터키</item>
+    <item>싱가포르</item>
+    <item>브라질</item>
   </string-array>
   <string-array name="profile_entries">
-    <item>Be</item>
-    <item>Ki</item>
-    <item>Nincs felülbírálás</item>
+    <item>켜기</item>
+    <item>끄기</item>
+    <item>정의하지 않음</item>
   </string-array>
   <string-array name="profile_connection_entries">
-    <item>Letiltva</item>
-    <item>Engedélyezve</item>
+    <item>사용 안 함</item>
+    <item>사용함</item>
   </string-array>
   <string-array name="entries_screentimeout_widget">
-    <item>15mp | 1p | 5p</item>
-    <item>30mp | 2p | 5p</item>
+    <item>15초 | 1분 | 5분</item>
+    <item>30초 | 2분 | 5분</item>
   </string-array>
   <string-array name="data_usage_cycle_length">
-    <item>Napi</item>
-    <item>Heti</item>
-    <item>Havi</item>
+    <item>매일</item>
+    <item>매주</item>
+    <item>매월</item>
   </string-array>
   <string-array name="data_usage_cycle_weekdays">
-    <item>Vasárnap</item>
-    <item>Hétfő</item>
-    <item>Kedd</item>
-    <item>Szerda</item>
-    <item>Csütörtök</item>
-    <item>Péntek</item>
-    <item>Szombat</item>
+    <item>일요일</item>
+    <item>월요일</item>
+    <item>화요일</item>
+    <item>수요일</item>
+    <item>목요일</item>
+    <item>금요일</item>
+    <item>토요일</item>
   </string-array>
   <string-array name="app_ops_permissions">
-    <item>Engedélyezett</item>
-    <item>Tiltott</item>
-    <item>Mindig rákérdez</item>
+    <item>허용</item>
+    <item>거부</item>
+    <item>항상 물어보기</item>
   </string-array>
 </resources>

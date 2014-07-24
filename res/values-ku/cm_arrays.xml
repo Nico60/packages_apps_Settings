@@ -17,48 +17,48 @@
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
   <string-array name="wifi_countrycode_entries">
-    <item>Amerikai Egyesült Államok</item>
-    <item>Kanada, Tajvan</item>
-    <item>Németország</item>
-    <item>Európa</item>
-    <item>Japán, Oroszország</item>
-    <item>Ausztrália</item>
-    <item>Kína</item>
-    <item>Korea</item>
-    <item>Törökország</item>
-    <item>Szingapúr</item>
-    <item>Brazília</item>
+    <item>ئەمریکا</item>
+    <item>کەنەدا،تایوان</item>
+    <item>ئەلمانیا</item>
+    <item>ئەوروپا</item>
+    <item>ژاپۆن, ڕووسیا</item>
+    <item>ئوسترالیا</item>
+    <item>چین</item>
+    <item>کۆڕیا</item>
+    <item>تورکیا</item>
+    <item>سینگاپوور</item>
+    <item>به‌ڕازیل</item>
   </string-array>
   <string-array name="profile_entries">
-    <item>Be</item>
-    <item>Ki</item>
-    <item>Nincs felülbírálás</item>
+    <item>چالاک</item>
+    <item>ناچالاک</item>
+    <item>زیادەڕەوی نیە</item>
   </string-array>
   <string-array name="profile_connection_entries">
-    <item>Letiltva</item>
-    <item>Engedélyezve</item>
+    <item>ناچالاککردن</item>
+    <item>چالاککردن</item>
   </string-array>
   <string-array name="entries_screentimeout_widget">
-    <item>15mp | 1p | 5p</item>
-    <item>30mp | 2p | 5p</item>
+    <item>15s | 1m | 5m</item>
+    <item>30s | 2m | 5m</item>
   </string-array>
   <string-array name="data_usage_cycle_length">
-    <item>Napi</item>
-    <item>Heti</item>
-    <item>Havi</item>
+    <item>ڕۆژانە</item>
+    <item>هەفتانە</item>
+    <item>مانگانە</item>
   </string-array>
   <string-array name="data_usage_cycle_weekdays">
-    <item>Vasárnap</item>
-    <item>Hétfő</item>
-    <item>Kedd</item>
-    <item>Szerda</item>
-    <item>Csütörtök</item>
-    <item>Péntek</item>
-    <item>Szombat</item>
+    <item>یەکشەممە</item>
+    <item>دووشەممە</item>
+    <item>سێشەممە</item>
+    <item>چوارشەممە</item>
+    <item>پێنچ شەممە</item>
+    <item>هەینی</item>
+    <item>شەممە</item>
   </string-array>
   <string-array name="app_ops_permissions">
-    <item>Engedélyezett</item>
-    <item>Tiltott</item>
-    <item>Mindig rákérdez</item>
+    <item>ڕێپێدراوه</item>
+    <item>نکوڵی کرا</item>
+    <item>هەمیشه پرسیارکردن</item>
   </string-array>
 </resources>
