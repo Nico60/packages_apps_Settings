@@ -1315,6 +1315,8 @@
     <string name="weather_header_title">Weather header</string>
     <string name="weather_header_summary">Add a small weather\ninfo in statusbar header.</string>
     <string name="weather_notification_title">Weather notification</string>
-    <string name="weather_notification_summary">Add weather info as notification</string>
+    <string name="weather_notification_summary">Add weather info as notification.</string>
+    <string name="weather_icon_title">Weather statusbar icon</string>
+    <string name="weather_icon_summary">Hide weather icon in statusbar.</string>
 
 </resources>
