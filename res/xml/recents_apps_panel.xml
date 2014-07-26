@@ -81,4 +81,11 @@
                 android:summary="@string/recent_panel_expanded_mode_summary"
                 android:persistent="false" />
 
+        <net.margaritov.preference.colorpicker.ColorPickerPreference
+                android:key="recent_panel_bg_color"
+                android:title="@string/recent_panel_bg_color_title"
+                android:defaultValue="@android:color/trds_background"
+                alphaSlider="true"
+                android:dependency="recents_use_slim" />
+
 </PreferenceScreen>
