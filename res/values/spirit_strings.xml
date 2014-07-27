@@ -527,6 +527,7 @@
     <string name="shortcut_action_power">Screen Off</string>
     <string name="shortcut_action_notifications">Notifications</string>
     <string name="shortcut_action_qs">Quicksettings panel</string>
+    <string name="shortcut_action_smart">Smart pulldown</string>
     <string name="shortcut_action_none">None</string>
     <string name="shortcut_action_power_menu">Power menu</string>
     <string name="shortcut_action_torch">Torch</string>
