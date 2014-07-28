@@ -41,7 +41,12 @@
     </PreferenceCategory>
 
     <PreferenceCategory
-        android:title="@string/quicksettings_tiles_style">
+       android:title="@string/qs_tiles_bg_color_title" >
+
+        <CheckBoxPreference
+            android:key="quick_tiles_custom_color"
+            android:title="@string/quick_tiles_custom_color_title"
+            android:defaultValue="false" />
 
         <net.margaritov.preference.colorpicker.ColorPickerPreference
              android:key="quick_tiles_bg_color"
@@ -57,10 +62,6 @@
              android:key="quick_tiles_text_color"
              android:title="@string/quick_tiles_text_color_title"
              android:defaultValue="0xffcccccc" />
-
-        <com.android.settings.widget.SeekBarPreference
-             android:key="quick_tiles_alpha"
-             android:title="@string/quick_tiles_alpha_title" />
 
     </PreferenceCategory>
 
