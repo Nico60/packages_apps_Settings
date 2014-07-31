@@ -19,6 +19,11 @@
     android:title="@string/heads_up_title"
     xmlns:settings="http://schemas.android.com/apk/res/com.android.settings">
 
+    <com.android.settings.cyanogenmod.SystemSettingCheckBoxPreference
+        android:key="heads_up_floating_window"
+        android:title="@string/heads_up_floating_window"
+        android:defaultValue="false" />
+
     <CheckBoxPreference
         android:key="heads_up_expanded"
         android:title="@string/heads_up_expanded_title"
