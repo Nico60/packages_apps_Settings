@@ -19,11 +19,14 @@
     android:title="@string/performance_settings_title"
     xmlns:settings="http://schemas.android.com/apk/res/com.android.settings">
 
-    <!-- Performance Control -->
-        <PreferenceScreen
-        android:key="performance_controls"
-        android:fragment="com.brewcrewfoo.performance.activities.MainActivity"
-        android:title="@string/performance_settings" />
+    <PreferenceScreen
+        android:id="@+id/kernel_tweaker"
+        android:title="@string/kernel_tweaker_title">
+        <intent
+            android:action="android.intent.action.MAIN"
+            android:targetClass="com.dsht.kerneltweaker.MainActivity"
+            android:targetPackage="com.dsht.kerneltweaker" />
+    </PreferenceScreen>
 
     <PreferenceCategory
         android:key="perf_profile_prefs"
