@@ -236,7 +236,9 @@ public final class BluetoothSettings extends DeviceListPreferenceFragment {
     private void startScanning() {
         if (isRestrictedAndNotPinProtected()) return;
         if (!mAvailableDevicesCategoryIsPresent) {
+            if (mAvailableDevicesCategory != null) {
             getPreferenceScreen().addPreference(mAvailableDevicesCategory);
+            }
         }
         mLocalAdapter.startScanning(true);
     }
