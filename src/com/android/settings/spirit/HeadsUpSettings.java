@@ -46,12 +46,15 @@ public class HeadsUpSettings extends SettingsPreferenceFragment implements
             "heads_up_show_update";
     private static final String PREF_HEADS_UP_GRAVITY =
             "heads_up_gravity";
+    private static final String PREF_HEADS_UP_EXCLUDE_FROM_LOCK_SCREEN =
+            "heads_up_exclude_from_lock_screen";
 
     private ListPreference mHeadsUpSnoozeTime;
     private ListPreference mHeadsUpTimeOut;
     private CheckBoxPreference mHeadsUpExpanded;
     private CheckBoxPreference mHeadsUpShowUpdates;
     private CheckBoxPreference mHeadsUpGravity;
+    private CheckBoxPreference mHeadsExcludeFromLockscreen;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -75,6 +78,11 @@ public class HeadsUpSettings extends SettingsPreferenceFragment implements
         mHeadsUpGravity.setChecked(Settings.System.getIntForUser(getContentResolver(),
                 Settings.System.HEADS_UP_GRAVITY_BOTTOM, 0, UserHandle.USER_CURRENT) == 1);
         mHeadsUpGravity.setOnPreferenceChangeListener(this);
+
+        mHeadsExcludeFromLockscreen = (CheckBoxPreference) findPreference(PREF_HEADS_UP_EXCLUDE_FROM_LOCK_SCREEN);
+        mHeadsExcludeFromLockscreen.setChecked(Settings.System.getIntForUser(getContentResolver(),
+                Settings.System.HEADS_UP_EXCLUDE_FROM_LOCK_SCREEN, 0, UserHandle.USER_CURRENT) == 1);
+        mHeadsExcludeFromLockscreen.setOnPreferenceChangeListener(this);
 
         mHeadsUpSnoozeTime = (ListPreference) findPreference(PREF_HEADS_UP_SNOOZE_TIME);
         mHeadsUpSnoozeTime.setOnPreferenceChangeListener(this);
@@ -128,6 +136,11 @@ public class HeadsUpSettings extends SettingsPreferenceFragment implements
         } else if (preference == mHeadsUpGravity) {
             Settings.System.putIntForUser(getContentResolver(),
                     Settings.System.HEADS_UP_GRAVITY_BOTTOM,
+                    (Boolean) objValue ? 1 : 0, UserHandle.USER_CURRENT);
+            return true;
+        } else if (preference == mHeadsExcludeFromLockscreen) {
+            Settings.System.putIntForUser(getContentResolver(),
+                    Settings.System.HEADS_UP_EXCLUDE_FROM_LOCK_SCREEN,
                     (Boolean) objValue ? 1 : 0, UserHandle.USER_CURRENT);
             return true;
         }
