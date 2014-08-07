@@ -50,6 +50,12 @@
         android:entryValues="@array/smart_pulldown_values"
         android:persistent="false" />
 
+    <CheckBoxPreference
+        android:key="full_swipe_to_switch_detection"
+        android:title="@string/title_full_screen_swipe"
+        android:summary="@string/summary_full_screen_swipe"
+        android:defaultValue="false" />
+
     <com.android.settings.cyanogenmod.SystemSettingCheckBoxPreference
          android:key="notification_brightness_slider"
          android:title="@string/notification_drawer_brightness_slider_title"
@@ -73,13 +79,19 @@
             android:summary="@string/notification_show_wifi_ssid_summary"
             android:defaultValue="false" />
 
-    </PreferenceCategory>
+        <CheckBoxPreference
+            android:key="status_bar_carrier"
+            android:title="@string/show_status_bar_carrier_title"
+            android:summary="@string/show_status_bar_carrier_summary"
+            android:defaultValue="false" />
 
-    <CheckBoxPreference
-        android:key="full_swipe_to_switch_detection"
-        android:title="@string/title_full_screen_swipe"
-        android:summary="@string/summary_full_screen_swipe"
-        android:defaultValue="false" />
+        <net.margaritov.preference.colorpicker.ColorPickerPreference
+            android:key="status_bar_carrier_color"
+            android:title="@string/status_bar_carrier_color"
+            android:defaultValue="0xffffffff"
+            android:dependency="status_bar_carrier" />
+
+    </PreferenceCategory>
 
     <PreferenceCategory
         android:title="@string/category_quick_access" >

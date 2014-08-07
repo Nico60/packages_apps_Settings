@@ -633,6 +633,9 @@
     <string name="custom_carrier_label_title">Custom carrier label</string>
     <string name="custom_carrier_label_explain">Please enter a new label. Enter an empty label to revert to stock label.</string>
     <string name="custom_carrier_label_notset">Custom label currently not set</string>
+    <string name="show_status_bar_carrier_title">MIUI-like carrier label</string>
+    <string name="show_status_bar_carrier_summary">Shows carrier label in status bar</string>
+    <string name="status_bar_carrier_color">MIUI-like carrier label Color</string>
 
     <!-- Show wifi network name in notification drawer-->
     <string name="notification_show_wifi_ssid_title">Show Wifi network name</string>

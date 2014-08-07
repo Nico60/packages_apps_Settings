@@ -17,16 +17,17 @@
 package com.android.settings.cyanogenmod;
 
 import android.app.AlertDialog;
+import android.content.ContentResolver;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.res.Resources;
+import android.database.ContentObserver;
 import android.media.Ringtone;
 import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.Bundle;
-import android.preference.CheckBoxPreference;
-import android.content.res.Resources;
-import android.os.Bundle;
 import android.os.UserHandle;
+import android.preference.CheckBoxPreference;
 import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.Preference.OnPreferenceChangeListener;
@@ -35,13 +36,15 @@ import android.preference.PreferenceScreen;
 import android.preference.RingtonePreference;
 import android.provider.Settings;
 import android.text.Spannable;
+import android.text.TextUtils;
 import android.widget.EditText;
-import android.os.UserHandle;
-
-import com.android.settings.R;
-import com.android.settings.SettingsPreferenceFragment;
 
 import com.android.internal.util.slim.DeviceUtils;
+import com.android.settings.R;
+import com.android.settings.SettingsPreferenceFragment;
+import com.android.settings.util.Helpers;
+
+import net.margaritov.preference.colorpicker.ColorPickerPreference;
 
 public class NotificationDrawer extends SettingsPreferenceFragment implements
         Preference.OnPreferenceChangeListener {
@@ -57,17 +60,23 @@ public class NotificationDrawer extends SettingsPreferenceFragment implements
     private static final String PREF_NOTI_REMINDER_RINGTONE = "noti_reminder_ringtone";
     private static final String PREF_NOTIFICATION_SHOW_WIFI_SSID = "notification_show_wifi_ssid";
     private static final String SWIPE_TO_SWITCH_SCREEN_DETECTION = "full_swipe_to_switch_detection";
+    private static final String STATUS_BAR_CARRIER = "status_bar_carrier";
+    private static final String STATUS_BAR_CARRIER_COLOR = "status_bar_carrier_color";
+
+    static final int DEFAULT_STATUS_CARRIER_COLOR = 0xffffffff;
 
     private CheckBoxPreference mShowWifiName;
     private CheckBoxPreference mFullScreenDetection;
     private ListPreference mCollapseOnDismiss;
     private ListPreference mSmartPulldown;
     private Preference mCustomLabel;
-    CheckBoxPreference mHideCarrier;
-    CheckBoxPreference mReminder;
-    ListPreference mReminderInterval;
-    ListPreference mReminderMode;
-    RingtonePreference mReminderRingtone;
+    private CheckBoxPreference mHideCarrier;
+    private CheckBoxPreference mReminder;
+    private ListPreference mReminderInterval;
+    private ListPreference mReminderMode;
+    private RingtonePreference mReminderRingtone;
+    private CheckBoxPreference mStatusBarCarrier;
+    private ColorPickerPreference mCarrierColorPicker;
 
     String mCustomLabelText = null;
 
@@ -77,6 +86,9 @@ public class NotificationDrawer extends SettingsPreferenceFragment implements
 
         addPreferencesFromResource(R.xml.notification_drawer);
         PreferenceScreen prefScreen = getPreferenceScreen();
+
+        int intColor;
+        String hexColor;
 
         // Notification drawer
         int collapseBehaviour = Settings.System.getInt(getContentResolver(),
@@ -118,6 +130,20 @@ public class NotificationDrawer extends SettingsPreferenceFragment implements
         // Custom Carrier Label Text
         mCustomLabel = findPreference(PREF_CUSTOM_CARRIER_LABEL);
         updateCustomLabelTextSummary();
+
+        // MIUI-like carrier Label
+        mStatusBarCarrier = (CheckBoxPreference) findPreference(STATUS_BAR_CARRIER);
+        mStatusBarCarrier.setChecked((Settings.System.getInt(getContentResolver(),
+                Settings.System.STATUS_BAR_CARRIER, 0) == 1));
+
+        // MIUI-like carrier Label color
+        mCarrierColorPicker = (ColorPickerPreference) findPreference(STATUS_BAR_CARRIER_COLOR);
+        mCarrierColorPicker.setOnPreferenceChangeListener(this);
+        intColor = Settings.System.getInt(getContentResolver(),
+                    Settings.System.STATUS_BAR_CARRIER_COLOR, DEFAULT_STATUS_CARRIER_COLOR);
+        hexColor = String.format("#%08x", (0xffffffff & intColor));
+        mCarrierColorPicker.setSummary(hexColor);
+        mCarrierColorPicker.setNewPreviewColor(intColor);
 
         // Notification Remider
         mReminder = (CheckBoxPreference) findPreference(PREF_NOTI_REMINDER_ENABLED);
@@ -169,7 +195,11 @@ public class NotificationDrawer extends SettingsPreferenceFragment implements
 
     @Override
     public boolean onPreferenceTreeClick(PreferenceScreen preferenceScreen, Preference preference) {
-        if (preference == mCustomLabel) {
+        ContentResolver resolver = getActivity().getContentResolver();
+        if (preference == mStatusBarCarrier) {
+            Settings.System.putInt(resolver, Settings.System.STATUS_BAR_CARRIER, mStatusBarCarrier.isChecked() ? 1 : 0);
+            return true;
+        } else if (preference == mCustomLabel) {
             AlertDialog.Builder alert = new AlertDialog.Builder(getActivity());
 
             alert.setTitle(R.string.custom_carrier_label_title);
@@ -189,6 +219,7 @@ public class NotificationDrawer extends SettingsPreferenceFragment implements
                     Intent i = new Intent();
                     i.setAction("com.android.settins.LABEL_CHANGED");
                     getActivity().sendBroadcast(i);
+                    Helpers.restartSystemUI();
                 }
             });
             alert.setNegativeButton(getResources().getString(R.string.cancel), new DialogInterface.OnClickListener() {
@@ -213,6 +244,13 @@ public class NotificationDrawer extends SettingsPreferenceFragment implements
             Settings.System.putInt(getActivity().getContentResolver(),
                     Settings.System.NOTIFICATION_HIDE_CARRIER,
                     (Boolean) objValue ? 1 : 0);
+            return true;
+        } else if (preference == mCarrierColorPicker) {
+            String hex = ColorPickerPreference.convertToARGB(Integer.valueOf(String.valueOf(objValue)));
+            preference.setSummary(hex);
+            int intHex = ColorPickerPreference.convertToColorInt(hex);
+            Settings.System.putInt(getActivity().getApplicationContext().getContentResolver(),
+                    Settings.System.STATUS_BAR_CARRIER_COLOR, intHex);
             return true;
         } else if (preference == mShowWifiName) {
             boolean value = (Boolean) objValue;
