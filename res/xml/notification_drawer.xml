@@ -19,11 +19,6 @@
     android:title="@string/notification_drawer_title"
     xmlns:settings="http://schemas.android.com/apk/res/com.android.settings">
 
-    <Preference
-            android:key="heads_up_enabled"
-            android:fragment="com.android.settings.headsup.HeadsUpSettings"
-            android:title="@string/category_heads_up" />
-
      <Preference
          android:fragment="com.android.settings.spirit.NotificationDrawerStyle"
          android:key="notification_style"
