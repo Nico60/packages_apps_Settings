@@ -1329,7 +1329,7 @@
     <string name="app_moving_reboot_later_button">Reboot later</string>
 
     <!-- Heads up -->
-    <string name="heads_up_title">Heads up notification</string>
+    <string name="heads_up_title">Heads up</string>
     <string name="heads_up_expanded_title">Always expanded</string>
     <string name="heads_up_expanded_summary">Show heads up notification always expanded</string>
     <string name="heads_up_show_updates_title">Show updates</string>
@@ -1359,5 +1359,11 @@
 
     <!-- Heads-up disable on lockscreen -->
     <string name="heads_up_exclude_from_lock_screen">Disable on lockscreen</string>
+
+    <!-- Spirit category -->
+    <string name="anim_options">Animation</string>
+    <string name="anim_display">Display animations</string>
+    <string name="misc_options">Misc</string>
+    <string name="nav_options">Navigation</string>
 
 </resources>

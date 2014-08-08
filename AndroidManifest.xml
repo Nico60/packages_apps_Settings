@@ -1851,10 +1851,6 @@
 
         <activity android:name=".aokp.ribbons.RibbonsFragment" />
 
-        <activity android:name=".spirit.NavRingTargets" />
-
-        <activity android:name=".spirit.navbar.NavbarTabHostFragment" />
-
         <activity android:name=".chameleonos.labs.gestureanywhere.GestureAnywhereBuilderActivity" />
 
         <activity android:name=".chameleonos.labs.gestureanywhere.GestureAnywhereCreateGestureActivity" />
@@ -1958,14 +1954,18 @@
         <!-- CyanogenMod activities End -->
 
         <activity android:name=".paranoid.Halo" />
-
-        <activity android:name=".spirit.NotificationDrawerStyle" />
-
-	<activity android:name=".spirit.RamBar" />
-
         <activity android:name=".slim.themes.ThemeSettings" />
-
         <activity android:name=".spirit.AppSidebar" />
+        <activity android:name=".spirit.NavRingTargets" />
+        <activity android:name=".spirit.navbar.NavbarTabHostFragment" />
+        <activity android:name=".spirit.NotificationDrawerStyle" />
+        <activity android:name=".spirit.RamBar" />
+        <activity android:name=".spirit.fragments.AnimSettings" />
+        <activity android:name=".spirit.fragments.ApplauncherSettings" />
+        <activity android:name=".spirit.fragments.GeneralSettings" />
+        <activity android:name=".spirit.fragments.MiscSettings" />
+        <activity android:name=".spirit.fragments.NavbarSettings" />
+        <activity android:name=".spirit.fragments.NotificationSettings" />
 
    	<!-- Pseudo-activity used to provide an intent-filter entry point to ass display rotation config -->
         <activity android:name="Settings$ASSRamBarActivity"

@@ -18,7 +18,6 @@ package com.android.settings.chameleonos.labs.identicons;
 
 import android.annotation.ChaosLab;
 import android.annotation.ChaosLab.Classification;
-import android.app.ActionBar;
 import android.content.Intent;
 import android.os.Bundle;
 import android.preference.Preference;
@@ -41,8 +40,6 @@ public class IdenticonsSettings extends SettingsPreferenceFragment implements
 
     private SwitchPreference mEnabledPref;
     private ImageListPreference mStylePref;
-
-    private CharSequence mPreviousTitle;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -80,20 +77,6 @@ public class IdenticonsSettings extends SettingsPreferenceFragment implements
                 return true;
             }
         });
-    }
-
-    @Override
-    public void onStart() {
-        super.onStart();
-        final ActionBar bar = getActivity().getActionBar();
-        mPreviousTitle = bar.getTitle();
-        bar.setTitle(R.string.identicons_title);
-    }
-
-    @Override
-    public void onStop() {
-        super.onStop();
-        getActivity().getActionBar().setTitle(mPreviousTitle);
     }
 
     public boolean onPreferenceChange(Preference preference, Object newValue) {

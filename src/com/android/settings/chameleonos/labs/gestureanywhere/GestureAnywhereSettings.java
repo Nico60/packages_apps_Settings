@@ -16,7 +16,6 @@
 
 package com.android.settings.chameleonos.labs.gestureanywhere;
 
-import android.app.ActionBar;
 import android.content.Intent;
 import android.os.Bundle;
 import android.preference.ListPreference;
@@ -46,8 +45,6 @@ public class GestureAnywhereSettings extends SettingsPreferenceFragment implemen
     private SeekBarPreferenceChOS mTriggerWidthPref;
     private SeekBarPreferenceChOS mTriggerTopPref;
     private SeekBarPreferenceChOS mTriggerBottomPref;
-
-    private CharSequence mPreviousTitle;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -91,20 +88,6 @@ public class GestureAnywhereSettings extends SettingsPreferenceFragment implemen
                 return true;
             }
         });
-    }
-
-    @Override
-    public void onStart() {
-        super.onStart();
-        final ActionBar bar = getActivity().getActionBar();
-        mPreviousTitle = bar.getTitle();
-        bar.setTitle(R.string.gesture_anywhere_title);
-    }
-
-    @Override
-    public void onStop() {
-        super.onStop();
-        getActivity().getActionBar().setTitle(mPreviousTitle);
     }
 
     public boolean onPreferenceChange(Preference preference, Object newValue) {

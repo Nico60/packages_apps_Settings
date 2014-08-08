@@ -52,7 +52,6 @@ public class AnimationControls extends SettingsPreferenceFragment implements OnP
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setTitle(R.string.title_animation_controls);
         // Load the preferences from an XML resource
         addPreferencesFromResource(R.xml.prefs_animation_controls);
 

@@ -53,7 +53,6 @@ public class ScreenStateToggles extends SettingsPreferenceFragment implements On
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setTitle(R.string.screen_state_toggles_title);
 
         addPreferencesFromResource(R.xml.prefs_screen_state_toggles);
         PreferenceScreen prefSet = getPreferenceScreen();

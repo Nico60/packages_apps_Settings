@@ -19,4 +19,7 @@
     <!-- Gesture Anywhere -->
     <color name="ga_gesture_color">@android:color/holo_blue_light</color>
 
+    <color name="color_text_holo_light">#000000</color>
+    <color name="color_text_holo_dark">#FFFFFF</color>
+
 </resources>
