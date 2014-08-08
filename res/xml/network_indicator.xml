@@ -20,30 +20,46 @@
     android:title="@string/network_traffic_title" >
 
         <CheckBoxPreference
-                android:key="status_bar_network_activity"
-                android:title="@string/show_activity_indicators_on_status_bar_title"
-                android:summary="@string/show_activity_indicators_on_status_bar_summary"
-                android:persistent="false"/>
+            android:key="status_bar_network_activity"
+            android:title="@string/show_activity_indicators_on_status_bar_title"
+            android:summary="@string/show_activity_indicators_on_status_bar_summary"
+            android:persistent="false"/>
 
         <ListPreference
-                android:key="network_traffic_state"
-                android:title="@string/show_network_traffic_state"
-                android:entries="@array/show_network_traffic_state_entries"
-                android:entryValues="@array/show_network_traffic_state_values"
-                android:persistent="false" />
+            android:key="network_traffic_state"
+            android:title="@string/show_network_traffic_state"
+            android:entries="@array/show_network_traffic_state_entries"
+            android:entryValues="@array/show_network_traffic_state_values"
+            android:persistent="false" />
 
         <ListPreference
-                android:key="network_traffic_unit"
-                android:title="@string/show_network_traffic_unit"
-                android:entries="@array/show_network_traffic_unit_entries"
-                android:entryValues="@array/show_network_traffic_unit_values"
-                android:persistent="false" />
+            android:key="network_traffic_unit"
+            android:title="@string/show_network_traffic_unit"
+            android:entries="@array/show_network_traffic_unit_entries"
+            android:entryValues="@array/show_network_traffic_unit_values"
+            android:persistent="false" />
 
         <ListPreference
-                android:key="network_traffic_period"
-                android:title="@string/show_network_traffic_frequency"
-                android:entries="@array/show_network_traffic_frequency_entries"
-                android:entryValues="@array/show_network_traffic_frequency_values"
-                android:persistent="false" />
+            android:key="network_traffic_period"
+            android:title="@string/show_network_traffic_frequency"
+            android:entries="@array/show_network_traffic_frequency_entries"
+            android:entryValues="@array/show_network_traffic_frequency_values"
+            android:persistent="false" />
+
+        <CheckBoxPreference
+            android:key="network_traffic_autohide"
+            android:title="@string/network_traffic_autohide"
+            android:summary="@string/network_traffic_autohide_summary"
+            android:defaultValue="false" />
+
+        <com.android.settings.chameleonos.SeekBarPreferenceChOS
+            android:key="network_traffic_autohide_threshold"
+            android:title="@string/network_traffic_autohide_threshold"
+            android:max="100"
+            settings:min="0"
+            settings:unitsLeft=""
+            settings:unitsRight="kB/s"
+            android:dependency="network_traffic_autohide"
+            android:persistent="false" />
 
 </PreferenceScreen>
