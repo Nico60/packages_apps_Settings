@@ -17,54 +17,54 @@
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
   <string-array name="wifi_countrycode_entries">
-    <item>USA</item>
-    <item>Canada, Taiwan</item>
-    <item>Tyskland</item>
+    <item>Estados Unidos</item>
+    <item>Canadá, Taiwan</item>
+    <item>Alemanha</item>
     <item>Europa</item>
-    <item>Japan, Rusland</item>
-    <item>Australien</item>
-    <item>Kina</item>
-    <item>Korea</item>
-    <item>Tyrkiet</item>
-    <item>Singapore</item>
-    <item>Brasilien</item>
+    <item>Japão, Rússia</item>
+    <item> Austrália </item>
+    <item>China</item>
+    <item>Coreia</item>
+    <item>Turquia</item>
+    <item>Singapura</item>
+    <item>Brasil</item>
   </string-array>
   <string-array name="profile_entries">
-    <item>Til</item>
-    <item>Fra</item>
-    <item>Tilsidesæt ikke</item>
+    <item>Ligado</item>
+    <item>Desligado</item>
+    <item>Não substituir</item>
   </string-array>
   <string-array name="profile_connection_entries">
-    <item>Slå fra</item>
-    <item>Slå til</item>
+    <item>Desativar</item>
+    <item>Ativar</item>
   </string-array>
   <string-array name="entries_screentimeout_widget">
     <item>15s | 1m | 5m</item>
     <item>30s | 2m | 5m</item>
   </string-array>
   <string-array name="data_usage_cycle_length">
-    <item>Dagligt</item>
-    <item>Ugentligt</item>
-    <item>Månedligt</item>
+    <item>Diariamente</item>
+    <item>Semanalmente</item>
+    <item>Mensalmente</item>
   </string-array>
   <string-array name="data_usage_cycle_weekdays">
-    <item>Søndag</item>
-    <item>Mandag</item>
-    <item>Tirsdag</item>
-    <item>Onsdag</item>
-    <item>Torsdag</item>
-    <item>Fredag</item>
-    <item>Lørdag</item>
+    <item>domingo</item>
+    <item>segunda-feira</item>
+    <item>terça-feira</item>
+    <item>quarta-feira</item>
+    <item>quinta-feira</item>
+    <item>sexta-feira</item>
+    <item>sábado</item>
   </string-array>
   <string-array name="app_ops_permissions">
-    <item>Tilladt</item>
-    <item>Nægtet</item>
-    <item>Spørg altid</item>
+    <item>Permitido</item>
+    <item>Negado</item>
+    <item>Perguntar sempre</item>
   </string-array>
   <string-array name="qs_quick_access_size_entries">
-    <item>Automatisk</item>
-    <item>Automatisk (smal)</item>
-    <item>Stor</item>
-    <item>Smal</item>
+    <item>Automático</item>
+    <item>Automático (estreita)</item>
+    <item>Grande</item>
+    <item>Estreita</item>
   </string-array>
 </resources>

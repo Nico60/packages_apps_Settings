@@ -17,54 +17,54 @@
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
   <string-array name="wifi_countrycode_entries">
-    <item>USA</item>
-    <item>Canada, Taiwan</item>
-    <item>Tyskland</item>
-    <item>Europa</item>
-    <item>Japan, Rusland</item>
-    <item>Australien</item>
-    <item>Kina</item>
-    <item>Korea</item>
-    <item>Tyrkiet</item>
-    <item>Singapore</item>
-    <item>Brasilien</item>
+    <item>Spojené štáty</item>
+    <item>Kanada, Taiwan</item>
+    <item>Nemecko</item>
+    <item>Európa</item>
+    <item>Japonsko, Rusko</item>
+    <item>Austrália</item>
+    <item>Čína</item>
+    <item>Kórea</item>
+    <item>Turecko</item>
+    <item>Singapur</item>
+    <item>Brazília</item>
   </string-array>
   <string-array name="profile_entries">
-    <item>Til</item>
-    <item>Fra</item>
-    <item>Tilsidesæt ikke</item>
+    <item>Zapnuté</item>
+    <item>Vypnuté</item>
+    <item>Neprepisovať</item>
   </string-array>
   <string-array name="profile_connection_entries">
-    <item>Slå fra</item>
-    <item>Slå til</item>
+    <item>Zakázať</item>
+    <item>Povoliť</item>
   </string-array>
   <string-array name="entries_screentimeout_widget">
-    <item>15s | 1m | 5m</item>
-    <item>30s | 2m | 5m</item>
+    <item>15 sek. | 1 min. | 5 min.</item>
+    <item>30 sek. | 2 min. | 5 min.</item>
   </string-array>
   <string-array name="data_usage_cycle_length">
-    <item>Dagligt</item>
-    <item>Ugentligt</item>
-    <item>Månedligt</item>
+    <item>Denne</item>
+    <item>Týždenne</item>
+    <item>Mesačne</item>
   </string-array>
   <string-array name="data_usage_cycle_weekdays">
-    <item>Søndag</item>
-    <item>Mandag</item>
-    <item>Tirsdag</item>
-    <item>Onsdag</item>
-    <item>Torsdag</item>
-    <item>Fredag</item>
-    <item>Lørdag</item>
+    <item>Nedeľa</item>
+    <item>Pondelok</item>
+    <item>Utorok</item>
+    <item>Streda</item>
+    <item>Štvrtok</item>
+    <item>Piatok</item>
+    <item>Sobota</item>
   </string-array>
   <string-array name="app_ops_permissions">
-    <item>Tilladt</item>
-    <item>Nægtet</item>
-    <item>Spørg altid</item>
+    <item>Povolené</item>
+    <item>Zakázané</item>
+    <item>Vždy sa opýtať</item>
   </string-array>
   <string-array name="qs_quick_access_size_entries">
-    <item>Automatisk</item>
-    <item>Automatisk (smal)</item>
-    <item>Stor</item>
-    <item>Smal</item>
+    <item>Automatická</item>
+    <item>Automatická (úzka)</item>
+    <item>Veľká</item>
+    <item>Úzka</item>
   </string-array>
 </resources>
