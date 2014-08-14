@@ -16,8 +16,11 @@
 
 package com.android.settings.spirit;
 
+import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.ContentResolver;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.res.Resources;
 import android.net.TrafficStats;
 import android.os.Bundle;
@@ -29,10 +32,16 @@ import android.preference.Preference.OnPreferenceChangeListener;
 import android.preference.PreferenceCategory;
 import android.preference.PreferenceScreen;
 import android.provider.Settings;
+import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 
 import com.android.settings.chameleonos.SeekBarPreferenceChOS;
 import com.android.settings.R;
 import com.android.settings.SettingsPreferenceFragment;
+
+import net.margaritov.preference.colorpicker.ColorPickerPreference;
 
 public class NetworkIndicator extends SettingsPreferenceFragment implements OnPreferenceChangeListener {
 
@@ -40,6 +49,7 @@ public class NetworkIndicator extends SettingsPreferenceFragment implements OnPr
 
     private static final String NETWORK_TRAFFIC_AUTOHIDE = "network_traffic_autohide";
     private static final String NETWORK_TRAFFIC_AUTOHIDE_THRESHOLD = "network_traffic_autohide_threshold";
+    private static final String NETWORK_TRAFFIC_COLOR = "network_traffic_color";
     private static final String NETWORK_TRAFFIC_PERIOD = "network_traffic_period";
     private static final String NETWORK_TRAFFIC_STATE = "network_traffic_state";
     private static final String NETWORK_TRAFFIC_UNIT = "network_traffic_unit";
@@ -47,10 +57,14 @@ public class NetworkIndicator extends SettingsPreferenceFragment implements OnPr
 
     private CheckBoxPreference mNetTrafficAutohide;
     private CheckBoxPreference mStatusBarNetworkActivity;
+    private ColorPickerPreference mNetTrafficColor;
     private ListPreference mNetTrafficState;
     private ListPreference mNetTrafficUnit;
     private ListPreference mNetTrafficPeriod;
     private SeekBarPreferenceChOS mNetTrafficAutohideThreshold;
+
+    private static final int MENU_RESET = Menu.FIRST;
+    private static final int DEFAULT_TRAFFIC_COLOR = 0xffffffff;
 
     private int mNetTrafficVal;
     private int MASK_UP;
@@ -91,6 +105,15 @@ public class NetworkIndicator extends SettingsPreferenceFragment implements OnPr
             mNetTrafficAutohideThreshold.setValue(netTrafficAutohideThreshold / 1);
             mNetTrafficAutohideThreshold.setOnPreferenceChangeListener(this);
 
+        mNetTrafficColor =
+            (ColorPickerPreference) prefSet.findPreference(NETWORK_TRAFFIC_COLOR);
+        mNetTrafficColor.setOnPreferenceChangeListener(this);
+        int intColor = Settings.System.getInt(getContentResolver(),
+                Settings.System.NETWORK_TRAFFIC_COLOR, 0xff000000);
+        String hexColor = String.format("#%08x", (0xffffffff & intColor));
+            mNetTrafficColor.setSummary(hexColor);
+            mNetTrafficColor.setNewPreviewColor(intColor);
+
         // TrafficStats will return UNSUPPORTED if the device does not support it.
         if (TrafficStats.getTotalTxBytes() != TrafficStats.UNSUPPORTED &&
                 TrafficStats.getTotalRxBytes() != TrafficStats.UNSUPPORTED) {
@@ -127,6 +150,46 @@ public class NetworkIndicator extends SettingsPreferenceFragment implements OnPr
     }
 
     @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        menu.add(0, MENU_RESET, 0, R.string.network_traffic_color_reset)
+                .setIcon(R.drawable.ic_settings_backup)
+                .setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case MENU_RESET:
+                resetToDefault();
+                return true;
+            default:
+                return super.onContextItemSelected(item);
+        }
+    }
+
+    private void resetToDefault() {
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(getActivity());
+        alertDialog.setTitle(R.string.network_traffic_color_reset);
+        alertDialog.setMessage(R.string.network_traffic_color_reset_message);
+        alertDialog.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                NetworkTrafficColorReset();
+            }
+        });
+        alertDialog.setNegativeButton(R.string.cancel, null);
+        alertDialog.create().show();
+    }
+
+    private void NetworkTrafficColorReset() {
+        Settings.System.putInt(getContentResolver(),
+                Settings.System.NETWORK_TRAFFIC_COLOR, DEFAULT_TRAFFIC_COLOR);
+
+        mNetTrafficColor.setNewPreviewColor(DEFAULT_TRAFFIC_COLOR);
+        String hexColor = String.format("#%08x", (0xffffffff & DEFAULT_TRAFFIC_COLOR));
+        mNetTrafficColor.setSummary(hexColor);
+    }
+
+    @Override
     public boolean onPreferenceChange(Preference preference, Object objValue) {
         ContentResolver resolver = getActivity().getContentResolver();
         if (preference == mStatusBarNetworkActivity) {
@@ -152,6 +215,14 @@ public class NetworkIndicator extends SettingsPreferenceFragment implements OnPr
                 mNetTrafficAutohide.setEnabled(true);
                 mNetTrafficAutohideThreshold.setEnabled(true);
             }
+            return true;
+        } else if (preference == mNetTrafficColor) {
+            String hex = ColorPickerPreference.convertToARGB(
+                    Integer.valueOf(String.valueOf(objValue)));
+            preference.setSummary(hex);
+            int intHex = ColorPickerPreference.convertToColorInt(hex);
+            Settings.System.putInt(getContentResolver(),
+                    Settings.System.NETWORK_TRAFFIC_COLOR, intHex);
             return true;
         } else if (preference == mNetTrafficUnit) {
             // 1 = Display as Byte/s; default is bit/s
