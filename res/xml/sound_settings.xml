@@ -41,6 +41,12 @@
             android:entries="@array/volume_overlay_entries"
             android:entryValues="@array/volume_overlay_values" />
 
+    <net.margaritov.preference.colorpicker.ColorPickerPreference
+            android:key="volume_panel_bg_color"
+            android:title="@string/volume_panel_bg_color_title"
+            android:defaultValue="0x00ffffff"
+            alphaSlider="true" />
+
     <PreferenceCategory
             android:key="category_automation_effects"
             android:title="@string/automation_effects_title"/>

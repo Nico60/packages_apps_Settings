@@ -1582,4 +1582,8 @@
     <!-- PIE Tile -->
     <string name="title_tile_pie">Pie</string>
 
+    <!-- Volume Panel Background Color -->
+    <string name="volume_panel_bg_color_title">Volume panel BG color</string>
+    <string name="trds_default_color">TRDS default</string>
+
 </resources>
