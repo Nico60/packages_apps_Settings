@@ -79,19 +79,6 @@
     <string name="clock_date_format_custom">Custom java format</string>
     <string name="status_bar_clock_style_reset_message">Reset clock color?</string>
 
-    <!-- Network Stat -->
-    <string name="time_0_5_seconds">.5 seconds</string>
-    <string name="time_1_second">1 second</string>
-    <string name="time_2_seconds">2 seconds</string>
-    <string name="time_5_seconds">5 seconds</string>
-    <string name="status_bar_network_title">Network traffic</string>
-    <string name="status_bar_show_network_stats_title">Show network speeds</string>
-    <string name="status_bar_show_network_stats_summary">Show network speeds in statusbar</string>
-    <string name="status_bar_network_stats_update_title">Update frequency</string>
-    <string name="status_bar_network_stats_update_summary">How often is indicator updated</string>
-    <string name="status_bar_network_stats_color_title">Network speeds text color</string>
-    <string name="status_bar_network_stats_color_summary">Network speeds text color in statusbar</string>
-
     <!-- Notification drawer background -->
     <string name="notification_style_title">Style</string>
     <string name="notification_style_summary">Change your notification drawer style</string>
