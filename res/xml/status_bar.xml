@@ -31,6 +31,11 @@
         android:fragment="com.android.settings.spirit.StatusBarClockStyle"
         android:title="@string/status_bar_clock" />
 
+    <PreferenceScreen
+        android:key="network_style_pref"
+        android:fragment="com.android.settings.spirit.NetworkIndicator"
+        android:title="@string/network_traffic_title" />
+
     </PreferenceCategory>
 
     <PreferenceCategory
@@ -60,6 +65,8 @@
         android:key="double_tap_sleep_gesture"
         android:title="@string/status_bar_double_tap_to_sleep_title"
         android:defaultValue="false" />
+
+    </PreferenceCategory>
 
     <PreferenceCategory
         android:key="breathing_notifications"
