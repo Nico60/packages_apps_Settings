@@ -80,7 +80,7 @@ public class AnimDisplay extends SettingsPreferenceFragment implements
         mListViewAnimation = (ListPreference) findPreference(KEY_LISTVIEW_ANIMATION);
         if (mListViewAnimation != null) {
            int listviewanimation = Settings.System.getInt(getContentResolver(),
-                   Settings.System.LISTVIEW_ANIMATION, 1);
+                   Settings.System.LISTVIEW_ANIMATION, 0);
            mListViewAnimation.setSummary(mListViewAnimation.getEntry());
            mListViewAnimation.setValue(String.valueOf(listviewanimation));
         }
@@ -89,7 +89,7 @@ public class AnimDisplay extends SettingsPreferenceFragment implements
         mListViewInterpolator = (ListPreference) findPreference(KEY_LISTVIEW_INTERPOLATOR);
         if (mListViewInterpolator != null) {
            int listviewinterpolator = Settings.System.getInt(getContentResolver(),
-                   Settings.System.LISTVIEW_INTERPOLATOR, 1);
+                   Settings.System.LISTVIEW_INTERPOLATOR, 0);
            mListViewInterpolator.setSummary(mListViewInterpolator.getEntry());
            mListViewInterpolator.setValue(String.valueOf(listviewinterpolator));
         }
