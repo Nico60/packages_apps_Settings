@@ -39,7 +39,6 @@ import com.android.settings.chameleonos.labs.identicons.IdenticonsSettings;
 import com.android.settings.cyanogenmod.ProgressBar;
 import com.android.settings.cyanogenmod.fragments.ScreenStateToggles;
 import com.android.settings.cyanogenmod.fragments.WakeLockBlocker;
-import com.android.settings.spirit.Weather;
 
 public class MiscSettings extends SettingsPreferenceFragment {
 
@@ -95,7 +94,6 @@ public class MiscSettings extends SettingsPreferenceFragment {
             frags[1] = new ProgressBar();
             frags[2] = new ScreenStateToggles();
             frags[3] = new WakeLockBlocker();
-            frags[4] = new Weather();
         }
 
         @Override
@@ -120,8 +118,7 @@ public class MiscSettings extends SettingsPreferenceFragment {
                     getString(R.string.identicons_title),
                     getString(R.string.progressbar_title),
                     getString(R.string.screen_state_toggles_title),
-                    getString(R.string.wakelock_blocker),
-                    getString(R.string.weather_settings_title)};
+                    getString(R.string.wakelock_blocker)};
         return titleString;
     }
 }

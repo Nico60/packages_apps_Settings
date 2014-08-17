@@ -39,9 +39,4 @@
             android:fragment="com.android.settings.cyanogenmod.fragments.WakeLockBlocker"
             android:title="@string/wakelock_blocker" />
 
-        <PreferenceScreen
-            android:id="@+id/weather"
-            android:fragment="com.android.settings.spirit.Weather"
-            android:title="@string/weather_settings_title" />
-
 </PreferenceScreen>
