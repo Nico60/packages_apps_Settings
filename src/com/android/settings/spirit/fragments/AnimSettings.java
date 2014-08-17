@@ -38,6 +38,7 @@ import com.android.settings.Utils;
 import com.android.settings.cyanogenmod.fragments.AnimationControls;
 import com.android.settings.spirit.AnimDisplay;
 import com.android.settings.spirit.KeyboardAnimationInterfaceSettings;
+import com.android.settings.spirit.OverscrollEffects;
 import com.android.settings.spirit.ScrollAnimationInterfaceSettings;
 
 import java.lang.Exception;
@@ -94,9 +95,10 @@ public class AnimSettings extends SettingsPreferenceFragment {
         public StatusBarAdapter(FragmentManager fm) {
             super(fm);
             frags[0] = new AnimDisplay();
-            frags[1] = new AnimationControls();
-            frags[2] = new ScrollAnimationInterfaceSettings();
-            frags[3] = new KeyboardAnimationInterfaceSettings();
+            frags[1] = new OverscrollEffects();
+            frags[2] = new AnimationControls();
+            frags[3] = new ScrollAnimationInterfaceSettings();
+            frags[4] = new KeyboardAnimationInterfaceSettings();
         }
 
         @Override
@@ -119,6 +121,7 @@ public class AnimSettings extends SettingsPreferenceFragment {
         String titleString[];
         titleString = new String[] {
                     getString(R.string.anim_display),
+                    getString(R.string.ui_overscroll_title),
                     getString(R.string.title_animation_controls),
                     getString(R.string.scrolling_title),
                     getString(R.string.ime_animation_title)};
