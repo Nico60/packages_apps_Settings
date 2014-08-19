@@ -42,12 +42,14 @@ public class StatusBar extends SettingsPreferenceFragment implements OnPreferenc
     private static final String KEY_SMS_BREATH = "sms_breath";
     private static final String KEY_MISSED_CALL_BREATH = "missed_call_breath";
     private static final String KEY_VOICEMAIL_BREATH = "voicemail_breath";
+    private static final String STATUSBAR_6BAR_SIGNAL = "statusbar_6bar_signal";
 
     private ListPreference mStatusBarCmSignal;
     private CheckBoxPreference mSMSBreath;
     private CheckBoxPreference mMissedCallBreath;
     private CheckBoxPreference mVoicemailBreath;
     private CheckBoxPreference mStatusBarBrightnessControl;
+    private CheckBoxPreference mStatusBarSixBarSignal;
 
     private ContentObserver mSettingsObserver;
 
@@ -61,6 +63,10 @@ public class StatusBar extends SettingsPreferenceFragment implements OnPreferenc
         ContentResolver resolver = getActivity().getContentResolver();
 
         mStatusBarCmSignal = (ListPreference) prefSet.findPreference(STATUS_BAR_SIGNAL);
+
+        mStatusBarSixBarSignal = (CheckBoxPreference) findPreference(STATUSBAR_6BAR_SIGNAL);
+        mStatusBarSixBarSignal.setChecked((Settings.System.getInt(resolver,
+                Settings.System.STATUSBAR_6BAR_SIGNAL, 0) == 1));
 
         mStatusBarBrightnessControl = (CheckBoxPreference)
                 prefSet.findPreference(Settings.System.STATUS_BAR_BRIGHTNESS_CONTROL);
@@ -122,6 +128,17 @@ public class StatusBar extends SettingsPreferenceFragment implements OnPreferenc
     public void onPause() {
         super.onPause();
         getContentResolver().unregisterContentObserver(mSettingsObserver);
+    }
+
+    @Override
+    public boolean onPreferenceTreeClick(PreferenceScreen preferenceScreen, Preference preference) {
+        if  (preference == mStatusBarSixBarSignal) {
+            boolean checked = ((CheckBoxPreference)preference).isChecked();
+            Settings.System.putInt(getActivity().getContentResolver(),
+                    Settings.System.STATUSBAR_6BAR_SIGNAL, checked ? 1:0);
+            return true;
+        }
+        return super.onPreferenceTreeClick(preferenceScreen, preference);
     }
 
     @Override
