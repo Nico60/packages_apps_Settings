@@ -152,7 +152,7 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
                 (CheckBoxPreference) findPreference(KEY_EXPANDED_DESKTOP_NO_NAVBAR);
 
         int expandedDesktopValue = Settings.System.getInt(getContentResolver(),
-                Settings.System.EXPANDED_DESKTOP_STYLE, 2);
+                Settings.System.EXPANDED_DESKTOP_STYLE, 0);
 
         try {
             boolean hasNavBar = WindowManagerGlobal.getWindowManagerService().hasNavigationBar();
