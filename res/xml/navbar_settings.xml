@@ -20,6 +20,11 @@
     android:title="@string/nav_options" >
 
         <PreferenceScreen
+            android:key="pie_control"
+            android:fragment="com.android.settings.paranoid.Pie"
+            android:title="@string/pie_controls_title" />
+
+        <PreferenceScreen
             android:key="navigation_bar_ring"
             android:fragment="com.android.settings.spirit.NavRingTargets"
             android:title="@string/category_navring" />

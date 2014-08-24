@@ -103,6 +103,7 @@ import com.android.settings.location.LocationSettings;
 import com.android.settings.net.MobileDataEnabler;
 import com.android.settings.nfc.AndroidBeam;
 import com.android.settings.nfc.PaymentSettings;
+import com.android.settings.paranoid.Pie;
 import com.android.settings.print.PrintJobSettingsFragment;
 import com.android.settings.print.PrintServiceSettingsFragment;
 import com.android.settings.print.PrintSettingsFragment;
@@ -486,7 +487,8 @@ public class Settings extends PreferenceActivity
         com.android.settings.spirit.QuietHours.class.getName(),
         com.android.settings.spirit.navbar.NavbarTabHostFragment.class.getName(),
         ThemeSettings.class.getName(),
-        com.android.settings.crdroid.HoverSettings.class.getName()
+        com.android.settings.crdroid.HoverSettings.class.getName(),
+        Pie.class.getName()
     };
 
     @Override
@@ -1418,4 +1420,5 @@ public class Settings extends PreferenceActivity
     public static class NavbarSettingsActivity extends Settings { /* empty */ }
     public static class ThemeSettingsActivity extends Settings { /* empty */ }
     public static class HoverSettingsActivity extends Settings { /* empty */ }
+    public static class PieActivity extends Settings { /* empty */ }
 }
