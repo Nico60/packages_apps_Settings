@@ -2002,6 +2002,7 @@
 
         <activity android:name=".paranoid.Halo" />
         <activity android:name=".paranoid.Pie" />
+        <activity android:name=".paranoid.PieColor" />
         <activity android:name=".slim.themes.ThemeSettings" />
         <activity android:name=".spirit.AppSidebar" />
         <activity android:name=".spirit.NavRingTargets" />
