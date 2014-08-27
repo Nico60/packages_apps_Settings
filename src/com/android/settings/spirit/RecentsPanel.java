@@ -32,6 +32,9 @@ import android.provider.Settings;
 import android.provider.Settings.SettingNotFoundException;
 import android.util.Log;
 import android.view.Gravity;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.MenuInflater;
 
 import com.android.settings.R;
 import com.android.settings.SettingsPreferenceFragment;
@@ -62,6 +65,9 @@ public class RecentsPanel extends SettingsPreferenceFragment implements OnPrefer
     private ListPreference mRecentPanelExpandedMode;
     private CheckBoxPreference mRecentsShowTopmost;
     private ColorPickerPreference mRecentPanelBgColor;
+
+    private static final int MENU_RESET = Menu.FIRST;
+    private static final int DEFAULT_BACKGROUND_COLOR = 0x00ffffff;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -126,10 +132,20 @@ public class RecentsPanel extends SettingsPreferenceFragment implements OnPrefer
         mRecentPanelExpandedMode.setValue(recentExpandedMode + "");
 
         // Recent panel background color
-        int intColor;
-        String hexColor;
-        mRecentPanelBgColor = (ColorPickerPreference) findPreference(RECENT_PANEL_BG_COLOR);
+        mRecentPanelBgColor =
+                (ColorPickerPreference) findPreference(RECENT_PANEL_BG_COLOR);
         mRecentPanelBgColor.setOnPreferenceChangeListener(this);
+        final int intColor = Settings.System.getInt(getContentResolver(),
+                Settings.System.RECENT_PANEL_BG_COLOR, 0x00ffffff);
+        String hexColor = String.format("#%08x", (0x00ffffff & intColor));
+        if (hexColor.equals("#00ffffff")) {
+            mRecentPanelBgColor.setSummary(R.string.trds_default_color);
+        } else {
+            mRecentPanelBgColor.setSummary(hexColor);
+        }
+        mRecentPanelBgColor.setNewPreviewColor(intColor);
+        setHasOptionsMenu(true);
+
     }
 
     public boolean onPreferenceChange(Preference preference, Object newValue) {
@@ -178,10 +194,15 @@ public class RecentsPanel extends SettingsPreferenceFragment implements OnPrefer
         } else if (preference == mRecentPanelBgColor) {
             String hex = ColorPickerPreference.convertToARGB(
                     Integer.valueOf(String.valueOf(newValue)));
-            preference.setSummary(hex);
+            if (hex.equals("#00ffffff")) {
+                preference.setSummary(R.string.trds_default_color);
+            } else {
+                preference.setSummary(hex);
+            }
             int intHex = ColorPickerPreference.convertToColorInt(hex);
             Settings.System.putInt(getContentResolver(),
-                    Settings.System.RECENT_PANEL_BG_COLOR,intHex);
+                    Settings.System.RECENT_PANEL_BG_COLOR,
+                    intHex);
             return true;
         }
         return false;
@@ -196,6 +217,44 @@ public class RecentsPanel extends SettingsPreferenceFragment implements OnPrefer
                     Helpers.restartSystemUI();
                 }
             }).show();
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        menu.add(0, MENU_RESET, 0, R.string.reset_default_message)
+                .setIcon(R.drawable.ic_settings_backup)
+                .setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case MENU_RESET:
+                resetToDefault();
+                return true;
+            default:
+                return super.onContextItemSelected(item);
+        }
+    }
+
+    private void resetToDefault() {
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(getActivity());
+        alertDialog.setTitle(R.string.shortcut_action_reset);
+        alertDialog.setMessage(R.string.qs_style_reset_message);
+        alertDialog.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                resetValues();
+            }
+        });
+        alertDialog.setNegativeButton(R.string.cancel, null);
+        alertDialog.create().show();
+    }
+
+    private void resetValues() {
+        Settings.System.putInt(getContentResolver(),
+                Settings.System.RECENT_PANEL_BG_COLOR, DEFAULT_BACKGROUND_COLOR);
+        mRecentPanelBgColor.setNewPreviewColor(DEFAULT_BACKGROUND_COLOR);
+        mRecentPanelBgColor.setSummary(R.string.trds_default_color);
     }
 
 }
