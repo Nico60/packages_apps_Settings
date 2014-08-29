@@ -27,6 +27,7 @@
     <string name="style_title">Style</string>
     <string name="add">Add</string>
     <string name="note">NOTE</string>
+    <string name="general_pref">General</string>
 
     <!-- Color Picker -->
     <string name="dialog_color_picker">Color Picker</string>
