@@ -22,4 +22,6 @@
     <color name="color_text_holo_light">#000000</color>
     <color name="color_text_holo_dark">#FFFFFF</color>
 
+    <color name="gesture_color">#c0ffffff</color>
+
 </resources>

@@ -56,6 +56,7 @@ import static com.android.internal.util.cm.QSConstants.TILE_POWER;
 import static com.android.internal.util.cm.QSConstants.TILE_ONTHEGO;
 import static com.android.internal.util.cm.QSConstants.TILE_HOVER;
 import static com.android.internal.util.cm.QSConstants.TILE_PIE;
+import static com.android.internal.util.cm.QSConstants.TILE_GESTUREPANEL;
 
 import android.content.ContentResolver;
 import android.content.Context;
@@ -198,6 +199,9 @@ public class QuickSettingsUtil {
         registerTile(new QuickSettingsUtil.TileInfo(
                 TILE_PIE, R.string.title_tile_pie,
                 "com.android.systemui:drawable/ic_qs_pie_on"));
+        registerTile(new QuickSettingsUtil.TileInfo(
+                TILE_GESTUREPANEL, R.string.title_gesturepanel_tile,
+                "com.android.systemui:drawable/ic_qs_gesture"));
     }
 
     private static void registerTile(QuickSettingsUtil.TileInfo info) {

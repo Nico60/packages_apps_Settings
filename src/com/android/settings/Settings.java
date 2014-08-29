@@ -1418,4 +1418,5 @@ public class Settings extends PreferenceActivity
     public static class ThemeSettingsActivity extends Settings { /* empty */ }
     public static class HoverSettingsActivity extends Settings { /* empty */ }
     public static class PieActivity extends Settings { /* empty */ }
+    public static class GestureSettingsActivity extends Settings { /* empty */ }
 }
