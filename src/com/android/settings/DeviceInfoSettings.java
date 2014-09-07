@@ -31,8 +31,11 @@ import android.os.UserHandle;
 import android.preference.Preference;
 import android.preference.PreferenceGroup;
 import android.preference.PreferenceScreen;
+import android.telephony.MSimTelephonyManager;
 import android.util.Log;
 import android.widget.Toast;
+
+import com.android.settings.deviceinfo.msim.MSimStatus;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -112,6 +115,11 @@ public class DeviceInfoSettings extends RestrictedSettingsFragment {
         } else if (!SELinux.isSELinuxEnforced()) {
             String status = getResources().getString(R.string.selinux_status_permissive);
             setStringSummary(KEY_SELINUX_STATUS, status);
+        }
+
+        if (MSimTelephonyManager.getDefault().isMultiSimEnabled()) {
+            findPreference(KEY_STATUS).getIntent().setClassName(
+                    getActivity().getPackageName(), MSimStatus.class.getName());
         }
 
         // Remove selinux information if property is not present

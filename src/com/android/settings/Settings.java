@@ -50,6 +50,7 @@ import android.preference.Preference;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceFragment;
 import android.text.TextUtils;
+import android.telephony.MSimTelephonyManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -775,6 +776,9 @@ public class Settings extends PreferenceActivity
                 if (!DevelopmentSettings.isRootForAppsEnabled()) {
                     target.remove(i);
                 }
+            } else if (id == R.id.multi_sim_settings) {
+                if (!MSimTelephonyManager.getDefault().isMultiSimEnabled())
+                    target.remove(header);
             } else if (id == R.id.voice_wakeup_settings) {
                 if(!Utils.isPackageInstalled(this, VOICE_WAKEUP_PACKAGE_NAME)) {
                     target.remove(header);
