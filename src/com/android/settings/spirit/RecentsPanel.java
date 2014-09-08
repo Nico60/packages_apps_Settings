@@ -56,6 +56,8 @@ public class RecentsPanel extends SettingsPreferenceFragment implements OnPrefer
     private static final String RECENT_PANEL_EXPANDED_MODE = "recent_panel_expanded_mode";
     private static final String RECENT_PANEL_SHOW_TOPMOST = "recent_panel_show_topmost";
     private static final String RECENT_PANEL_BG_COLOR =	"recent_panel_bg_color";
+    private static final String RECENT_CARD_BG_COLOR = "recent_card_bg_color";
+    private static final String RECENT_CARD_TEXT_COLOR = "recent_card_text_color";
 
     private CheckBoxPreference mRecentClearAll;
     private CheckBoxPreference mRecentsUseSlim;
@@ -65,6 +67,8 @@ public class RecentsPanel extends SettingsPreferenceFragment implements OnPrefer
     private ListPreference mRecentPanelExpandedMode;
     private CheckBoxPreference mRecentsShowTopmost;
     private ColorPickerPreference mRecentPanelBgColor;
+    private ColorPickerPreference mRecentCardBgColor;
+    private ColorPickerPreference mRecentCardTextColor;
 
     private static final int MENU_RESET = Menu.FIRST;
     private static final int DEFAULT_BACKGROUND_COLOR = 0x00ffffff;
@@ -144,6 +148,36 @@ public class RecentsPanel extends SettingsPreferenceFragment implements OnPrefer
             mRecentPanelBgColor.setSummary(hexColor);
         }
         mRecentPanelBgColor.setNewPreviewColor(intColor);
+
+        // Recent card background color
+        mRecentCardBgColor =
+                (ColorPickerPreference) findPreference(RECENT_CARD_BG_COLOR);
+        mRecentCardBgColor.setOnPreferenceChangeListener(this);
+        final int intColorCard = Settings.System.getInt(getContentResolver(),
+                Settings.System.RECENT_CARD_BG_COLOR, 0x00ffffff);
+        String hexColorCard = String.format("#%08x", (0x00ffffff & intColorCard));
+        if (hexColorCard.equals("#00ffffff")) {
+            mRecentCardBgColor.setSummary(R.string.trds_default_color);
+        } else {
+            mRecentCardBgColor.setSummary(hexColorCard);
+        }
+        mRecentCardBgColor.setNewPreviewColor(intColorCard);
+
+        // Recent card text color
+        mRecentCardTextColor =
+                (ColorPickerPreference) findPreference(RECENT_CARD_TEXT_COLOR);
+        mRecentCardTextColor.setOnPreferenceChangeListener(this);
+        final int intColorText = Settings.System.getInt(getContentResolver(),
+                Settings.System.RECENT_CARD_TEXT_COLOR, 0x00ffffff);
+        String hexColorText = String.format("#%08x", (0x00ffffff & intColorText));
+        if (hexColorText.equals("#00ffffff")) {
+            mRecentCardTextColor.setSummary(R.string.trds_default_color);
+        } else {
+            mRecentCardTextColor.setSummary(hexColorText);
+        }
+        mRecentCardTextColor.setNewPreviewColor(intColorText);
+
+        // Enable options menu for color reset
         setHasOptionsMenu(true);
 
     }
@@ -202,6 +236,32 @@ public class RecentsPanel extends SettingsPreferenceFragment implements OnPrefer
             int intHex = ColorPickerPreference.convertToColorInt(hex);
             Settings.System.putInt(getContentResolver(),
                     Settings.System.RECENT_PANEL_BG_COLOR,
+                    intHex);
+            return true;
+        } else if (preference == mRecentCardBgColor) {
+            String hex = ColorPickerPreference.convertToARGB(
+                    Integer.valueOf(String.valueOf(newValue)));
+            if (hex.equals("#00ffffff")) {
+                preference.setSummary(R.string.trds_default_color);
+            } else {
+                preference.setSummary(hex);
+            }
+            int intHex = ColorPickerPreference.convertToColorInt(hex);
+            Settings.System.putInt(getContentResolver(),
+                    Settings.System.RECENT_CARD_BG_COLOR,
+                    intHex);
+            return true;
+        } else if (preference == mRecentCardTextColor) {
+            String hex = ColorPickerPreference.convertToARGB(
+                    Integer.valueOf(String.valueOf(newValue)));
+            if (hex.equals("#00ffffff")) {
+                preference.setSummary(R.string.trds_default_color);
+            } else {
+                preference.setSummary(hex);
+            }
+            int intHex = ColorPickerPreference.convertToColorInt(hex);
+            Settings.System.putInt(getContentResolver(),
+                    Settings.System.RECENT_CARD_TEXT_COLOR,
                     intHex);
             return true;
         }
