@@ -490,7 +490,8 @@ public class Settings extends PreferenceActivity
         com.android.settings.spirit.navbar.NavbarTabHostFragment.class.getName(),
         ThemeSettings.class.getName(),
         com.android.settings.crdroid.HoverSettings.class.getName(),
-        Pie.class.getName()
+        Pie.class.getName(),
+        com.android.settings.wifi.WifiApSettings.class.getName()
     };
 
     @Override
@@ -1416,6 +1417,7 @@ public class Settings extends PreferenceActivity
     public static class QuietHoursSettingsActivity extends Settings { /* empty */ }
     public static class NavbarSettingsActivity extends Settings { /* empty */ }
     public static class ThemeSettingsActivity extends Settings { /* empty */ }
+    public static class WifiApSettingsActivity extends Settings { /* empty */ }
     public static class HoverSettingsActivity extends Settings { /* empty */ }
     public static class PieActivity extends Settings { /* empty */ }
     public static class GestureSettingsActivity extends Settings { /* empty */ }
