@@ -8,5 +8,5 @@
               android:visibility="gone"
             />
 
-    <View style="@style/settingSeparator"/>
+    <View style="@style/NavBarSettingSeparator"/>
 </merge>
