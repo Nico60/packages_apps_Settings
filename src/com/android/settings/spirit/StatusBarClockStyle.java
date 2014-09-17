@@ -58,6 +58,7 @@ public class StatusBarClockStyle extends SettingsPreferenceFragment
     private static final String PREF_FONT_STYLE = "font_style";
     private static final String STATUS_BAR_CLOCK = "status_bar_show_clock";
     private static final String CLOCK_USE_SECOND = "clock_use_second";
+    private static final String STATUS_BAR_FORCE_CLOCK_LOCKSCREEN = "status_bar_force_clock_lockscreen";
 
     public static final int CLOCK_DATE_STYLE_LOWERCASE = 1;
     public static final int CLOCK_DATE_STYLE_UPPERCASE = 2;
@@ -74,6 +75,7 @@ public class StatusBarClockStyle extends SettingsPreferenceFragment
     private ListPreference mFontStyle;
     private CheckBoxPreference mStatusBarClock;
     private CheckBoxPreference mClockUseSecond;
+    private CheckBoxPreference mForceClockLockscreen;
 
     private boolean mCheckPreferences;
 
@@ -145,6 +147,11 @@ public class StatusBarClockStyle extends SettingsPreferenceFragment
         mClockUseSecond = (CheckBoxPreference) prefSet.findPreference(CLOCK_USE_SECOND);
         mClockUseSecond.setChecked((Settings.System.getInt(getActivity().getApplicationContext().getContentResolver(),
                 Settings.System.CLOCK_USE_SECOND, 0) == 1));
+
+        mForceClockLockscreen = (CheckBoxPreference) findPreference(STATUS_BAR_FORCE_CLOCK_LOCKSCREEN);
+        mForceClockLockscreen.setChecked(Settings.System.getInt(getActivity().getContentResolver(),
+                Settings.System.STATUS_BAR_FORCE_CLOCK_LOCKSCREEN, 0) != 0);
+        mForceClockLockscreen.setOnPreferenceChangeListener(this);
 
         mClockDateFormat = (ListPreference) findPreference(PREF_CLOCK_DATE_FORMAT);
         mClockDateFormat.setOnPreferenceChangeListener(this);
@@ -287,6 +294,10 @@ public class StatusBarClockStyle extends SettingsPreferenceFragment
                         Settings.System.STATUSBAR_CLOCK_DATE_FORMAT, (String) newValue);
                 }
             }
+            return true;
+        } else if (preference == mForceClockLockscreen) {
+            Settings.System.putInt(getActivity().getContentResolver(),
+                    Settings.System.STATUS_BAR_FORCE_CLOCK_LOCKSCREEN, (Boolean) newValue ? 1 : 0);
             return true;
         }
         return false;
