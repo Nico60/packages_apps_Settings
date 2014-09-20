@@ -1612,4 +1612,8 @@
     <string name="gestures_rename_label">Gesture name</string>
     <string name="gestures_error_loading">Could not load %s. Make sure you have storage available.</string>
 
+    <!-- Statusbar Carrier Logo -->
+    <string name="statusbar_carrier_logo_title">Carrier logo statusbar</string>
+    <string name="statusbar_carrier_logo_summary">Show logo based from carrier/provider</string>
+
 </resources>

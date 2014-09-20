@@ -62,6 +62,7 @@ public class NotificationDrawer extends SettingsPreferenceFragment implements
     private static final String SWIPE_TO_SWITCH_SCREEN_DETECTION = "full_swipe_to_switch_detection";
     private static final String STATUS_BAR_CARRIER = "status_bar_carrier";
     private static final String STATUS_BAR_CARRIER_COLOR = "status_bar_carrier_color";
+    private static final String STATUSBAR_CARRIER_LOGO = "status_bar_carrier_logo";
 
     static final int DEFAULT_STATUS_CARRIER_COLOR = 0xffffffff;
 
@@ -76,6 +77,7 @@ public class NotificationDrawer extends SettingsPreferenceFragment implements
     private ListPreference mReminderMode;
     private RingtonePreference mReminderRingtone;
     private CheckBoxPreference mStatusBarCarrier;
+    private CheckBoxPreference mStatusbarLogo;
     private ColorPickerPreference mCarrierColorPicker;
 
     String mCustomLabelText = null;
@@ -126,6 +128,11 @@ public class NotificationDrawer extends SettingsPreferenceFragment implements
         mFullScreenDetection.setChecked(Settings.System.getInt(getContentResolver(),
                 Settings.System.SWIPE_TO_SWITCH_SCREEN_DETECTION, 0) == 1);
         mFullScreenDetection.setOnPreferenceChangeListener(this);
+
+        mStatusbarLogo = (CheckBoxPreference) findPreference(STATUSBAR_CARRIER_LOGO);
+        if (!DeviceUtils.isPhone(getActivity())) {
+            prefScreen.removePreference(mStatusbarLogo);
+        }
 
         // Custom Carrier Label Text
         mCustomLabel = findPreference(PREF_CUSTOM_CARRIER_LABEL);
