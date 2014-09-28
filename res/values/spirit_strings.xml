@@ -1386,12 +1386,6 @@
     <string name="show_network_traffic_1500">1500 ms</string>
     <string name="show_network_traffic_2000">2000 ms</string>
 
-    <!-- User Selectable Tether Networks-->
-    <string name="tether_usb_network_summary">Press to change USB Network</string>
-    <string name="tether_usb_network_text">USB Tether Network</string>
-    <string name="tether_user_network_default">Use System Default</string>
-    <string name="tether_wifi_network_text">WiFi Tether Network</string>
-
     <!-- Status bar six bar signal-->
     <string name="status_bar_six_bar_signal_title">Enable Six Bar Signal</string>
     <string name="status_bar_six_bar_signal_summary">Enable to show six bar signal in statusbar/qs</string>
