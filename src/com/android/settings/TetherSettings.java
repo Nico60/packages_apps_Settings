@@ -65,7 +65,6 @@ public class TetherSettings extends SettingsPreferenceFragment
 
     private WifiApEnabler mWifiApEnabler;
     private CheckBoxPreference mEnableWifiAp;
-    private ListPreference mUsbNetList;
 
     private CheckBoxPreference mBluetoothTether;
 
@@ -122,7 +121,6 @@ public class TetherSettings extends SettingsPreferenceFragment
         Preference wifiApSettings = findPreference(WIFI_AP_SSID_AND_SECURITY);
         mUsbTether = (CheckBoxPreference) findPreference(USB_TETHER_SETTINGS);
         mBluetoothTether = (CheckBoxPreference) findPreference(ENABLE_BLUETOOTH_TETHERING);
-        mUsbNetList = (ListPreference) findPreference(USB_TETHER_NETWORK);
 
         ConnectivityManager cm =
                 (ConnectivityManager)getSystemService(Context.CONNECTIVITY_SERVICE);
@@ -137,7 +135,6 @@ public class TetherSettings extends SettingsPreferenceFragment
 
         if (!usbAvailable || Utils.isMonkeyRunning()) {
             getPreferenceScreen().removePreference(mUsbTether);
-            getPreferenceScreen().removePreference(mUsbNetList);
         }
 
         if (wifiAvailable && !Utils.isMonkeyRunning()) {
@@ -157,10 +154,6 @@ public class TetherSettings extends SettingsPreferenceFragment
             } else {
                 mBluetoothTether.setChecked(false);
             }
-        }
-
-        if (mUsbNetList != null) {
-            mUsbNetList.setOnPreferenceChangeListener(null);
         }
 
         mProvisionApp = getResources().getStringArray(
@@ -292,11 +285,13 @@ public class TetherSettings extends SettingsPreferenceFragment
             mWifiApEnabler.resume();
         }
 
-        if (mUsbNetList != null) {
-            mUsbNetList.setOnPreferenceChangeListener(this);
+        ListPreference usbNetList =
+                (ListPreference) findPreference(USB_TETHER_NETWORK);
+        if (usbNetList != null) {
+            usbNetList.setOnPreferenceChangeListener(this);
         }
 
-        setUsbNetwork(null, null);
+        setUsbNetwork(null,  null);
 
         updateState();
     }
@@ -311,8 +306,10 @@ public class TetherSettings extends SettingsPreferenceFragment
             mWifiApEnabler.pause();
         }
 
-        if (mUsbNetList != null) {
-            mUsbNetList.setOnPreferenceChangeListener(null);
+        ListPreference usbNetList =
+                (ListPreference) findPreference(USB_TETHER_NETWORK);
+        if (usbNetList != null) {
+            usbNetList.setOnPreferenceChangeListener(null);
         }
     }
 
@@ -383,7 +380,6 @@ public class TetherSettings extends SettingsPreferenceFragment
             mUsbTether.setSummary(R.string.usb_tethering_active_subtext);
             mUsbTether.setEnabled(true);
             mUsbTether.setChecked(true);
-            mUsbNetList.setEnabled(true);
         } else if (usbAvailable) {
             if (usbError == ConnectivityManager.TETHER_ERROR_NO_ERROR) {
                 mUsbTether.setSummary(R.string.usb_tethering_available_subtext);
@@ -392,22 +388,18 @@ public class TetherSettings extends SettingsPreferenceFragment
             }
             mUsbTether.setEnabled(true);
             mUsbTether.setChecked(false);
-            mUsbNetList.setEnabled(true);
         } else if (usbErrored) {
             mUsbTether.setSummary(R.string.usb_tethering_errored_subtext);
             mUsbTether.setEnabled(false);
             mUsbTether.setChecked(false);
-            mUsbNetList.setEnabled(false);
         } else if (mMassStorageActive) {
             mUsbTether.setSummary(R.string.usb_tethering_storage_active_subtext);
             mUsbTether.setEnabled(false);
             mUsbTether.setChecked(false);
-            mUsbNetList.setEnabled(false);
         } else {
             mUsbTether.setSummary(R.string.usb_tethering_unavailable_subtext);
             mUsbTether.setEnabled(false);
             mUsbTether.setChecked(false);
-            mUsbNetList.setEnabled(false);
         }
     }
 
@@ -461,6 +453,11 @@ public class TetherSettings extends SettingsPreferenceFragment
     private void setUsbNetwork(Preference preference, Object newValue) {
         final Activity activity = getActivity();
 
+        ListPreference lpref = (ListPreference) preference;
+        if (lpref == null) {
+            lpref = (ListPreference) findPreference(USB_TETHER_NETWORK);
+        }
+
         String network = null;
         String summary = null;
 
@@ -469,11 +466,11 @@ public class TetherSettings extends SettingsPreferenceFragment
             network = Settings.Global.getString(activity.getContentResolver(),
                     Settings.Global.TETHER_USB_NETWORK);
             if ((network == null) || (network.length() == 0)) {
-                CharSequence[] values = mUsbNetList.getEntryValues();
-                mUsbNetList.setValueIndex(0);
+                CharSequence[] values = lpref.getEntryValues();
+                lpref.setValueIndex(0);
                 summary = values[0].toString();
             } else {
-                mUsbNetList.setValue(network);
+                lpref.setValue(network);
                 summary = network;
             }
         } else {
@@ -481,10 +478,10 @@ public class TetherSettings extends SettingsPreferenceFragment
             network = newValue.toString();
             summary = network;
 
-            if (mUsbNetList.findIndexOfValue(network) <= 0) {
+            if (lpref.findIndexOfValue(network) <= 0) {
                 network = null;
-                mUsbNetList.setValueIndex(0);
-                CharSequence[] values = mUsbNetList.getEntryValues();
+                lpref.setValueIndex(0);
+                CharSequence[] values = lpref.getEntryValues();
                 summary = values[0].toString();
             }
 
@@ -492,12 +489,12 @@ public class TetherSettings extends SettingsPreferenceFragment
                     android.provider.Settings.Global.TETHER_USB_NETWORK, network);
         }
 
-        mUsbNetList.setSummary(summary);
+        lpref.setSummary(summary);
     }
 
     @Override
     public boolean onPreferenceChange(Preference preference, Object value) {
-        if (preference == mUsbNetList) {
+        if (preference.getKey().equals(USB_TETHER_NETWORK)) {
             setUsbNetwork(preference, value);
         } else {
             boolean enable = (Boolean) value;
