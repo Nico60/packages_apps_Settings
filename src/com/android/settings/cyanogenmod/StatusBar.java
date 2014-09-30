@@ -63,46 +63,40 @@ public class StatusBar extends SettingsPreferenceFragment implements OnPreferenc
         PreferenceScreen prefSet = getPreferenceScreen();
         ContentResolver resolver = getActivity().getContentResolver();
 
-        mStatusBarCmSignal = (ListPreference) prefSet.findPreference(STATUS_BAR_SIGNAL);
+        PreferenceCategory generalCategory = (PreferenceCategory) prefSet.findPreference(STATUS_BAR_CATEGORY_GENERAL);
 
-        mStatusBarSixBarSignal = (CheckBoxPreference) findPreference(STATUSBAR_6BAR_SIGNAL);
-        mStatusBarSixBarSignal.setChecked((Settings.System.getInt(resolver,
-                Settings.System.STATUSBAR_6BAR_SIGNAL, 0) == 1));
+        PreferenceCategory Category = (PreferenceCategory) prefSet.findPreference(BREATHING_NOTIFICATIONS);
+
+        mStatusBarCmSignal = (ListPreference) prefSet.findPreference(STATUS_BAR_SIGNAL);
 
         mStatusBarBrightnessControl = (CheckBoxPreference)
                 prefSet.findPreference(Settings.System.STATUS_BAR_BRIGHTNESS_CONTROL);
+        refreshBrightnessControl();
+
+        mStatusBarSixBarSignal = (CheckBoxPreference) prefSet.findPreference(STATUSBAR_6BAR_SIGNAL);
+        mStatusBarSixBarSignal.setChecked((Settings.System.getInt(resolver, Settings.System.STATUSBAR_6BAR_SIGNAL, 0) == 1));
 
         mSMSBreath = (CheckBoxPreference) prefSet.findPreference(KEY_SMS_BREATH);
         mSMSBreath.setChecked((Settings.System.getInt(resolver, Settings.System.KEY_SMS_BREATH, 0) == 1));
-        mSMSBreath.setOnPreferenceChangeListener(this);
 
         mMissedCallBreath = (CheckBoxPreference) prefSet.findPreference(KEY_MISSED_CALL_BREATH);
         mMissedCallBreath.setChecked((Settings.System.getInt(resolver, Settings.System.KEY_MISSED_CALL_BREATH, 0) == 1));
-        mMissedCallBreath.setOnPreferenceChangeListener(this);
 
         mVoicemailBreath = (CheckBoxPreference) prefSet.findPreference(KEY_VOICEMAIL_BREATH);
         mVoicemailBreath.setChecked((Settings.System.getInt(resolver, Settings.System.KEY_VOICEMAIL_BREATH, 0) == 1));
-        mVoicemailBreath.setOnPreferenceChangeListener(this);
 
         int signalStyle = Settings.System.getInt(resolver, Settings.System.STATUS_BAR_SIGNAL_TEXT, 0);
         mStatusBarCmSignal.setValue(String.valueOf(signalStyle));
         mStatusBarCmSignal.setSummary(mStatusBarCmSignal.getEntry());
         mStatusBarCmSignal.setOnPreferenceChangeListener(this);
 
-        refreshBrightnessControl();
-
-        PreferenceCategory Category =
-                (PreferenceCategory) findPreference(STATUS_BAR_CATEGORY_GENERAL);
-
-        PreferenceCategory generalCategory =
-                (PreferenceCategory) findPreference(BREATHING_NOTIFICATIONS);
-
         if (Utils.isWifiOnly(getActivity())
                 || (MSimTelephonyManager.getDefault().isMultiSimEnabled())) {
-            Category.removePreference(mStatusBarCmSignal);
-            generalCategory.removePreference(mSMSBreath);
-            generalCategory.removePreference(mMissedCallBreath);
-            generalCategory.removePreference(mVoicemailBreath);
+            generalCategory.removePreference(mStatusBarCmSignal);
+            generalCategory.removePreference(mStatusBarSixBarSignal);
+            Category.removePreference(mSMSBreath);
+            Category.removePreference(mMissedCallBreath);
+            Category.removePreference(mVoicemailBreath);
         }
 
         mSettingsObserver = new ContentObserver(new Handler()) {
@@ -134,12 +128,26 @@ public class StatusBar extends SettingsPreferenceFragment implements OnPreferenc
 
     @Override
     public boolean onPreferenceTreeClick(PreferenceScreen preferenceScreen, Preference preference) {
+        ContentResolver resolver = getActivity().getContentResolver();
+        boolean value;
         if  (preference == mStatusBarSixBarSignal) {
-            boolean checked = ((CheckBoxPreference)preference).isChecked();
-            Settings.System.putInt(getActivity().getContentResolver(),
-                    Settings.System.STATUSBAR_6BAR_SIGNAL, checked ? 1:0);
+            value = mStatusBarSixBarSignal.isChecked();
+            Settings.System.putInt(resolver, Settings.System.STATUSBAR_6BAR_SIGNAL, value ? 1 : 0);
+            return true;
+        } else if (preference == mSMSBreath) {
+            value = mSMSBreath.isChecked();
+            Settings.System.putInt(resolver, Settings.System.KEY_SMS_BREATH, value ? 1 : 0);
+            return true;
+        } else if (preference == mMissedCallBreath) {
+            value = mMissedCallBreath.isChecked();
+            Settings.System.putInt(resolver, Settings.System.KEY_MISSED_CALL_BREATH, value ? 1 : 0);
+            return true;
+        } else if (preference == mVoicemailBreath) {
+            value = mVoicemailBreath.isChecked();
+            Settings.System.putInt(resolver, Settings.System.KEY_VOICEMAIL_BREATH, value ? 1 : 0);
             return true;
         }
+
         return super.onPreferenceTreeClick(preferenceScreen, preference);
     }
 
@@ -151,21 +159,6 @@ public class StatusBar extends SettingsPreferenceFragment implements OnPreferenc
             int index = mStatusBarCmSignal.findIndexOfValue((String) newValue);
             Settings.System.putInt(resolver, Settings.System.STATUS_BAR_SIGNAL_TEXT, signalStyle);
             mStatusBarCmSignal.setSummary(mStatusBarCmSignal.getEntries()[index]);
-            return true;
-        } else if (preference == mSMSBreath) {
-            Settings.System.putInt(getActivity().getApplicationContext().getContentResolver(),
-                    Settings.System.KEY_SMS_BREATH,
-                    (Boolean) newValue ? 1 : 0);
-            return true;
-        } else if (preference == mMissedCallBreath) {
-            Settings.System.putInt(getActivity().getApplicationContext().getContentResolver(),
-                    Settings.System.KEY_MISSED_CALL_BREATH,
-                    (Boolean) newValue ? 1 : 0);
-            return true;
-        } else if (preference == mVoicemailBreath) {
-            Settings.System.putInt(getActivity().getApplicationContext().getContentResolver(),
-                    Settings.System.KEY_VOICEMAIL_BREATH,
-                    (Boolean) newValue ? 1 : 0);
             return true;
         }
 
