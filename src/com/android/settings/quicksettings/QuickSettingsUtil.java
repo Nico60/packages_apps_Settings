@@ -265,11 +265,6 @@ public class QuickSettingsUtil {
             removeTile(TILE_PERFORMANCE_PROFILE);
         }
 
-        // Don't show the navbar tile on devices that really have a navbar
-        if (HardwareKeyNavbarHelper.hasNavbar()) {
-            removeTile(TILE_NAVBAR);
-        }
-
         // Don't show the Compass tile if the device has no orientation sensor
         if (!QSUtils.deviceSupportsCompass(context)) {
             removeTile(TILE_COMPASS);
