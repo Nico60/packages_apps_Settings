@@ -61,10 +61,6 @@ public class NavbarSettingsFragment extends Fragment implements OnSettingChanged
             navbar_height_landscape.setVisibility(View.GONE);
         }
 
-        if (hasNavbar) {
-            mToggleNavbar.setVisibility(View.GONE);
-        }
-
         return v;
     }
 
