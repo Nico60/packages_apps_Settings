@@ -6629,6 +6629,8 @@
     <string name="less_notification_sounds_1m">1 minute</string>
     <string name="less_notification_sounds_2m">2 minutes</string>
     <string name="less_notification_sounds_5m">5 minutes</string>
+    <string name="less_notification_sounds_15m">15 minutes</string>
+    <string name="less_notification_sounds_30m">30 minutes</string>
 
     <!-- Wakelock blocker -->
     <string name="wakelock_blocker_title">Wakelock blocker</string>

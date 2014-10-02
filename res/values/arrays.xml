@@ -1652,6 +1652,8 @@
         <item>@string/less_notification_sounds_1m</item>
         <item>@string/less_notification_sounds_2m</item>
         <item>@string/less_notification_sounds_5m</item>
+        <item>@string/less_notification_sounds_15m</item>
+        <item>@string/less_notification_sounds_30m</item>
     </string-array>
 
     <string-array name="less_notification_sounds_values" translatable="false">
@@ -1665,5 +1667,7 @@
         <item>60000</item>
         <item>120000</item>
         <item>300000</item>
+        <item>900000</item>
+        <item>1800000</item>
     </string-array>
 </resources>
