@@ -2045,6 +2045,7 @@
         <activity android:name=".spirit.NotificationDrawerStyle" />
         <activity android:name=".spirit.RamBar" />
         <activity android:name=".spirit.SpiritControls" />
+        <activity android:name=".spirit.TintedStatusBar" />
         <activity android:name=".spirit.fragments.AnimSettings" />
         <activity android:name=".spirit.fragments.ApplauncherSettings" />
         <activity android:name=".spirit.fragments.GeneralSettings" />

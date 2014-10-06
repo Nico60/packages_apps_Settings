@@ -44,8 +44,6 @@ import com.android.settings.R;
 import com.android.settings.SettingsPreferenceFragment;
 import com.android.settings.util.Helpers;
 
-import net.margaritov.preference.colorpicker.ColorPickerPreference;
-
 public class NotificationDrawer extends SettingsPreferenceFragment implements
         Preference.OnPreferenceChangeListener {
     private static final String TAG = "NotificationDrawer";
@@ -61,9 +59,6 @@ public class NotificationDrawer extends SettingsPreferenceFragment implements
     private static final String PREF_NOTIFICATION_SHOW_WIFI_SSID = "notification_show_wifi_ssid";
     private static final String SWIPE_TO_SWITCH_SCREEN_DETECTION = "full_swipe_to_switch_detection";
     private static final String STATUS_BAR_CARRIER = "status_bar_carrier";
-    private static final String STATUS_BAR_CARRIER_COLOR = "status_bar_carrier_color";
-
-    static final int DEFAULT_STATUS_CARRIER_COLOR = 0xffffffff;
 
     private CheckBoxPreference mShowWifiName;
     private CheckBoxPreference mFullScreenDetection;
@@ -76,7 +71,6 @@ public class NotificationDrawer extends SettingsPreferenceFragment implements
     private ListPreference mReminderMode;
     private RingtonePreference mReminderRingtone;
     private CheckBoxPreference mStatusBarCarrier;
-    private ColorPickerPreference mCarrierColorPicker;
 
     String mCustomLabelText = null;
 
@@ -86,9 +80,6 @@ public class NotificationDrawer extends SettingsPreferenceFragment implements
 
         addPreferencesFromResource(R.xml.notification_drawer);
         PreferenceScreen prefScreen = getPreferenceScreen();
-
-        int intColor;
-        String hexColor;
 
         // Notification drawer
         int collapseBehaviour = Settings.System.getInt(getContentResolver(),
@@ -135,15 +126,6 @@ public class NotificationDrawer extends SettingsPreferenceFragment implements
         mStatusBarCarrier = (CheckBoxPreference) findPreference(STATUS_BAR_CARRIER);
         mStatusBarCarrier.setChecked((Settings.System.getInt(getContentResolver(),
                 Settings.System.STATUS_BAR_CARRIER, 0) == 1));
-
-        // MIUI-like carrier Label color
-        mCarrierColorPicker = (ColorPickerPreference) findPreference(STATUS_BAR_CARRIER_COLOR);
-        mCarrierColorPicker.setOnPreferenceChangeListener(this);
-        intColor = Settings.System.getInt(getContentResolver(),
-                    Settings.System.STATUS_BAR_CARRIER_COLOR, DEFAULT_STATUS_CARRIER_COLOR);
-        hexColor = String.format("#%08x", (0xffffffff & intColor));
-        mCarrierColorPicker.setSummary(hexColor);
-        mCarrierColorPicker.setNewPreviewColor(intColor);
 
         // Notification Remider
         mReminder = (CheckBoxPreference) findPreference(PREF_NOTI_REMINDER_ENABLED);
@@ -244,13 +226,6 @@ public class NotificationDrawer extends SettingsPreferenceFragment implements
             Settings.System.putInt(getActivity().getContentResolver(),
                     Settings.System.NOTIFICATION_HIDE_CARRIER,
                     (Boolean) objValue ? 1 : 0);
-            return true;
-        } else if (preference == mCarrierColorPicker) {
-            String hex = ColorPickerPreference.convertToARGB(Integer.valueOf(String.valueOf(objValue)));
-            preference.setSummary(hex);
-            int intHex = ColorPickerPreference.convertToColorInt(hex);
-            Settings.System.putInt(getActivity().getApplicationContext().getContentResolver(),
-                    Settings.System.STATUS_BAR_CARRIER_COLOR, intHex);
             return true;
         } else if (preference == mShowWifiName) {
             boolean value = (Boolean) objValue;
