@@ -41,6 +41,11 @@
         android:fragment="com.android.settings.spirit.StatusBarColor"
         android:title="@string/custom_status_bar_header_title" />
 
+    <Preference
+        android:key="category_tinted_statusbar"
+        android:title="@string/title_tinted_statusbar"
+        android:fragment="com.android.settings.spirit.TintedStatusBar" />
+
     </PreferenceCategory>
 
     <PreferenceCategory
