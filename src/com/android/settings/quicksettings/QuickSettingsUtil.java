@@ -59,6 +59,7 @@ import static com.android.internal.util.cm.QSConstants.TILE_PIE;
 import static com.android.internal.util.cm.QSConstants.TILE_GESTUREPANEL;
 import static com.android.internal.util.cm.QSConstants.TILE_FCHARGE;
 import static com.android.internal.util.cm.QSConstants.TILE_SPIRIT;
+import static com.android.internal.util.cm.QSConstants.TILE_DYNAMICCOLORS;
 
 import android.content.ContentResolver;
 import android.content.Context;
@@ -190,6 +191,9 @@ public class QuickSettingsUtil {
         registerTile(new QuickSettingsUtil.TileInfo(
                 TILE_NAVBAR, R.string.title_navbar_tile,
                 "com.android.systemui:drawable/ic_qs_navbar_on"));
+        registerTile(new QuickSettingsUtil.TileInfo(
+                TILE_DYNAMICCOLORS, R.string.title_tile_dynamiccolors,
+                "com.android.systemui:drawable/ic_qs_dynamiccolors_on"));
 	registerTile(new QuickSettingsUtil.TileInfo(
                 TILE_POWER, R.string.title_tile_power,
                 "com.android.systemui:drawable/ic_qs_powermenu"));

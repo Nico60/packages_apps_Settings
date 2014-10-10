@@ -1644,6 +1644,7 @@
     <string name="custom_status_bar_apply_summary">Restart SystemUI to apply the changes</string>
 
     <!-- Tinted statusbar -->
+    <string name="title_tile_dynamiccolors">Dynamic Colors</string>
     <string name="tinted_statusbar_title">Colors</string>
     <string name="title_tinted_statusbar">Dynamic Color Changer</string>
     <string name="title_tinted_statusbar_option">Apply color to</string>
