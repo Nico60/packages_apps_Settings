@@ -1293,8 +1293,6 @@
     <string name="custom_statusbar_header_title">Contextual notification panel header</string>
     <string name="custom_statusbar_header_summary">Sets the background of the notification panel header to an image based on the current date and time</string>
 
-    <string name="spirit_settings_title">Spirit Controls</string>
-
     <!-- Scrolling Animation Controls -->
     <string name="scrolling_title">Scrolling modifiers</string>
     <string name="scrolling_summary">View or change scrolling animations</string>
@@ -1626,5 +1624,8 @@
 
     <!-- Fast charge QS tile -->
     <string name="title_tile_fcharge">Fast charge</string>
+
+    <!-- Spirit controls -->
+    <string name="spirit_settings_title">Spirit Controls</string>
 
 </resources>

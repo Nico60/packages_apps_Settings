@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (C) 2014 The Spirit Rom project
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
+
+<PreferenceScreen
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:settings="http://schemas.android.com/apk/res/com.android.settings"
+    android:title="@string/spirit_settings_title" >
+
+        <PreferenceScreen
+            android:key="spirit_controls_banner"
+            android:layout="@layout/spirit_controls_banner" />
+
+        <PreferenceScreen
+            android:key="anim_settings"
+            android:icon="@drawable/ic_animations_settings"
+            android:title="@string/anim_options"
+            android:fragment="com.android.settings.spirit.fragments.AnimSettings" />
+
+        <PreferenceScreen
+            android:key="app_circle_sidebar"
+            android:icon="@drawable/ic_applauncher_settings"
+            android:title="@string/category_app_circle_bar_title"
+            android:fragment="com.android.settings.spirit.fragments.ApplauncherSettings" />
+
+        <PreferenceScreen
+            android:key="general_settings"
+            android:icon="@drawable/ic_general_settings"
+            android:title="@string/system_ui_cat_general"
+            android:fragment="com.android.settings.spirit.fragments.GeneralSettings" />
+
+        <PreferenceScreen
+            android:key="navigation_bar"
+            android:icon="@drawable/ic_nav_settings"
+            android:title="@string/nav_options"
+            android:fragment="com.android.settings.spirit.fragments.NavbarSettings" />
+
+        <PreferenceScreen
+            android:key="notification_settings"
+            android:icon="@drawable/ic_notif_settings"
+            android:title="@string/system_ui_cat_notififications"
+            android:fragment="com.android.settings.spirit.fragments.NotificationSettings" />
+
+        <PreferenceScreen
+            android:key="misc_settings"
+            android:icon="@drawable/ic_misc_settings"
+            android:title="@string/misc_options"
+            android:fragment="com.android.settings.spirit.fragments.MiscSettings" />
+
+</PreferenceScreen>

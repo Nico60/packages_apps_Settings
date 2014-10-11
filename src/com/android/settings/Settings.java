@@ -90,7 +90,6 @@ import com.android.settings.crdroid.HoverSettings;
 import com.android.settings.cyanogenmod.ButtonSettings;
 import com.android.settings.cyanogenmod.LockscreenInterface;
 import com.android.settings.cyanogenmod.PerformanceSettings;
-import com.android.settings.cyanogenmod.SystemUiSettings;
 import com.android.settings.cyanogenmod.superuser.PolicyNativeFragment;
 import com.android.settings.deviceinfo.Memory;
 import com.android.settings.deviceinfo.UsbSettings;
@@ -119,6 +118,7 @@ import com.android.settings.search.SettingsSearchFilterAdapter.SearchInfo;
 import com.android.settings.slim.themes.ThemeEnabler;
 import com.android.settings.spirit.BatteryIconStyle;
 import com.android.settings.spirit.navbar.NavbarTabHostFragment;
+import com.android.settings.spirit.SpiritControls;
 import com.android.settings.tts.TextToSpeechSettings;
 import com.android.settings.users.UserSettings;
 import com.android.settings.voicewakeup.VoiceWakeupEnabler;
@@ -152,6 +152,8 @@ public class Settings extends PreferenceActivity
         "com.android.settings.PARENT_FRAGMENT_TITLE";
     private static final String META_DATA_KEY_PARENT_FRAGMENT_CLASS =
         "com.android.settings.PARENT_FRAGMENT_CLASS";
+
+    private static final String KEY_SCREEN_GESTURE_SETTINGS = "touch_screen_gesture_settings";
 
     private static final String EXTRA_UI_OPTIONS = "settings:ui_options";
 
@@ -205,7 +207,7 @@ public class Settings extends PreferenceActivity
             R.id.home_settings,
             R.id.interface_section,
             R.id.lock_screen_settings,
-            R.id.system_settings,
+            R.id.spirit_settings,
             R.id.privacy_settings_cyanogenmod,
             R.id.button_settings
     };
@@ -476,7 +478,7 @@ public class Settings extends PreferenceActivity
         ApnSettings.class.getName(),
         HomeSettings.class.getName(),
         LockscreenInterface.class.getName(),
-        SystemUiSettings.class.getName(),
+        SpiritControls.class.getName(),
         ButtonSettings.class.getName(),
         ProfilesSettings.class.getName(),
         PerformanceSettings.class.getName(),
@@ -694,7 +696,8 @@ public class Settings extends PreferenceActivity
             Header header = target.get(i);
             // Ids are integers, so downcasting
             int id = (int) header.id;
-            if (id == R.id.operator_settings || id == R.id.manufacturer_settings) {
+            if (id == R.id.operator_settings || id == R.id.manufacturer_settings
+                    || id == R.id.device_specific_gesture_settings) {
                 Utils.updateHeaderToSpecificActivityFromMetaDataOrRemove(this, target, header);
             } else if (id == R.id.wifi_settings) {
                 // Remove WiFi Settings if WiFi service is not available.
@@ -1406,7 +1409,7 @@ public class Settings extends PreferenceActivity
     public static class ApnSettingsActivity extends Settings { /* empty */ }
     public static class ApnEditorActivity extends Settings { /* empty */ }
     public static class BlacklistSettingsActivity extends Settings { /* empty */ }
-    public static class SystemSettingsActivity extends Settings { /* empty */ }
+    public static class SpiritControlsActivity extends Settings { /* empty */ }
     public static class QuickSettingsConfigActivity extends Settings { /* empty */ }
     public static class ASSRamBarActivity extends Settings { /* empty */ }
     public static class BatteryIconStyleSettingsActivity extends Settings { /* empty */ }

@@ -16,55 +16,12 @@
 
 <PreferenceScreen
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:settings="http://schemas.android.com/apk/res/com.android.settings"
-    android:title="@string/system_interface_title" >
-
-        <PreferenceScreen android:key="spirit_banner"
-            android:layout="@layout/spirit_banner" />
-
-        <PreferenceScreen
-            android:key="anim_settings"
-            android:icon="@drawable/ic_animations_settings"
-            android:title="@string/anim_options"
-            android:fragment="com.android.settings.spirit.fragments.AnimSettings" />
-
-        <PreferenceScreen
-            android:key="app_circle_sidebar"
-            android:icon="@drawable/ic_applauncher_settings"
-            android:title="@string/category_app_circle_bar_title"
-            android:fragment="com.android.settings.spirit.fragments.ApplauncherSettings" />
-
-        <PreferenceScreen
-            android:key="general_settings"
-            android:icon="@drawable/ic_general_settings"
-            android:title="@string/system_ui_cat_general"
-            android:fragment="com.android.settings.spirit.fragments.GeneralSettings" />
-
-        <PreferenceScreen
-            android:key="navigation_bar"
-            android:icon="@drawable/ic_nav_settings"
-            android:title="@string/nav_options"
-            android:fragment="com.android.settings.spirit.fragments.NavbarSettings" />
-
-        <PreferenceScreen
-            android:key="notification_settings"
-            android:icon="@drawable/ic_notif_settings"
-            android:title="@string/system_ui_cat_notififications"
-            android:fragment="com.android.settings.spirit.fragments.NotificationSettings" />
-
-        <PreferenceScreen
-            android:key="misc_settings"
-            android:icon="@drawable/ic_misc_settings"
-            android:title="@string/misc_options"
-            android:fragment="com.android.settings.spirit.fragments.MiscSettings" />
+    xmlns:settings="http://schemas.android.com/apk/res/com.android.settings">
 
     <!-- Device Specific Touchscreen gestures. Avoid duplicating CMHW functionality, please -->
     <Preference
-        android:key="touch_screen_gesture_settings">
-        <intent
-            android:action="com.cyanogenmod.action.LAUNCH_TOUCHSCREEN_GESTURE_SETTINGS"
-            android:targetPackage="com.cyanogenmod.settings.device"
-            android:targetClass="com.cyanogenmod.settings.device.TouchscreenGestureSettings" />
+        android:key="touch_screen_gesture_settings"
+        android:title="@string/gestures_settings_header_title">
     </Preference>
 
 </PreferenceScreen>

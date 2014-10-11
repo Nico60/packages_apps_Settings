@@ -58,6 +58,7 @@ import static com.android.internal.util.cm.QSConstants.TILE_HOVER;
 import static com.android.internal.util.cm.QSConstants.TILE_PIE;
 import static com.android.internal.util.cm.QSConstants.TILE_GESTUREPANEL;
 import static com.android.internal.util.cm.QSConstants.TILE_FCHARGE;
+import static com.android.internal.util.cm.QSConstants.TILE_SPIRIT;
 
 import android.content.ContentResolver;
 import android.content.Context;
@@ -207,6 +208,9 @@ public class QuickSettingsUtil {
         registerTile(new QuickSettingsUtil.TileInfo(
                 TILE_FCHARGE, R.string.title_tile_fcharge,
                 "com.android.systemui:drawable/ic_qs_fcharge_off"));
+        registerTile(new QuickSettingsUtil.TileInfo(
+                TILE_SPIRIT, R.string.spirit_settings_title,
+                "com.android.systemui:drawable/ic_qs_spiritcontrols"));
     }
 
     private static void registerTile(QuickSettingsUtil.TileInfo info) {

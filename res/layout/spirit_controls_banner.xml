@@ -6,6 +6,6 @@
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:src="@drawable/spirit_banner" />
+            android:src="@drawable/spirit_controls_banner" />
 			
 </LinearLayout>

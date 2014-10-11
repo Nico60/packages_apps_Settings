@@ -1845,24 +1845,6 @@
         />
 
         <!-- CyanogenMod activities Start -->
-        <activity android:name="Settings$SystemSettingsActivity"
-                android:label="@string/system_settings_title"
-                android:taskAffinity=""
-                android:excludeFromRecents="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-            <meta-data android:name="com.android.settings.FRAGMENT_CLASS"
-                android:value="com.android.settings.cyanogenmod.SystemUiSettings" />
-            <meta-data android:name="com.android.settings.TOP_LEVEL_HEADER_ID"
-                android:resource="@id/system_settings" />
-        </activity>
-
-        <activity android:name=".QuickSettings" />
-
-        <activity android:name=".quicksettings.QuickSettingsTilesStyle" />
-
         <activity android:name="Settings$QuickSettingsConfigActivity"
                 android:label="@string/tile_picker_title"
                 android:taskAffinity=""
@@ -1947,16 +1929,6 @@
                 />
 
         <activity android:name=".profiles.NFCProfileSelect" />
-
-        <activity android:name=".QuickSettings" />
-
-        <activity android:name=".quicksettings.QuickSettingsTilesStyle" />
-
-        <activity android:name=".aokp.ribbons.RibbonsFragment" />
-
-        <activity android:name=".chameleonos.labs.gestureanywhere.GestureAnywhereBuilderActivity" />
-
-        <activity android:name=".chameleonos.labs.gestureanywhere.GestureAnywhereCreateGestureActivity" />
 
         <activity android:name=".profiles.NFCProfile"
                 android:theme="@android:style/Theme.NoDisplay">
@@ -2056,6 +2028,45 @@
         </activity>
         <!-- CyanogenMod activities End -->
 
+        <!-- Spirit activities start -->
+        <activity android:name="Settings$SpiritControlsActivity"
+                android:label="@string/spirit_settings_title"
+                android:taskAffinity=""
+                android:excludeFromRecents="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+            <meta-data android:name="com.android.settings.FRAGMENT_CLASS"
+                android:value="com.android.settings.spirit.SpiritControls" />
+            <meta-data android:name="com.android.settings.TOP_LEVEL_HEADER_ID"
+                android:resource="@id/spirit_settings" />
+        </activity>
+
+        <activity android:name=".aokp.ribbons.RibbonsFragment" />
+        <activity android:name=".chameleonos.labs.gestureanywhere.GestureAnywhereBuilderActivity" />
+        <activity android:name=".chameleonos.labs.gestureanywhere.GestureAnywhereCreateGestureActivity" />
+        <activity android:name=".paranoid.Halo" />
+        <activity android:name=".paranoid.Pie" />
+        <activity android:name=".paranoid.PieColor" />
+        <activity android:name=".paranoid.PieTargets" />
+        <activity android:name=".QuickSettings" />
+        <activity android:name=".quicksettings.QuickSettingsTilesStyle" />
+        <activity android:name=".slim.themes.ThemeSettings" />
+        <activity android:name=".spirit.AppSidebar" />
+        <activity android:name=".spirit.NavRingTargets" />
+        <activity android:name=".spirit.navbar.NavbarTabHostFragment" />
+        <activity android:name=".spirit.NotificationDrawerStyle" />
+        <activity android:name=".spirit.RamBar" />
+        <activity android:name=".spirit.SpiritControls" />
+        <activity android:name=".spirit.fragments.AnimSettings" />
+        <activity android:name=".spirit.fragments.ApplauncherSettings" />
+        <activity android:name=".spirit.fragments.GeneralSettings" />
+        <activity android:name=".spirit.fragments.MiscSettings" />
+        <activity android:name=".spirit.fragments.NavbarSettings" />
+        <activity android:name=".spirit.fragments.NotificationSettings" />
+        <!-- Spirit activities End -->
+
         <!-- Pie -->
         <activity android:name="Settings$PieActivity"
             android:label="@string/pie_controls_title"
@@ -2068,23 +2079,6 @@
             <meta-data android:name="com.android.settings.FRAGMENT_CLASS"
                 android:value="com.android.settings.paranoid.Pie" />
         </activity>
-
-        <activity android:name=".paranoid.Halo" />
-        <activity android:name=".paranoid.Pie" />
-        <activity android:name=".paranoid.PieColor" />
-        <activity android:name=".paranoid.PieTargets" />
-        <activity android:name=".slim.themes.ThemeSettings" />
-        <activity android:name=".spirit.AppSidebar" />
-        <activity android:name=".spirit.NavRingTargets" />
-        <activity android:name=".spirit.navbar.NavbarTabHostFragment" />
-        <activity android:name=".spirit.NotificationDrawerStyle" />
-        <activity android:name=".spirit.RamBar" />
-        <activity android:name=".spirit.fragments.AnimSettings" />
-        <activity android:name=".spirit.fragments.ApplauncherSettings" />
-        <activity android:name=".spirit.fragments.GeneralSettings" />
-        <activity android:name=".spirit.fragments.MiscSettings" />
-        <activity android:name=".spirit.fragments.NavbarSettings" />
-        <activity android:name=".spirit.fragments.NotificationSettings" />
 
    	<!-- Pseudo-activity used to provide an intent-filter entry point to ass display rotation config -->
         <activity android:name="Settings$ASSRamBarActivity"
