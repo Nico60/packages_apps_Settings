@@ -44,6 +44,7 @@ public class StatusBar extends SettingsPreferenceFragment implements OnPreferenc
     private static final String KEY_MISSED_CALL_BREATH = "missed_call_breath";
     private static final String KEY_VOICEMAIL_BREATH = "voicemail_breath";
     private static final String STATUSBAR_6BAR_SIGNAL = "statusbar_6bar_signal";
+    private static final String TICKER = "ticker_disabled";
 
     private ListPreference mStatusBarCmSignal;
     private CheckBoxPreference mSMSBreath;
@@ -51,6 +52,7 @@ public class StatusBar extends SettingsPreferenceFragment implements OnPreferenc
     private CheckBoxPreference mVoicemailBreath;
     private CheckBoxPreference mStatusBarBrightnessControl;
     private CheckBoxPreference mStatusBarSixBarSignal;
+    private CheckBoxPreference mTicker;
 
     private ContentObserver mSettingsObserver;
 
@@ -84,6 +86,9 @@ public class StatusBar extends SettingsPreferenceFragment implements OnPreferenc
 
         mVoicemailBreath = (CheckBoxPreference) prefSet.findPreference(KEY_VOICEMAIL_BREATH);
         mVoicemailBreath.setChecked((Settings.System.getInt(resolver, Settings.System.KEY_VOICEMAIL_BREATH, 0) == 1));
+
+        mTicker = (CheckBoxPreference) findPreference(TICKER);
+        mTicker.setChecked(Settings.System.getInt(resolver, Settings.System.TICKER_DISABLED, 0) == 1);
 
         int signalStyle = Settings.System.getInt(resolver, Settings.System.STATUS_BAR_SIGNAL_TEXT, 0);
         mStatusBarCmSignal.setValue(String.valueOf(signalStyle));
@@ -145,6 +150,10 @@ public class StatusBar extends SettingsPreferenceFragment implements OnPreferenc
         } else if (preference == mVoicemailBreath) {
             value = mVoicemailBreath.isChecked();
             Settings.System.putInt(resolver, Settings.System.KEY_VOICEMAIL_BREATH, value ? 1 : 0);
+            return true;
+        } else if (preference == mTicker) {
+            value = mTicker.isChecked();
+            Settings.System.putInt(resolver, Settings.System.TICKER_DISABLED, value ? 1 : 0);
             return true;
         }
 
