@@ -113,6 +113,7 @@ public class NetworkIndicator extends SettingsPreferenceFragment implements OnPr
         String hexColor = String.format("#%08x", (0xffffffff & intColor));
             mNetTrafficColor.setSummary(hexColor);
             mNetTrafficColor.setNewPreviewColor(intColor);
+            updateTrafficColor();
 
         // TrafficStats will return UNSUPPORTED if the device does not support it.
         if (TrafficStats.getTotalTxBytes() != TrafficStats.UNSUPPORTED &&
@@ -120,12 +121,8 @@ public class NetworkIndicator extends SettingsPreferenceFragment implements OnPr
             mNetTrafficVal = Settings.System.getInt(resolver, Settings.System.NETWORK_TRAFFIC_STATE, 0);
             int intIndex = mNetTrafficVal & (MASK_UP + MASK_DOWN);
             intIndex = mNetTrafficState.findIndexOfValue(String.valueOf(intIndex));
-            if (intIndex <= 0) {
-                mNetTrafficUnit.setEnabled(false);
-                mNetTrafficPeriod.setEnabled(false);
-                mNetTrafficAutohide.setEnabled(false);
-                mNetTrafficAutohideThreshold.setEnabled(false);
-            }
+            updateNetworkTrafficState(intIndex);
+
             mNetTrafficState.setValueIndex(intIndex >= 0 ? intIndex : 0);
             mNetTrafficState.setSummary(mNetTrafficState.getEntry());
             mNetTrafficState.setOnPreferenceChangeListener(this);
@@ -149,44 +146,28 @@ public class NetworkIndicator extends SettingsPreferenceFragment implements OnPr
 
     }
 
-    @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        menu.add(0, MENU_RESET, 0, R.string.network_traffic_color_reset)
-                .setIcon(R.drawable.ic_settings_backup)
-                .setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case MENU_RESET:
-                resetToDefault();
-                return true;
-            default:
-                return super.onContextItemSelected(item);
+    private void updateTrafficColor() {
+        int value = Settings.System.getInt(getActivity().getContentResolver(),
+               Settings.System.STATUS_BAR_TINTED_COLOR, 0);
+        if (value == 1 || value == 2) {
+            mNetTrafficColor.setEnabled(false);
+        } else {
+            mNetTrafficColor.setEnabled(true);
         }
     }
 
-    private void resetToDefault() {
-        AlertDialog.Builder alertDialog = new AlertDialog.Builder(getActivity());
-        alertDialog.setTitle(R.string.network_traffic_color_reset);
-        alertDialog.setMessage(R.string.network_traffic_color_reset_message);
-        alertDialog.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int id) {
-                NetworkTrafficColorReset();
-            }
-        });
-        alertDialog.setNegativeButton(R.string.cancel, null);
-        alertDialog.create().show();
-    }
-
-    private void NetworkTrafficColorReset() {
-        Settings.System.putInt(getContentResolver(),
-                Settings.System.NETWORK_TRAFFIC_COLOR, DEFAULT_TRAFFIC_COLOR);
-
-        mNetTrafficColor.setNewPreviewColor(DEFAULT_TRAFFIC_COLOR);
-        String hexColor = String.format("#%08x", (0xffffffff & DEFAULT_TRAFFIC_COLOR));
-        mNetTrafficColor.setSummary(hexColor);
+    private void updateNetworkTrafficState(int mIndex) {
+        if (mIndex <= 0) {
+            mNetTrafficUnit.setEnabled(false);
+            mNetTrafficPeriod.setEnabled(false);
+            mNetTrafficAutohide.setEnabled(false);
+            mNetTrafficAutohideThreshold.setEnabled(false);
+        } else {
+            mNetTrafficUnit.setEnabled(true);
+            mNetTrafficPeriod.setEnabled(true);
+            mNetTrafficAutohide.setEnabled(true);
+            mNetTrafficAutohideThreshold.setEnabled(true);
+        }
     }
 
     @Override
@@ -223,6 +204,7 @@ public class NetworkIndicator extends SettingsPreferenceFragment implements OnPr
             int intHex = ColorPickerPreference.convertToColorInt(hex);
             Settings.System.putInt(getContentResolver(),
                     Settings.System.NETWORK_TRAFFIC_COLOR, intHex);
+            updateTrafficColor();
             return true;
         } else if (preference == mNetTrafficUnit) {
             // 1 = Display as Byte/s; default is bit/s
