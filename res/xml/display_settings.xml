@@ -87,4 +87,3 @@
 	        android:fragment="com.android.settings.simpleaosp.NavigationBarSettings"
 	        android:title="@string/navigation_bar_title" />
 </PreferenceScreen>
-
