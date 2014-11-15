@@ -43,14 +43,16 @@ public class SoundSettings extends SettingsPreferenceFragment implements
     private static final String KEY_SAFE_HEADSET_VOLUME = "safe_headset_volume";
     private static final String KEY_VOL_MEDIA = "volume_keys_control_media_stream";
     private static final String VOLUME_KEY_ADJUST_SOUND = "volume_key_adjust_sound";
-    private static final String KEY_VOLBTN_MUSIC_CTRL = "volbtn_music_controls";  
+    private static final String KEY_VOLBTN_MUSIC_CTRL = "volbtn_music_controls";
     private static final String KEY_SWAP_VOLUME_BUTTONS = "swap_volume_buttons";
+    private static final String PREF_LESS_NOTIFICATION_SOUNDS = "less_notification_sounds";
 
     private SwitchPreference mSafeHeadsetVolume;
     private SwitchPreference mVolumeKeysControlMedia;
     private SwitchPreference mVolumeKeyAdjustSound;
     private SwitchPreference mVolBtnMusicCtrl;
     private SwitchPreference mSwapVolumeButtons;
+    private ListPreference mAnnoyingNotifications;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -62,6 +64,13 @@ public class SoundSettings extends SettingsPreferenceFragment implements
         mSafeHeadsetVolume.setChecked(Settings.System.getInt(getContentResolver(),
                 Settings.System.SAFE_HEADSET_VOLUME, 1) != 0);
         mSafeHeadsetVolume.setOnPreferenceChangeListener(this);
+
+        mAnnoyingNotifications = (ListPreference) findPreference(PREF_LESS_NOTIFICATION_SOUNDS);
+        int notificationThreshold = Settings.System.getInt(getContentResolver(),
+                Settings.System.MUTE_ANNOYING_NOTIFICATIONS_THRESHOLD,
+                0);
+        mAnnoyingNotifications.setValue(Integer.toString(notificationThreshold));
+        mAnnoyingNotifications.setOnPreferenceChangeListener(this);
 
         mVolumeKeysControlMedia = (SwitchPreference) findPreference(KEY_VOL_MEDIA);
         mVolumeKeysControlMedia.setChecked(Settings.System.getInt(getContentResolver(),
@@ -112,6 +121,11 @@ public class SoundSettings extends SettingsPreferenceFragment implements
             } else {
                 showDialogInner(DLG_SAFE_HEADSET_VOLUME);
             }
+        }
+        if (PREF_LESS_NOTIFICATION_SOUNDS.equals(key)) {
+            final int val = Integer.valueOf((String) objValue);
+            Settings.System.putInt(getContentResolver(),
+                    Settings.System.MUTE_ANNOYING_NOTIFICATIONS_THRESHOLD, val);
         }
         if (KEY_VOL_MEDIA.equals(key)) {
             Settings.System.putInt(getContentResolver(),
