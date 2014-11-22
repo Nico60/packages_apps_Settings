@@ -88,11 +88,10 @@
 	        android:fragment="com.android.settings.simpleaosp.NavigationBarSettings"
 	        android:title="@string/navigation_bar_title" />
 
-        <PreferenceScreen
-	  	android:key="network_traffic_state"
-		android:fragment="com.android.settings.simpleaosp.NetworkTraffic"
-	 	android:summary="@string/network_traffic_summary"
-		android:title="@string/network_traffic_title" />
+	<PreferenceScreen
+		android:key="status_bar"
+		android:fragment="com.android.settings.simpleaosp.StatusBarSettings"
+		android:title="@string/status_bar_title" />
 
 	<PreferenceCategory
              android:key="category_wakeup_options"
