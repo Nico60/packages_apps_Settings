@@ -6155,4 +6155,7 @@
     <!-- Status bar-->
     <string name="status_bar_general_category">General</string>
     <string name="status_bar_title">Status bar</string>
+  
+    <string name="status_bar_quick_qs_pulldown_title">One finger QS pull down</string>
+    <string name="status_bar_quick_qs_pulldown_summary">Whether to allow one finger quick settings\nexpansion on the right side of the statusbar.</string>
 </resources>
