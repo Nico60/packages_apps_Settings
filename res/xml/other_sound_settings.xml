@@ -35,6 +35,13 @@
             android:switchTextOn=""
             android:persistent="false" />
 
+    <!-- Screenshot sound -->
+    <com.android.settings.cyanogenmod.SystemSettingSwitchPreference
+            android:key="screenshot_sound"
+            android:title="@string/screenshot_sound_title"
+            android:summary="@string/screenshot_sound_summary"
+            android:defaultValue="true" />
+
     <!-- Docking sounds -->
     <SwitchPreference
             android:key="docking_sounds"
