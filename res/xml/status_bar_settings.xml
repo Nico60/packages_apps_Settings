@@ -53,10 +53,15 @@
         android:title="@string/status_bar_clock" />
    
     <PreferenceScreen
-	    android:key="network_traffic_state"
-	    android:fragment="com.android.settings.simpleaosp.NetworkTraffic"
- 	    android:summary="@string/network_traffic_summary"
-	    android:title="@string/network_traffic_title" />
+        android:key="network_traffic_state"
+        android:fragment="com.android.settings.simpleaosp.NetworkTraffic"
+        android:summary="@string/network_traffic_summary"
+        android:title="@string/network_traffic_title" />
+
+    <PreferenceScreen
+        android:key="carrier_options"
+        android:fragment="com.android.settings.optipop.fragments.CarrierLabel"
+        android:title="@string/carrier_options" />
 
     <PreferenceCategory
         android:key="weather_clock_category"
