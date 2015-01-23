@@ -1098,7 +1098,8 @@ public final class Utils {
             }
         }
         return null;
-    }  
+    }
+
     public static boolean isPackageInstalled(Context context, String pkg, boolean ignoreState) {
         if (pkg != null) {
             try {
