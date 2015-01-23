@@ -18,6 +18,7 @@ import android.view.View;
 
 import com.android.settings.SettingsPreferenceFragment;
 import com.android.settings.Utils;
+import com.android.internal.util.cm.ScreenType;
 import android.database.ContentObserver;
 import android.net.Uri;
 import android.os.Handler;
@@ -76,7 +77,7 @@ public class StatusBarSettings extends SettingsPreferenceFragment implements
        
 	mQuickPulldown = (ListPreference) findPreference(PRE_QUICK_PULLDOWN);
 
-        if (!Utils.isPhone(getActivity())) {
+        if (!ScreenType.isPhone(getActivity())) {
             prefSet.removePreference(mQuickPulldown);
         } else {
             // Quick Pulldown
