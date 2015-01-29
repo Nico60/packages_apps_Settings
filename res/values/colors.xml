@@ -85,6 +85,8 @@
 
     <!-- QS tiles -->
     <color name="qs_tile_tint_color">#FF009587</color>
+    
+    <color name="wifi_assistant_color_accent">#ff009587</color>
 
     <!-- Expanded desktop -->
     <drawable name="expanded_item_bg_activated">#ffEEEEEE</drawable>
