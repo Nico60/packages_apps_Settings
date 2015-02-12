@@ -6429,4 +6429,8 @@
     <string name="expanded_desktop_style">Expanded desktop style</string>
     <string name="expanded_desktop_style_description">Choose a default expanded desktop style</string>
     <string name="expanded_desktop_title">Expanded desktop options</string>
+  
+    <!-- Keyboard and Input ASS methods -->
+    <string name="show_enter_key_title">Show enter key</string>
+    <string name="show_enter_key_summary">Force keyboard to show enter instead of emoticon key</string>
 </resources>
