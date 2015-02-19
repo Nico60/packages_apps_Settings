@@ -364,4 +364,10 @@
         <item name="android:layout_gravity">center</item>
         <item name="android:background">@android:color/transparent</item>
     </style>
+
+    <style name="TextAppearance.PagerTabsSystemSettings" parent="@android:style/TextAppearance.DeviceDefault.Small">
+        <item name="android:fontFamily">sans-serif-light</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:textStyle">bold</item>
+    </style>
 </resources>
