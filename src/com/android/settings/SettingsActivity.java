@@ -71,8 +71,6 @@ import com.android.settings.accessibility.CaptionPropertiesFragment;
 import com.android.settings.accounts.AccountSettings;
 import com.android.settings.accounts.AccountSyncSettings;
 import com.android.settings.applications.DrawOverlayDetails;
-import com.dirtyunicorns.dutweaks.DirtyTweaks;
-import com.dirtyunicorns.dutweaks.fragments.ExpandedDesktop;
 import com.android.settings.applications.InstalledAppDetails;
 import com.android.settings.applications.ManageApplications;
 import com.android.settings.applications.ManageAssist;
@@ -90,6 +88,7 @@ import com.android.settings.deviceinfo.PrivateVolumeForget;
 import com.android.settings.deviceinfo.PrivateVolumeSettings;
 import com.android.settings.deviceinfo.PublicVolumeSettings;
 import com.android.settings.deviceinfo.StorageSettings;
+import com.android.settings.du.DisplayRotation;
 import com.android.settings.fuelgauge.BatterySaverSettings;
 import com.android.settings.fuelgauge.PowerUsageDetail;
 import com.android.settings.fuelgauge.PowerUsageSummary;
@@ -127,7 +126,9 @@ import com.android.settings.wifi.SavedAccessPointsWifiSettings;
 import com.android.settings.wifi.WifiSettings;
 import com.android.settings.wifi.p2p.WifiP2pSettings;
 
-import com.android.settings.du.DisplayRotation;
+import com.dirtyunicorns.dutweaks.DirtyTweaks;
+import com.dirtyunicorns.dutweaks.fragments.ExpandedDesktop;
+import com.dirtyunicorns.dutweaks.fragments.NavbarSettings;
 
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
@@ -361,7 +362,8 @@ public class SettingsActivity extends Activity
             WriteSettingsDetails.class.getName(),
             DirtyTweaks.class.getName(),
             ExpandedDesktop.class.getName(),
-            DisplayRotation.class.getName()
+            DisplayRotation.class.getName(),
+            NavbarSettings.class.getName()
     };
 
 
