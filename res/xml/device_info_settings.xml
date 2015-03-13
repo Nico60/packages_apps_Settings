@@ -140,12 +140,6 @@
                 android:title="@string/selinux_status"
                 android:summary="@string/selinux_status_enforcing"/>
 
-        <!-- OptiPop build date -->
-        <Preference android:key="build_date"
-                style="?android:preferenceInformationStyle"
-                android:title="@string/build_date"
-                android:summary="@string/build_date_default" />
-
         <!-- GCC build info -->
         <Preference android:key="uber_android"
                 style="?android:preferenceInformationStyle"
@@ -161,5 +155,11 @@
                 style="?android:preferenceInformationStyle"
                 android:title="@string/uber_flags"
                 android:summary="@string/uber_flags_default" />
+
+        <!-- OptiPop build date -->
+        <Preference android:key="build_date"
+                style="?android:preferenceInformationStyle"
+                android:title="@string/build_date"
+                android:summary="@string/build_date_default" />
 
 </PreferenceScreen>
