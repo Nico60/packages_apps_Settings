@@ -23,6 +23,7 @@ import android.view.ViewGroup;
 
 import com.android.settings.simpleaosp.StatusBarSettings;
 import com.android.settings.simpleaosp.NavigationBarSettings;
+import com.android.settings.cyanogenmod.NotificationDrawerSettings;
 
 import com.android.settings.R;
 import com.android.settings.SettingsPreferenceFragment;
@@ -80,6 +81,8 @@ public class AdditionalSettings extends SettingsPreferenceFragment {
             super(fm);
 	    frags[0] = new StatusBarSettings();
             frags[1] = new NavigationBarSettings();
+	    frags[2] = new NotificationDrawerSettings();
+
         }
 
         @Override
@@ -102,7 +105,8 @@ public class AdditionalSettings extends SettingsPreferenceFragment {
         String titleString[];
         titleString = new String[]{
 		    getString(R.string.status_bar_title),
-                    getString(R.string.navigation_bar_title)};
+                    getString(R.string.navigation_bar_title),
+		    getString(R.string.notification_drawer_title)};
         return titleString;
     }
 }
