@@ -627,7 +627,7 @@ public class DevelopmentSettings extends SettingsPreferenceFragment
     }
 
     private void updateKillAppLongpressBackOptions() {
-        mKillAppLongpressBack.setChecked(Settings.Secure.getInt(
+        updateSwitchPreference(mKillAppLongpressBack, Settings.Secure.getInt(
             getActivity().getContentResolver(), Settings.Secure.KILL_APP_LONGPRESS_BACK, 0) != 0);
     }
 
