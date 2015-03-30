@@ -98,7 +98,7 @@
                 android:id="@+id/simpleaosp_settings"
                 android:title="@string/simpleaosp_settings_title"
                 android:fragment="com.android.settings.simpleaosp.AdditionalSettings"
-                android:icon="@drawable/ic_settings_buttons" />
+                android:icon="@drawable/ic_settings_optipop" />
         <!-- Home -->
         <dashboard-tile
                 android:id="@+id/home_settings"
