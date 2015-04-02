@@ -4850,15 +4850,6 @@
     <!-- UI debug setting: profile time taken by hardware acceleration to render apps [CHAR LIMIT=25] -->
     <string name="track_frame_time">Profile GPU rendering</string>
 
-    <!-- UI debug setting: scaling factor for window animations [CHAR LIMIT=25] -->
-    <string name="window_animation_scale_title">Window animation scale</string>
-
-    <!-- UI debug setting: scaling factor for transition animations [CHAR LIMIT=25] -->
-    <string name="transition_animation_scale_title">Transition animation scale</string>
-
-    <!-- UI debug setting: scaling factor for all Animator-based animations [CHAR LIMIT=25] -->
-    <string name="animator_duration_scale_title">Animator duration scale</string>
-
     <!-- UI debug setting: simulate secondary display devices using overlays [CHAR LIMIT=25] -->
     <string name="overlay_display_devices_title">Simulate secondary displays</string>
 
@@ -6110,6 +6101,7 @@
 
     <!-- Developer options - kill app long press back -->
     <string name="kill_app_longpress_back">Kill app back button</string>
+    <string name="kill_app_longpress_back_settings">Kill app back button settings</string>
     <string name="kill_app_longpress_back_summary">Kill the foreground app by long-pressing the back key</string>
 
     <!--Back to kill timeout -->
@@ -6144,6 +6136,17 @@
     <string name="recents_clear_all_location_top_left">Top left</string>
     <string name="recents_clear_all_location_bottom_right">Bottom right</string>
     <string name="recents_clear_all_location_bottom_left">Bottom left</string>
+
+
+    <!-- UI customization settings -->
+    <string name="ui_customization_title">ui customization</string>
+    <string name="animation_scale_settings">Animation scale settings</string>
+    <!-- scaling factor for window animations [CHAR LIMIT=25] -->
+    <string name="window_animation_scale_title">Window animation scale</string>
+    <!-- scaling factor for transition animations [CHAR LIMIT=25] -->
+    <string name="transition_animation_scale_title">Transition animation scale</string>
+    <!-- scaling factor for all Animator-based animations [CHAR LIMIT=25] -->
+    <string name="animator_duration_scale_title">Animator duration scale</string>
 
     <!-- Color Picker -->
     <string name="dialog_color_picker">Color Picker</string>
