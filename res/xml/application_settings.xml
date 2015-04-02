@@ -47,6 +47,13 @@
                 android:value="com.android.settings.Settings$StorageUseActivity" />
     </PreferenceScreen>
 
+    <PreferenceScreen
+			android:key="privacy_guard_manager"
+            android:title="@string/privacy_guard_manager_title"
+            android:summary="@string/privacy_guard_manager_summary"
+            android:fragment="com.android.settings.simpleaosp.privacyguard.PrivacyGuardManager" >
+    </PreferenceScreen>
+
     <CheckBoxPreference
             android:key="toggle_advanced_settings"
             android:title="@string/advanced_settings"
