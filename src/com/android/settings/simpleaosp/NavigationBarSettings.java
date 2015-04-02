@@ -111,7 +111,7 @@ OnPreferenceChangeListener, OnPreferenceClickListener {
             updateRecentsLocation(location);
             return true;
 		} else if (preference == mKillAppLongpressBack) {
-            writeKillAppLongpressBackOptions();
+            writeKillAppLongpressBackOptions((Boolean) objValue);
             return true; 
 		} else if (preference == mKillAppLongpressDelay) {
             writeAnimationScaleOption(3, mKillAppLongpressDelay, objValue);
@@ -176,10 +176,8 @@ OnPreferenceChangeListener, OnPreferenceClickListener {
         }
     }
 
-    private void writeKillAppLongpressBackOptions() {
-        Settings.Secure.putInt(getActivity().getContentResolver(),
-                Settings.Secure.KILL_APP_LONGPRESS_BACK,
-                mKillAppLongpressBack.isChecked() ? 1 : 0);
+    private void writeKillAppLongpressBackOptions(boolean checked) {
+        Settings.System.putIntForUser(getActivity().getContentResolver(),Settings.Secure.KILL_APP_LONGPRESS_BACK,checked ? 1 : 0,UserHandle.USER_CURRENT);
     }
 
     private void updateKillAppLongpressBackOptions() {
