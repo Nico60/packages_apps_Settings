@@ -6373,6 +6373,10 @@
     <string name="app_ops_btn_text">Modify</string>
     <string name="app_ops_no_item_text">This app has no changeable permissions</string>
 
+    <!-- Appops -->
+    <string name="appops_manager_title">Appops</string>
+    <string name="appops_manager_summary">Individually manage all apps permissions</string>
+
     <!-- QuickSettings haptic feedback -->
     <string name="quick_settings_vibrate_title">Vibrate on touch</string>
     <string name="quick_settings_vibrate_summary">Vibrate when touching tiles</string>
