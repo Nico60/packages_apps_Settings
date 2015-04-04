@@ -15,6 +15,7 @@ import android.preference.PreferenceCategory;
 import android.preference.PreferenceScreen;
 import android.preference.SwitchPreference;
 import android.provider.Settings;
+import android.provider.Settings.SettingNotFoundException;
 
 import com.android.settings.AnimationScalePreference;
 import com.android.settings.R;
@@ -69,8 +70,7 @@ OnPreferenceChangeListener, OnPreferenceClickListener {
         mKillAppLongpressDelay = findAndInitAnimationScalePreference(LONG_PRESS_KILL_DELAY);
         updateAnimationScaleValue(3, mKillAppLongpressDelay);
     }
-    
-    /*@Override
+
     public boolean onPreferenceTreeClick(PreferenceScreen preferenceScreen, Preference preference) {
         if (Utils.isMonkeyRunning()) {
             return false;
@@ -81,7 +81,7 @@ OnPreferenceChangeListener, OnPreferenceClickListener {
             return super.onPreferenceTreeClick(preferenceScreen, preference);
         }
         return false;
-    }*/
+    }
     
     @Override
     public boolean onPreferenceClick(Preference preference) {
@@ -99,7 +99,7 @@ OnPreferenceChangeListener, OnPreferenceClickListener {
                     Settings.System.NAVIGATION_BAR_HEIGHT, statusNavigationBarHeight);
             mNavigationBarHeight.setSummary(mNavigationBarHeight.getEntries()[index]);
         return true;
-	} else if (preference == mRecentsClearAll) {
+		} else if (preference == mRecentsClearAll) {
             boolean show = (Boolean) objValue;
             Settings.System.putIntForUser(getActivity().getContentResolver(),
                     Settings.System.SHOW_CLEAR_ALL_RECENTS, show ? 1 : 0, UserHandle.USER_CURRENT);
@@ -111,7 +111,7 @@ OnPreferenceChangeListener, OnPreferenceClickListener {
             updateRecentsLocation(location);
             return true;
 		} else if (preference == mKillAppLongpressBack) {
-            writeKillAppLongpressBackOptions((Boolean) objValue);
+            writeKillAppLongpressBackOptions();
             return true; 
 		} else if (preference == mKillAppLongpressDelay) {
             writeAnimationScaleOption(3, mKillAppLongpressDelay, objValue);
@@ -176,13 +176,17 @@ OnPreferenceChangeListener, OnPreferenceClickListener {
         }
     }
 
-    private void writeKillAppLongpressBackOptions(boolean checked) {
-        Settings.System.putIntForUser(getActivity().getContentResolver(),Settings.Secure.KILL_APP_LONGPRESS_BACK,checked ? 1 : 0,UserHandle.USER_CURRENT);
+    private void writeKillAppLongpressBackOptions() {
+        Settings.System.putIntForUser(getActivity().getContentResolver(), Settings.System.KILL_APP_LONGPRESS_BACK, mKillAppLongpressBack.isChecked() ? 1 : 0, UserHandle.USER_CURRENT);
     }
 
     private void updateKillAppLongpressBackOptions() {
-        mKillAppLongpressBack.setChecked(Settings.Secure.getInt(getActivity().getContentResolver(), Settings.Secure.KILL_APP_LONGPRESS_BACK, 0) != 0);
-    }
+        try {
+			mKillAppLongpressBack.setChecked(Settings.System.getIntForUser(getActivity().getContentResolver(), Settings.System.KILL_APP_LONGPRESS_BACK, UserHandle.USER_CURRENT)== 1);
+        } catch (SettingNotFoundException e) {
+			e.printStackTrace();
+		}
+	}
 
 	private void updateRecentsLocation(int value) {
         ContentResolver resolver = getContentResolver();
