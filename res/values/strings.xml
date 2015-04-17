@@ -6554,4 +6554,8 @@
     <!-- BitSyko Layers  -->
     <string name="bitsyko_layers">Layers</string>
 
+    <!-- Silent mode -->
+    <string name="none_is_silent_title">None is Silent mode</string>
+    <string name="none_is_silent_summary">Silent mode always sounds alarms</string>
+
 </resources>
