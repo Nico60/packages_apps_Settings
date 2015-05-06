@@ -27,10 +27,10 @@ import com.android.settings.cyanogenmod.NotificationDrawerSettings;
 import com.android.settings.cyanogenmod.PowerMenuActions;
 import com.android.settings.UiCustomizationSettings;
 import com.android.settings.simpleaosp.privacyguard.PrivacyGuardManager;
+import com.android.settings.optipop.fragments.WakeLockBlocker;
 
 import com.android.settings.R;
 import com.android.settings.SettingsPreferenceFragment;
-
 
 import java.util.ArrayList;
 import java.util.List;
@@ -88,6 +88,7 @@ public class AdditionalSettings extends SettingsPreferenceFragment {
             frags[3] = new PowerMenuActions();
             frags[4] = new UiCustomizationSettings();
             frags[5] = new PrivacyGuardManager();
+            frags[6] = new WakeLockBlocker();
         }
 
         @Override
@@ -114,7 +115,8 @@ public class AdditionalSettings extends SettingsPreferenceFragment {
 			getString(R.string.notification_drawer_title),
 			getString(R.string.power_menu_title),
 			getString(R.string.ui_customization_title),
-			getString(R.string.privacy_guard_manager_title)
+			getString(R.string.privacy_guard_manager_title),
+			getString(R.string.wakelock_blocker_title)
         };
         return titleString;
     }
