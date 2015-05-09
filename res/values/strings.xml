@@ -6072,7 +6072,7 @@
     <string name="navigation_bar_height_24">24dp</string>
     <string name="navigation_bar_height_20">20dp</string>
     <string name="navigation_bar_height_0">0dp (hide)</string>
-  
+
     <!-- Restart SystemUI -->
     <string name="restart_systemui">Restart SystemUI</string>
 
@@ -6089,7 +6089,6 @@
     <string name="status_bar_battery_percentage_default">Hidden (default)</string>
     <string name="status_bar_battery_percentage_text_inside">Inside the icon</string>
     <string name="status_bar_battery_percentage_text_next">Next to the icon</string>
-
 
     <!--  Volume rocker -->
     <string name="volume_rocker_screen_title">Volume rocker</string>
@@ -6136,7 +6135,6 @@
     <string name="recents_clear_all_location_top_left">Top left</string>
     <string name="recents_clear_all_location_bottom_right">Bottom right</string>
     <string name="recents_clear_all_location_bottom_left">Bottom left</string>
-
 
     <!-- UI customization settings -->
     <string name="ui_customization_title">ui customization</string>
@@ -6279,7 +6277,6 @@
     <string name="app_notification_show_on_keyguard_summary">Show notifications from this app on the lock screen</string>
     <string name="app_notification_no_ongoing_on_keyguard_title">Disable persistent notification on lock screen</string>
     <string name="app_notification_no_ongoing_on_keyguard_summary">Never show persistent notifications from this app on the lock screen</string>
-
     <string name="app_security_title">App security</string>
 
    <!-- Blacklist preferences -->
@@ -6444,7 +6441,7 @@
     <string name="expanded_desktop_style">Expanded desktop style</string>
     <string name="expanded_desktop_style_description">Choose a default expanded desktop style</string>
     <string name="expanded_desktop_title">Expanded desktop options</string>
-  
+
     <!-- Keyboard and Input ASS methods -->
     <string name="show_enter_key_title">Show enter key</string>
     <string name="show_enter_key_summary">Force keyboard to show enter instead of emoticon key</string>
@@ -6465,7 +6462,7 @@
     <!-- Navigation bar cursor -->
     <string name="navigation_bar_arrow_keys_title">Show arrow keys while typing</string>
     <string name="navigation_bar_arrow_keys_summary">Display left and right cursor buttons while typing. Overrides IME switcher.</string>
-   
+
     <!-- Navigation ring shortcuts -->
     <string name="navigation_ring_title">Navigation ring targets</string>
     <string name="navigation_ring_summary">Edit and re-arrange navigation ring shortcuts</string>
@@ -6514,7 +6511,7 @@
     <string name="screen_recorder_bitrate_20000000">20000000</string>
     <string name="screen_recorder_record_audio_title">External audio</string>
     <string name="screen_recorder_record_audio_summary">Record audio from the microphone</string>
-   
+
     <!-- Power menu -->
     <string name="power_menu_title">Power menu</string>
     <string name="power_menu_reboot_title">Reboot menu</string>
@@ -6531,7 +6528,7 @@
     <string name="link_volume_option_title">Link ring and notification volumes</string>
     <string name="notification_volume_option_title">Notification volume</string>
     <string name="ring_notification_volume_option_tile">Ring and notification volume</string>
-   
+
     <!-- Long press on lock screen lock icon to sleep -->
     <string name="longpress_lock_icon_to_sleep_title">Long press lock icon to sleep</string>
     <string name="longpress_lock_icon_to_sleep_summary">This option will not work if both smart lock and accessibility touch exploration are enabled</string>   
@@ -6546,11 +6543,11 @@
     <string name="volume_panel_time_out_8sec">8 seconds</string>
     <string name="volume_panel_time_out_12sec">12 seconds</string>
     <string name="volume_panel_time_out_15sec">15 seconds</string>
-    
+
     <!-- Show/Hide Search Bar -->
     <string name="recents_show_searchbar">Disable search bar in recents menu</string>
     <string name="recents_show_searchbar_summary">Disable or enable the search bar in the recents menu</string>
-    
+
     <!-- BitSyko Layers  -->
     <string name="bitsyko_layers">Layers</string>
 

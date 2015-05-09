@@ -1503,7 +1503,7 @@
         <item>1</item>
         <item>2</item>
     </string-array>
-  
+
     <!-- Values for the notification light pulse spinners -->
     <string-array name="notification_pulse_length_entries" translatable="false">
         <item>@string/pulse_length_always_on</item>
