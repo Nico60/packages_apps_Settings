@@ -6355,9 +6355,14 @@
     <string name="qs_tile_nfc">NFC</string>
     <string name="qs_tile_compass">Compass</string>
     <string name="qs_tile_screen_timeout">Screen timeout</string>
-    <string name="qs_tile_lte">Lte</string>
+    <string name="qs_tile_lte">Lte</string>  
+    <string name="qs_expanded_desktop_tile">Expanded desktop</string>
+    <string name="qs_screen_off_tile">Screen off</string>  
+    <string name="qs_sync_tile">Sync</string>
+    <string name="qs_screenshot_tile">Screenshot</string>
+    <string name="qs_tile_usb_tether">USB tethering</string>
 
-    <!-- Privacy Guard -->
+  <!-- Privacy Guard -->
     <string name="privacy_guard_dlg_title">Enable privacy guard?</string>
     <string name="privacy_guard_enable_dlg_text">When privacy guard is enabled, %s will not be able to access personal data such as contacts, messages, location or call logs.</string>
     <string name="privacy_guard_enable_dlg_system_app_text">When enabling privacy guard for the built-in app %s, the app will not be able to access personal data such as contacts, messages, location or call logs. This may cause other apps to misbehave.</string>
