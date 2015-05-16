@@ -6355,6 +6355,9 @@
     <string name="qs_tile_nfc">NFC</string>
     <string name="qs_tile_compass">Compass</string>
     <string name="qs_tile_screen_timeout">Screen timeout</string>
+<<<<<<< HEAD
+    <string name="qs_tile_lte">Lte</string>
+=======
     <string name="qs_tile_lte">Lte</string>  
     <string name="qs_expanded_desktop_tile">Expanded desktop</string>
     <string name="qs_screen_off_tile">Screen off</string>  
@@ -6362,6 +6365,7 @@
     <string name="qs_tile_usb_tether">USB tethering</string>
     <string name="qs_screenshot_tile">Screenshot</string>
     <string name="qs_tile_ambient_display">Ambient display</string>
+>>>>>>> 0eef6c4... Add new tiles
 
     <!-- Privacy Guard -->
     <string name="privacy_guard_dlg_title">Enable privacy guard?</string>
