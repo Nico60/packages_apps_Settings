@@ -22,7 +22,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.android.settings.simpleaosp.StatusBarSettings;
-import com.android.settings.simpleaosp.NavigationBarSettings;
 import com.android.settings.cyanogenmod.NotificationDrawerSettings;
 import com.android.settings.cyanogenmod.PowerMenuActions;
 import com.android.settings.UiCustomizationSettings;
@@ -83,12 +82,11 @@ public class AdditionalSettings extends SettingsPreferenceFragment {
         public StatusBarAdapter(FragmentManager fm) {
             super(fm);
             frags[0] = new StatusBarSettings();
-            frags[1] = new NavigationBarSettings();
-            frags[2] = new NotificationDrawerSettings();
-            frags[3] = new PowerMenuActions();
-            frags[4] = new UiCustomizationSettings();
-            frags[5] = new PrivacyGuardManager();
-            frags[6] = new WakeLockBlocker();
+            frags[1] = new NotificationDrawerSettings();
+            frags[2] = new PowerMenuActions();
+            frags[3] = new UiCustomizationSettings();
+            frags[4] = new PrivacyGuardManager();
+            frags[5] = new WakeLockBlocker();
         }
 
         @Override
@@ -111,7 +109,6 @@ public class AdditionalSettings extends SettingsPreferenceFragment {
         String titleString[];
 	    titleString = new String[]{
 			getString(R.string.status_bar_title),
-			getString(R.string.navigation_bar_title),
 			getString(R.string.notification_drawer_title),
 			getString(R.string.power_menu_title),
 			getString(R.string.ui_customization_title),
