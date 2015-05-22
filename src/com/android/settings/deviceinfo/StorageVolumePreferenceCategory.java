@@ -32,7 +32,7 @@ import android.os.RemoteException;
 import android.os.UserManager;
 import android.os.storage.StorageManager;
 import android.os.storage.StorageVolume;
-import android.preference.CheckBoxPreference;
+import android.preference.SwitchPreference;
 import android.preference.Preference;
 import android.preference.PreferenceCategory;
 import android.preference.Preference.OnPreferenceClickListener;
@@ -70,7 +70,7 @@ public class StorageVolumePreferenceCategory extends PreferenceCategory implemen
     private Preference mMountTogglePreference;
     private Preference mFormatPreference;
     private Preference mStorageLow;
-    private CheckBoxPreference mMountNotification;
+    private SwitchPreference mMountNotification;
 
     private StorageItemPreference mItemTotal;
     private StorageItemPreference mItemAvailable;
@@ -206,7 +206,7 @@ public class StorageVolumePreferenceCategory extends PreferenceCategory implemen
         final boolean isRemovable = mVolume != null ? mVolume.isRemovable() : false;
         // Always create the preference since many code rely on it existing
         mMountTogglePreference = new Preference(context);
-        mMountNotification = new CheckBoxPreference(context);
+        mMountNotification = new SwitchPreference(context);
         if (isRemovable) {
             mMountTogglePreference.setTitle(R.string.sd_eject);
             mMountTogglePreference.setSummary(R.string.sd_eject_summary);
@@ -507,7 +507,7 @@ public class StorageVolumePreferenceCategory extends PreferenceCategory implemen
     @Override
     public boolean onPreferenceClick(Preference preference) {
         if (preference == mMountNotification) {
-            boolean checked = ((CheckBoxPreference)preference).isChecked();
+            boolean checked = ((SwitchPreference)preference).isChecked();
 
             String volumePath = mVolume.getPath();
             String notificationConfig = android.provider.Settings.System.getString(getContext().getContentResolver(),

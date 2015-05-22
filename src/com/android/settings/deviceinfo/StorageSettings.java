@@ -19,7 +19,7 @@ package com.android.settings.deviceinfo;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.preference.CheckBoxPreference;
+import android.preference.SwitchPreference;
 import android.preference.Preference;
 import android.preference.PreferenceScreen;
 import android.provider.Settings;
@@ -38,7 +38,7 @@ public class StorageSettings extends SettingsPreferenceFragment {
 
     private static final String KEY_NO_MEDIA_NOTIFICTION = "no_media_notification";
 
-    private CheckBoxPreference mNoMediaNotification;
+    private SwitchPreference mNoMediaNotification;
 
     @Override
     public void onCreate(Bundle icicle) {
@@ -50,7 +50,7 @@ public class StorageSettings extends SettingsPreferenceFragment {
         addPreferencesFromResource(R.xml.storage_settings);
         root = getPreferenceScreen();
 
-        mNoMediaNotification = (CheckBoxPreference) root.findPreference(KEY_NO_MEDIA_NOTIFICTION);
+        mNoMediaNotification = (SwitchPreference) root.findPreference(KEY_NO_MEDIA_NOTIFICTION);
         mNoMediaNotification.setChecked(Settings.System.getInt(getActivity().getContentResolver(),
                 Settings.System.STORAGE_MEDIA_REMOVED_NOTIFICTION, 1) == 1);
     }

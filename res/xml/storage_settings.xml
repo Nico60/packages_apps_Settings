@@ -20,7 +20,7 @@
     <PreferenceCategory
             android:title="@string/storage_options_category" />
 
-    <CheckBoxPreference
+    <SwitchPreference
         android:key="no_media_notification"
         android:title="@string/no_media_notification_title"
         android:summary="@string/no_media_notification_summary"
