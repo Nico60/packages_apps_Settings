@@ -16,7 +16,7 @@ import android.content.DialogInterface;
 import android.content.res.Resources;
 import android.net.TrafficStats;
 import android.os.Bundle;
-import android.preference.CheckBoxPreference;
+import android.preference.SwitchPreference;
 import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.Preference.OnPreferenceChangeListener;
@@ -49,7 +49,7 @@ public class NetworkTraffic extends SettingsPreferenceFragment
     private ListPreference mNetTrafficState;
     private ListPreference mNetTrafficUnit;
     private ListPreference mNetTrafficPeriod;
-    private CheckBoxPreference mNetTrafficAutohide;
+    private SwitchPreference mNetTrafficAutohide;
     private ColorPickerPreference mNetTrafficColor;
     private SeekBarPreference mNetTrafficAutohideThreshold;
 
@@ -77,7 +77,7 @@ public class NetworkTraffic extends SettingsPreferenceFragment
         mNetTrafficPeriod = (ListPreference) prefSet.findPreference(NETWORK_TRAFFIC_PERIOD);
 
         mNetTrafficAutohide =
-                (CheckBoxPreference) prefSet.findPreference(NETWORK_TRAFFIC_AUTOHIDE);
+                (SwitchPreference) prefSet.findPreference(NETWORK_TRAFFIC_AUTOHIDE);
         mNetTrafficAutohide.setChecked((Settings.System.getInt(getContentResolver(),
                 Settings.System.NETWORK_TRAFFIC_AUTOHIDE, 0) == 1));
         mNetTrafficAutohide.setOnPreferenceChangeListener(this);
