@@ -107,7 +107,6 @@ import com.android.settings.print.PrintJobSettingsFragment;
 import com.android.settings.print.PrintSettingsFragment;
 import com.android.settings.sim.SimSettings;
 import com.android.settings.slim.HardwareKeysSettings;
-import com.android.settings.slim.NavigationSettings;
 import com.android.settings.slim.fragments.NavbarButtonFragment;
 import com.android.settings.slim.fragments.PieButtonFragment;
 import com.android.settings.tts.TextToSpeechSettings;
@@ -227,7 +226,6 @@ public class SettingsActivity extends Activity
             R.id.data_usage_settings,
             R.id.sim_settings,
             R.id.wireless_settings,
-            R.id.navigation_settings,
             R.id.device_section,
             R.id.notification_settings,
             R.id.display_settings,
@@ -316,7 +314,6 @@ public class SettingsActivity extends Activity
             DisplayRotation.class.getName(),
             ExpandedDesktopPreferenceFragment.class.getName(),
             HardwareKeysSettings.class.getName(),
-            NavigationSettings.class.getName(),
             NavbarButtonFragment.class.getName(),
             PieButtonFragment.class.getName()
     };
