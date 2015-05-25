@@ -61,11 +61,11 @@
                     android:title="@string/title_pref_menu_location"
                     android:summary="@string/summary_pref_menu_location" />
 
-            <SwitchPreference
-                    android:key="navbar_can_move"
-                    android:title="@string/navbar_can_move"
-                    android:summary="@string/navbar_can_move_summary" />
-
         </PreferenceCategory>
+
+        <SwitchPreference
+                android:key="navbar_can_move"
+                android:title="@string/navbar_can_move"
+                android:summary="@string/navbar_can_move_summary" />
 
 </PreferenceScreen>
